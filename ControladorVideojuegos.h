@@ -2,7 +2,12 @@
 #include "DataTypes/DtVideojuego.h"
 #include "DataTypes/DtCategoria.h"
 #include "DataTypes/DtJugador.h"
+#include "IControladorVideojuegos.h"
+//#include "videojuego.h"
+//#include "suscripcion.h"
+//#include "categoria.h"
 #include <string>
+#include <set>
 using namespace std;
 
 class ControladorVideojuegos : public iControladorVideojuegos {
@@ -13,7 +18,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 set<Videojuego> videojuegos;
 	public:
                 static ControladorVideojuegos getInstancia();
-                float calcularEstadistica(IdEstadistica estadistica); //no deberia de ser de la misma clase que el identificador de estadisticas que viene a ser un int?
+                float calcularEstadistica(int estadistica); //no deberia de ser de la misma clase que el identificador de estadisticas que viene a ser un int? ---- Ag: Si, lo deje porque asi estaba
                 float calcularHorasJugadas(Videojuego videojuego);
                 set<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
                 void eliminarVideojuego(string nombre);

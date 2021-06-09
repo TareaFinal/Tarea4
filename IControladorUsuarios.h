@@ -1,5 +1,7 @@
 #include "DataTypes/DtJugador.h"
 #include <string>
+#include <set>
+//#include "jugador.h"
 using namespace std;
 
 class iControladorUsuarios {

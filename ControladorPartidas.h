@@ -2,7 +2,12 @@
 #include "DataTypes/DtVideojuego.h"
 #include "DataTypes/DtCategoria.h"
 #include "DataTypes/DtJugador.h"
+#include "IControladorPartidas.h"
 #include <string>
+#include <set>
+//#include "partida.h"
+///#include "partidaIndividual.h"
+//#include "partidaMultijugador.h"
 using namespace std;
 
 class ControladorPartidas : public iControladorPartidas {
@@ -13,10 +18,10 @@ class ControladorPartidas : public iControladorPartidas {
 	public:
                 static ControladorPartidas getInstancia();
                 float darHorasDePartida(Partida partida);
-                Set<DtVideojuego> obtenerVideojuegosJugador();
-                Set<DtJugador> obtenerJugadoresSuscriptos(int idPartida);
-                Set<DtJugador> obtenerJugadoresMulti(int idPartida);
+                set<DtVideojuego> obtenerVideojuegosJugador();
+                set<DtJugador> obtenerJugadoresSuscriptos(int idPartida);
+                set<DtJugador> obtenerJugadoresMulti(int idPartida);
                 bool ingreseIdPartida(int idPartida);
                 void finalizarPartida(int idPartida);
-                Set<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
+                set<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
 };

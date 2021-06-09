@@ -3,12 +3,15 @@
 #include "DataTypes/DtCategoria.h"
 #include "DataTypes/DtJugador.h"
 #include <string>
+#include <set>
+//#include "videojuego.h"
+//#include "suscripcion.h"
 using namespace std;
 
 class iControladorVideojuegos {
 
 	public:
-                virtual float calcularEstadistica(IdEstadistica estadistica) = 0;
+                virtual float calcularEstadistica(int estadistica) = 0;
                 virtual float calcularHorasJugadas(Videojuego videojuego) = 0;
                 virtual set<DtJugador> jugadoresSuscriptosAVideojuego(string nombre) = 0;
                 virtual void eliminarVideojuego(string nombre) = 0;

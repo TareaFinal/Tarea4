@@ -2,14 +2,20 @@
 #include "DataTypes/DtVideojuego.h"
 #include "DataTypes/DtCategoria.h"
 #include "DataTypes/DtJugador.h"
+#include "IControladorUsuarios.h"
 #include <string>
+#include <set>
+//#include "jugador.h"
+//#include "videojuego.h"
+//#include "suscripcion.h"
+#include "usuario.h"
 using namespace std;
 
 class ControladorUsuarios : public iControladorUsuarios {
 	
 	private:
 		static ControladorUsuarios instancia;
-                set<Usuario> usuarios:
+                set<Usuario> usuarios;
                 string emailUsuarioEnSesion;
 	public:
                 static ControladorUsuarios getInstancia();
