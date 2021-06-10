@@ -9,13 +9,13 @@ using namespace std;
 
 class Suscripcion {
 private:
+	
+protected:
 	string metodoDePago;
 	float valor;
 	DTFecha fecha;
 	Jugador* _jugador; // el jugador al que pertenece la suscripcion
 	Videojuego* _videojuego // es el videojuego al que se suscribe
-protected:
-
 public:
 	//Constructor
 	Suscripcion (string metpago, DTFecha fechahoy,float val, Jugador* player, VideoJuego* vj);

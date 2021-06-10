@@ -6,9 +6,9 @@ using namespace std;
 
 class Usuario {
 private:
-	string email, contrasenia;
-protected:
 	
+protected:
+	string email, contrasenia;
 public:
 	// Constructor
 	Usuario(string email, string contrasenia);
