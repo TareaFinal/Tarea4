@@ -23,6 +23,7 @@ public:
 	// Getters
 
 	string getEmpresa(); // era DarEmpresa pero no encuentro diferencia
+	string tipoUsuario();
 };
 
 #endif

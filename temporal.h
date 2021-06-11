@@ -3,36 +3,34 @@
 #include "suscripcion.h"
 #include "jugador.h"
 #include "videojuego.h"
-#include "DataTypes/DTFecha.h"
+#include "DataTypes/DtFechaHora.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
-
 class Temporal : public Suscripcion {
 private:
-	DTFecha validez;
+	DtFechaHora validez;
 	bool cancelada;
 protected:
 
 public:
 	// Constructor
-	Temporal (string metpago, DTFecha fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
+	Temporal (string metpago, DtFechaHora fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
 	
 	// Destructor
-	~Vitalicia();
+	~Temporal();
 	
 	// Setters
 
-	void setCancelada(bool cancel);
-
 	// Getters
-	DTFecha getValidez();
+	DtFechaHora getValidez();
 	bool getCancelada();
 	
 	
 	// Funciones
 	bool activa(); // devuelve !cancelada && hoy<validez 
+	string TipoSuscripcion();
 	void cancelar();
 };
 

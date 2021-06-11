@@ -9,7 +9,7 @@
 
 #include <string>
 
-class Vidoejuego {
+class Videojuego {
 	private: 
 		string nombre
 		string descripcion

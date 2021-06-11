@@ -2,8 +2,8 @@
 #define SUSCRIPCION
 #include <string>
 #include <iostream>
-#include "DataTypes/DTFecha.h"
-#include "Jugador.h"
+#include "../DataTypes/DtFechaHora.h"
+#include "jugador.h"
 #include "Videojuego.h"
 using namespace std;
 
@@ -13,30 +13,31 @@ private:
 protected:
 	string metodoDePago;
 	float valor;
-	DTFecha fecha;
+	DtFechaHora fecha;
 	Jugador* _jugador; // el jugador al que pertenece la suscripcion
-	Videojuego* _videojuego // es el videojuego al que se suscribe
+	Videojuego* _videojuego; // es el videojuego al que se suscribe
 public:
 	//Constructor
-	Suscripcion (string metpago, DTFecha fechahoy,float val, Jugador* player, VideoJuego* vj);
+	Suscripcion(string metpago, DtFechaHora fechahoy,float val, Jugador* player, Videojuego* vj);
 	
 	// Destructor
 
 	~Suscripcion();
-	// Seters
-
+	// Seters no tenemos seters por el momento
+	/*
 	void setMetodoDePago(string descripcion); // se setan estas cosas?
 	void setValor(float val);
 	void setFecha(DTFecha fechahora);
-
+	*/
 	//Getters
 	
 	string getMetodoDePago();
 	float getValor();
-	DTFecha getFecha();
+	DtFechaHora getFecha();
 
 	// Funciones
-	bool Activa(); // esta funcion determina si la suscripcion está activa o no. Abstracta
+	virtual string TipoSuscripcion();
+	virtual bool activa(); // esta funcion determina si la suscripcion está activa o no. Abstracta
 
 };
 

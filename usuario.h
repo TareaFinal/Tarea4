@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-class Usuario {
+class Usuario {  // abstracta
 private:
 	
 protected:
@@ -20,6 +20,8 @@ public:
 	// Getters
 	string getEmail();
 	string getContrasenia();
+	// funciones
+	virtual tipoUsuario();
 	
 };
 
