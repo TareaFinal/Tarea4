@@ -13,19 +13,13 @@ class DtComentario {
 		string nicknameJugador;
         string texto;
 	public:
-		DtComentario();
+		DtComentario(int idComentario, DtFechaHora fecha, string nicknameJugador, string texto);
 
         //getters
 		int getIdComentario();
 		DtFechaHora getFecha();
 		string getNicknameJugador();
         string getTexto();
-
-        //setters
-		int setIdComentario();
-		DtFechaHora setFecha();
-		string setNicknameJugador();
-        string setTexto();
         
 };
 

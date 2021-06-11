@@ -9,13 +9,11 @@ class DtPartidaIndividual : public DtPartida {
 	private: 
 		int partidaContinuada;
 	public:	
-		DtPartidaIndividual();
+		DtPartidaIndividual(int partidaContinuada);
 
         //getters
 		int getPartidaContinuada();
 
-        //setters
-		int setPartidaContinuada();
 };
 
 #endif

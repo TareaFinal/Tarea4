@@ -11,17 +11,12 @@ class DtCategoria {
 		string tipo;
 		string descripcion;
 	public:
-		DtCategoria();
+		DtCategoria(string nombre, string tipo, string descripcion);
 
         //getters
 		string getNombre();
 		string getTipo();
 		string getDescripcion();
-
-        //setters
-		string setNombre();
-		string setTipo();
-		string setDescripcion();
         
 };
 

@@ -15,7 +15,7 @@ class DtVideojuego {
         string empresa;
 
 	public:
-		DtVideojuego();
+		DtVideojuego(string nombre, string descripcion, float puntajePromedio, float totalDeHorasJugadas, string empresa);
 
         //getters
         string getNombre();
@@ -24,13 +24,6 @@ class DtVideojuego {
         float getTotalDeHorasJugadas();
         string getEmpresa();
 
-        //setters
-        string setNombre();
-		string setDescripcion();
-        float setPuntajePromedio();
-        float setTotalDeHorasJugadas();
-        string setEmpresa();
-        
 };
 
 #endif

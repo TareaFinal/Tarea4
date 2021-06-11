@@ -12,19 +12,13 @@ class DtEstadistica {
 		string descripcion;
 		float valor;
 	public:
-		DtEstadistica();
+		DtEstadistica(int idEstadistica, string nombre,	string descripcion,	float valor);
 
         //getters
 		int getIdEstadistica();
 		string getNombre();
 		string getDescripcion();
 		float getValor();
-
-        //setters
-        int setIdEstadistica();
-		string setNombre();
-		string setDescripcion();
-		float setValor();
         
 };
 

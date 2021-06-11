@@ -23,13 +23,6 @@ class DtPartida {
         string getNicknameCreador();
         string getVideojuego();
 
-        //setters
-        int setIdPartida();
-		DtFechaHora setDuracion();
-        DtFechaHora setFechaInicio();
-        string setNicknameCreador();
-        string setVideojuego();
-
         virtual ~DtPartida() {
 		};
         
