@@ -6,7 +6,7 @@
 #include <string>
 #include <set>
 //#include "partida.h"
-///#include "partidaIndividual.h"
+//#include "partidaIndividual.h"
 //#include "partidaMultijugador.h"
 using namespace std;
 

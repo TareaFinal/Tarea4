@@ -1,22 +1,22 @@
 #ifndef CATEGORIA
 #define CATEGORIA 
 
-#import "../DtCategoria.h"
-#import "../Desarrollador.h"
+#include "../DataTypes/DtCategoria.h"
+#include "../desarrollador.h"
 
 #include <string>
 
 class Categoria {
 	private: 
-		string nombre
-		string tipo
+		string nombre;
+		string tipo;
 		string descripcion;
 		Desarrollador desarrollador;
 	
 	public:
-		string getNombre()
-		string getTipo()
-		string getDescripcion()
+		string getNombre();
+		string getTipo();
+		string getDescripcion();
 		DtCategoria getDataCategoria();
 		
 		void setNombre(string nombre);

@@ -2,7 +2,8 @@
 #define JUGADOR
 #include "usuario.h"
 #include "suscripcion.h"
-#include "DataTypes/DTVideojuego.h" // ojo con las forward declarations
+#include "DataTypes/DtVideojuego.h" // ojo con las forward declarations
+#include <set>
 #include <string>
 #include <iostream>
 using namespace std;
@@ -10,14 +11,14 @@ using namespace std;
 class Jugador : public Usuario {
 private:
 	string nick, descripcion;
-	std::set <Suscripcion*> colSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
-	std::set <DTVideojuego*> colDTVideojuego;
+	std::set<Suscripcion*> colSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
+	std::set<DtVideojuego*> colDTVideojuego;
 
 protected:
 
 public:
 	// Constructor
-	Jugador(email: string, contrasenia: string, nickname : string, descrip : string);
+	Jugador(string email, string contrasenia, string nickname, string descripcion);
 
 	// Destructor
 	~Jugador();

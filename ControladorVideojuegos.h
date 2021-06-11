@@ -3,9 +3,9 @@
 #include "DataTypes/DtCategoria.h"
 #include "DataTypes/DtJugador.h"
 #include "IControladorVideojuegos.h"
-//#include "videojuego.h"
-//#include "suscripcion.h"
-//#include "categoria.h"
+#include "Videojuego.h"
+#include "suscripcion.h"
+#include "Categoria.h"
 #include <string>
 #include <set>
 using namespace std;

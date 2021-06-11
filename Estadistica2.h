@@ -1,7 +1,7 @@
 #ifndef ESTADISTICA2
 #define ESTADISTICA2
 
-#import "../Estadistica.h"
+#include "Estadistica.h"
 
 class Estadistica2 : public Estadistica {
 	public:

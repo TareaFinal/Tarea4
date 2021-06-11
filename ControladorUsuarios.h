@@ -5,9 +5,9 @@
 #include "IControladorUsuarios.h"
 #include <string>
 #include <set>
-//#include "jugador.h"
-//#include "videojuego.h"
-//#include "suscripcion.h"
+#include "jugador.h"
+#include "Videojuego.h"
+#include "suscripcion.h"
 #include "usuario.h"
 using namespace std;
 
