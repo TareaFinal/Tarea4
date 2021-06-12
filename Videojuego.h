@@ -1,8 +1,8 @@
 #ifndef VIDEOJUEGO
 #define VIDEOJUEGO
 
-#include "DtVideojuego.h"
-#include "DtJugador.h"
+#include "DataTypes/DtVideojuego.h"
+#include "DataTypes/DtJugador.h"
 #include "jugador.h"
 #include "Categoria.h"
 #include "suscripcion.h"

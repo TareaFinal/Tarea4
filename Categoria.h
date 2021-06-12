@@ -1,8 +1,8 @@
 #ifndef CATEGORIA
 #define CATEGORIA 
 
-#include "../DataTypes/DtCategoria.h"
-#include "../desarrollador.h"
+#include "DataTypes/DtCategoria.h"
+#include "desarrollador.h"
 
 #include <string>
 
