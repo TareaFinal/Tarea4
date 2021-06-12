@@ -2,22 +2,26 @@
 #define JUGADOR
 #include "usuario.h"
 #include "suscripcion.h"
-#include "DataTypes/DTVideojuego.h" // ojo con las forward declarations
+#include "Videojuego.h"
+#include "DataTypes/DtVideojuego.h" // ojo con las forward declarations
 #include <string>
 #include <iostream>
+#include <set>
+#include <map>
 using namespace std;
 
 class Jugador : public Usuario {
 private:
 	string nick, descripcion;
-	std::set <Suscripcion*> colSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
-	std::set <DTVideojuego*> colDTVideojuego;
+	//std::map<int, Funcion*> dicFunciones;
+	std::map<string, Suscripcion*> dicSuscripciones; // un diccionario donde la clave es el nombre del videojuego.
+	
 
 protected:
 
 public:
 	// Constructor
-	Jugador(email: string, contrasenia: string, nickname : string, descrip : string);
+	Jugador(string email, string contrasenia,string nickname,string descrip);
 
 	// Destructor
 	~Jugador();
@@ -33,9 +37,9 @@ public:
 	string getNick();
 
 	// Funciones
-	void desvincularSub(Suscripcion s);
-	void agregarSuscripcion(Suscripcion s);
-	colDTVideojuego* videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
+	void desvincularSub(Videojuego* vj);
+	void agregarSuscripcion(Suscripcion* s);
+	std::set <DtVideojuego*> videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
 	
 		
 };
