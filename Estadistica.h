@@ -1,7 +1,7 @@
 #ifndef ESTADISTICA
 #define ESTADISTICA
 
-#include "DtEstadistica.h"
+#include "DataTypes/DtEstadistica.h"
 
 #include <string>
 
