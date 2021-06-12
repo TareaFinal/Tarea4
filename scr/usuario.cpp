@@ -12,7 +12,7 @@ public:
 */
 	// Constructor
 Usuario::Usuario(string email, string contrasenia) {
-	if (email.find(@) == string::npos) {
+	if (email.find("@") == string::npos) {
 		this->email = email;
 		this->contrasenia = contrasenia;
 	}

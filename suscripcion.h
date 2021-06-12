@@ -2,7 +2,7 @@
 #define SUSCRIPCION
 #include <string>
 #include <iostream>
-#include "../DataTypes/DtFechaHora.h"
+#include "DataTypes/DtFechaHora.h"
 #include "jugador.h"
 #include "Videojuego.h"
 using namespace std;
@@ -37,7 +37,7 @@ public:
 
 	// Funciones
 	virtual string TipoSuscripcion();
-	virtual bool activa(); // esta funcion determina si la suscripcion está activa o no. Abstracta
+	virtual bool activa(); // esta funcion determina si la suscripcion estï¿½ activa o no. Abstracta
 
 };
 

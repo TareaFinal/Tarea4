@@ -14,6 +14,10 @@ void Desarrollador::setEmpresa(string nombre) {
 	empresa = nombre;
 }
 	// Getters
-string Desarrollador::getEmpresa() { return empresa;}
+string Desarrollador::getEmpresa() { 
+	return empresa;
+}
 	// Funciones
-string Desarrollador::tipoUsuario() { return "desarrollador"; }
+string Desarrollador::tipoUsuario() { 
+	return "desarrollador";
+}

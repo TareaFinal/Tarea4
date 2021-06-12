@@ -1,4 +1,4 @@
-#include "Partida.h"
+#include "partida.h"
 #include "DtFechaHora.h"
 #include "DtJugador.h"
 #include <string>

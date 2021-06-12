@@ -1,23 +1,24 @@
 #ifndef VIDEOJUEGO
 #define VIDEOJUEGO
 
-#import "../DtVideojuego.h"
-#import "../DtJugador.h"
-#import "../Jugador.h"
-#import "../Categoria.h"
-#import "../Suscripcion.h"
+#include "DataTypes/DtVideojuego.h"
+#include "DataTypes/DtJugador.h"
+#include "jugador.h"
+#include "Categoria.h"
+#include "suscripcion.h"
+#include "Estadistica.h"
 
 #include <string>
 
 class Videojuego {
 	private: 
-		string nombre
-		string descripcion
-		float *costos
-		int *puntajes
-		Desarrollador desarrollador
-		Categoria **categorias 
-		Suscripcion **suscripciones
+		string nombre;
+		string descripcion;
+		float *costos;
+		int *puntajes;
+		Desarrollador desarrollador;
+		Categoria **categorias ;
+		Suscripcion **suscripciones;
 		Estadistica **estadisticas;
 		
 	public:

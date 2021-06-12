@@ -1,6 +1,6 @@
 #include "DtFechaHora.h"
 #include "DtPartida.h"
-#include "Comentario.h"
+#include "comentario.h"
 #include <string>
 using namespace std;
 
@@ -28,6 +28,6 @@ public:
 	string getVideojuego();
 	//operaciones
 	float darTotalDeHorasParticipantes();
-	virtual terminarPartida();
+	virtual Partida terminarPartida();
 	DtPartida getDataPartida();
 };

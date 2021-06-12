@@ -13,26 +13,26 @@ Temporal::Temporal(string metpago, DtFechaHora fechahoy, float val, Jugador* Pla
 		// validez se calcula sumandole a la fecha de hoy el tiempo en tipo
 {
 	if (tipo == "anual"){
-		validez = DtFechaHora(fechahoy.get(anio)+1, fechahoy.get(mes), fechahoy.get(dia), fechahoy.get(hora), fechahoy.get(minuto));
+		validez = DtFechaHora(fechahoy.getAnio()+1, fechahoy.getMes(), fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
 	}
 	else if (tipo == "semestral") {
-		if (fechahoy.get(mes) <= 6) {
-			validez = DtFechaHora(fechahoy.get(anio), fechahoy.get(mes)+6, fechahoy.get(dia), fechahoy.get(hora), fechahoy.get(minuto));
+		if (fechahoy.getMes() <= 6) {
+			validez = DtFechaHora(fechahoy.getAnio(), fechahoy.getMes()+6, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
 		}
 		else {
-			validez = DtFechaHora(fechahoy.get(anio)+1, fechahoy.get(mes)-6, fechahoy.get(dia), fechahoy.get(hora), fechahoy.get(minuto));
+			validez = DtFechaHora(fechahoy.getAnio()+1, fechahoy.getMes()-6, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
 		}
 	}
 	else if (tipo == "mensual") {
-		if (fecha.hoy.get(mes) == 12) {
-			validez = DtFechaHora(fechahoy.get(anio) + 1, 1, fechahoy.get(dia), fechahoy.get(hora), fechahoy.get(minuto));
+		if (fechahoy.getMes() == 12) {
+			validez = DtFechaHora(fechahoy.getAnio() + 1, 1, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
 		}
 		else {
-			validez = DtFechaHora(fechahoy.get(anio), fechahoy.get(mes) +1, fechahoy.get(dia), fechahoy.get(hora), fechahoy.get(minuto));
+			validez = DtFechaHora(fechahoy.getAnio(), fechahoy.getMes() +1, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
 		}
 	}
 	else {
-		throw invalid_argument("el tipo de suscripcion no es válido\n");
+		throw invalid_argument("el tipo de suscripcion no es vï¿½lido\n");
 	}
 }
 	
@@ -53,22 +53,22 @@ bool Temporal::getCancelada() {
 	// Funciones
 bool Temporal::activa() {
 	bool valida; //hoy < validez
-	DtFechaHora ahora = contusuarios.getFechaHoraActual(); // Esta funcion no está creada OJOOOOO!!!
-	if (validez.get(anio) > ahora.get(anio)) {
+	DtFechaHora ahora = contusuarios.getFechaHoraActual(); // Esta funcion no estï¿½ creada OJOOOOO!!!
+	if (validez.getAnio() > ahora.getAnio()) {
 		valida= true;
 	}
-	else if ((validez.get(anio) == ahora.get(anio)) && (validez.get(mes) > ahora.get(mes))) {
+	else if ((validez.getAnio() == ahora.getAnio()) && (validez.getMes() > ahora.getMes())) {
 		valida = true;
 	}
-	else if (((validez.get(anio) == ahora.get(anio)) && (validez.get(mes) == ahora.get(mes)) && validez.get(dia) > ahora.get(dia))) {
+	else if (((validez.getAnio() == ahora.getAnio()) && (validez.getMes() == ahora.getMes()) && validez.getDia() > ahora.getDia())) {
 		valida = true;
 	}
-	else if ((((validez.get(anio) == ahora.get(anio)) && (validez.get(mes) == ahora.get(mes)) && validez.get(dia) == ahora.get(dia)))
-				&& (validez.get(hora) > ahora.get(hora))) {
+	else if ((((validez.getAnio() == ahora.getAnio()) && (validez.getMes() == ahora.getMes()) && validez.getDia() == ahora.getDia()))
+				&& (validez.getHora() > ahora.getHora())) {
 		valida = true;
 	}
-	else if (((((validez.get(anio) == ahora.get(anio)) && (validez.get(mes) == ahora.get(mes)) && validez.get(dia) == ahora.get(dia)))
-			&& (validez.get(hora) > ahora.get(hora))) && (validez.get(minuto) >= ahora.get(minuto))) {
+	else if (((((validez.getAnio() == ahora.getAnio()) && (validez.getMes() == ahora.getMes()) && validez.getDia() == ahora.getDia()))
+			&& (validez.getHora() > ahora.getHora())) && (validez.getMinuto() >= ahora.getMinuto())) {
 		valida = true;
 	}
 	else {
@@ -82,6 +82,3 @@ string Temporal::TipoSuscripcion() {
 void Temporal::cancelar() {
 	cancelada = true;
 }
-
-
-#endif
