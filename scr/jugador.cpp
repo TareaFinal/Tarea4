@@ -2,17 +2,7 @@
 #include <string>
 #include <iostream>
 using namespace std;
-/*
-class Jugador : public Usuario {
-private:
-	string nick, descripcion;
-	std::set <Suscripcion*> colSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
-	std::set <DTVideojuego*> colDTVideojuego;
 
-protected:
-
-public:
-*/
 	// Constructor
 Jugador::Jugador(string email, string contrasenia, string nickname, string descrip) :
 	 Usuario(email, contrasenia), nick(nickname), descripcion(descrip) {}

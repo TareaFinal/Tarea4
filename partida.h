@@ -30,4 +30,6 @@ public:
 	float darTotalDeHorasParticipantes();
 	virtual terminarPartida();
 	DtPartida getDataPartida();
+	virtual string tipo(); // devuelve "individual" o "multijugador" segun coresponda
+
 };

@@ -15,8 +15,6 @@ private:
 	string nick, descripcion;
 	//std::map<int, Funcion*> dicFunciones;
 	std::map<string, Suscripcion*> dicSuscripciones; // un diccionario donde la clave es el nombre del videojuego.
-	
-
 protected:
 
 public:

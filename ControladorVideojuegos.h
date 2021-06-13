@@ -13,11 +13,11 @@ using namespace std;
 class ControladorVideojuegos : public iControladorVideojuegos {
 	
 	private:
-	        static ControladorVideojuegos instancia;
+	        static ControladorVideojuegos* instancia;
                 set<Categoria> categorias;
                 set<Videojuego> videojuegos;
 	public:
-                static ControladorVideojuegos getInstancia();
+                static ControladorVideojuegos* getInstancia();
                 float calcularEstadistica(int estadistica); //no deberia de ser de la misma clase que el identificador de estadisticas que viene a ser un int? ---- Ag: Si, lo deje porque asi estaba
                 float calcularHorasJugadas(Videojuego videojuego);
                 set<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
