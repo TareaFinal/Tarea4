@@ -29,7 +29,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 set<DtVideojuego> obtenerVideojuegosJugador(string email);
                 void desvincularSuscripciones(set<Jugador> js, Videojuego v);
                 void desvincularSuscripcion(string email, Videojuego v);
-                Suscripcion buscarSuscripcion(Videojuego v);
+                Suscripcion buscarSuscripcion(Videojuego v); // No aparece en los DCs, tampoco tiene sentido devolver una sola suscripcion a partir de un videojuego.
                 void agregarSusAJugador(string email, Suscripcion s);
                 set<Jugador> darJugadores(set<DtJugador> dtJugadores);
 };

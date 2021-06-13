@@ -27,8 +27,28 @@ string ControladorUsuarios::getUsuarioEnSesion() {
 }
 
 set<string> ControladorUsuarios::getVideojuegoJugador(string email) {
-    //??    
+    set<DtVideojuego> videojuegos;
+    set<string> nombresVideojuegos;
+    Usuario* usuario = NULL;
 
+    usuarios::iterator user;
+    for (user = s1.begin(); user != s1.end(); user++) {
+        if ((*user).getEmail() == email) {
+            usuario = user;
+            break;
+        }
+    }
+
+    if (*usuario != NULL) {
+        videojuegos = (*usuario).videojuegosSuscripto();
+
+        videojuegos::iterator it;
+        for (it = s1.begin(); it != s1.end(); it++) {
+            nombresVideojuegos.insert((*it).getNombre());
+        }
+    }
+
+    return nombresVideojuegos;
 }
 
 void ControladorUsuarios::registrarUsuario(string email, string contrasenia) {
@@ -61,7 +81,7 @@ void ControladorUsuarios::confirmarAltaUsuario() {
 
 set<DtVideojuego> ControladorUsuarios::obtenerVideojuegosJugador(string email) {
     set<DtVideojuego> videojuegos;
-    usuario* = NULL;
+    Usuario* usuario = NULL;
 
     usuarios::iterator user;
     for (user = s1.begin(); user != s1.end(); user++) {
@@ -84,8 +104,31 @@ void ControladorUsuarios::desvincularSuscripciones(set<Jugador> js, Videojuego v
    }
 }
 
+Suscripcion buscarSuscripcion(Videojuego v) {
+    Usuario* usuario = NULL;
+
+    usuarios::iterator user;
+    for (user = s1.begin(); user != s1.end(); user++) {
+        if ((*user).getEmail() == emailUsuarioEnSesion) {
+            usuario = user;
+            break;
+        }
+    }
+
+    if (*usuario != NULL) {
+        set<Suscripcion*> sus= (*usuario).getSuscripciones();
+
+        sus::iterator it;
+        for (it = s1.begin(); it != s1.end(); it++) {
+            if ((*it).getVideojuego() == v) {
+                return *it;
+            }
+        }
+    }
+}
+
 void ControladorUsuarios::desvincularSuscripcion(string email, Videojuego v) {
-    usuario* = NULL;
+    Usuario* usuario = NULL;
 
     usuarios::iterator user;
     for (user = s1.begin(); user != s1.end(); user++) {
@@ -101,10 +144,8 @@ void ControladorUsuarios::desvincularSuscripcion(string email, Videojuego v) {
 
 }
 
-Suscripcion ControladorUsuarios::buscarSuscripcion(Videojuego v) {}
-
 void ControladorUsuarios::agregarSusAJugador(string email, Suscripcion s) {
-    usuario* = NULL;
+    Usuario* usuario = NULL;
 
     usuarios::iterator user;
     for (user = s1.begin(); user != s1.end(); user++) {
@@ -121,7 +162,7 @@ void ControladorUsuarios::agregarSusAJugador(string email, Suscripcion s) {
 
 set<Jugador> ControladorUsuarios::darJugadores(set<DtJugador> dtJugadores) {
     set<Jugador> jugadores;
-    *usuario = NULL;
+    Usuario* usuario = NULL;
 
     for (DtJugador dtJ : dtJugadores) {
         string email = dtJ.getEmail();
