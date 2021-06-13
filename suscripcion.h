@@ -34,6 +34,7 @@ public:
 	string getMetodoDePago();
 	float getValor();
 	DtFechaHora getFecha();
+	Videojuego* getVideojuego();
 
 	// Funciones
 	virtual string TipoSuscripcion();
