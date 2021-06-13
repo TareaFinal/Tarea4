@@ -5,20 +5,12 @@
 #include "IControladorPartidas.h"
 #include "ControladorVideojuegos.h"
 #include "ControladorUsuarios.h"
-
-#include <string>
-<<<<<<< HEAD
-#include <map>
 #include "partida.h"  // como es lo del forward declaration??
 #include "partidaIndividual.h"
 #include "partidaMultijugador.h"
-///#include "partidaIndividual.h"
-=======
 #include <set>
-//#include "partida.h"
-//#include "partidaIndividual.h"
->>>>>>> ecef6d937beb97a226cd2577e55da449f5483e8c
-//#include "partidaMultijugador.h"
+#include <string>
+#include <map>
 using namespace std;
 class Jugador;  // Forward declaration
 //class Partida;
