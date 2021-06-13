@@ -6,7 +6,7 @@ using namespace std;
 class PartidaIndividual : public Partida {
 public:
 	//Constructor
-	PartidaIndividual(int idPartida, DtFechaHora duracion, DtFechaHora FechaInicio, string juego);
+	PartidaIndividual(int idPartida, DtFechaHora duracion, DtFechaHora FechaInicio, string juego, string emailjugador);
 	//Destructor
 	~PartidaIndividual();
 	//operaciones
@@ -14,4 +14,5 @@ public:
 	bool esContinuacion();
 	void terminarPartida();
 	DtPartida getDataPartida();
+	string getJugador();
 };

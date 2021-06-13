@@ -1,8 +1,6 @@
 #include <string>
 #include <iostream>
 #include "../suscripcion.h"
-#include "../jugador.h"
-#include "../Videojuego.h"
 using namespace std;
 
 	//Constructor
@@ -29,4 +27,14 @@ float Suscripcion::getValor() {
 }
 DtFechaHora Suscripcion::getFecha() {
 	return fecha;
+}
+
+DtVideojuego Suscripcion::getDataVideojuego()
+{
+	if (this->activa()) { // ni puta idea de si esto funciona pero suscripcion no tiene metodo para activa pero sus derivadas si.
+		return _videojuego->getDataVideojuego(); // le digo a mi videojuego que me de su data
+	}
+	else {
+		throw invalid_argument "La suscripcion está inactiva";
+	}
 }
