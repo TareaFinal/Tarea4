@@ -1,7 +1,7 @@
 #include "DataTypes/DtJugador.h"
 #include <string>
 #include <set>
-//#include "jugador.h"
+#include "jugador.h"
 using namespace std;
 
 class iControladorUsuarios {
@@ -17,6 +17,6 @@ class iControladorUsuarios {
                 virtual void desvincularSuscripciones(set<Jugador> js, Videojuego v) = 0;
                 virtual void desvincularSuscripcion(string email, Videojuego v) = 0;
                 virtual Suscripcion buscarSuscripcion(Videojuego v) = 0;
-                virtual void agregarSusAJugador(Suscripcion s) = 0;
+                virtual void agregarSusAJugador(string email, Suscripcion s) = 0;
                 virtual set<Jugador> darJugadores(set<DtJugador> dtJugadores) = 0;
 };

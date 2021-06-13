@@ -35,6 +35,7 @@ public:
 	float getValor();
 	DtFechaHora getFecha();
 	DtVideojuego getDataVideojuego();
+	Videojuego* getVideojuego();
 
 	// Funciones
 	virtual string TipoSuscripcion();

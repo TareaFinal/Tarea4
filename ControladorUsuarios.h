@@ -14,6 +14,7 @@ using namespace std;
 class ControladorUsuarios : public iControladorUsuarios {
 	
 	private:
+                string mail = '', contra = '', nickname = '', desc ='', empresa = '';
 		static ControladorUsuarios instancia;
                 set<Usuario> usuarios;
                 string emailUsuarioEnSesion;
@@ -25,10 +26,10 @@ class ControladorUsuarios : public iControladorUsuarios {
                 void darEmpresa(string nombre);
                 void darDatosJugador(string nick, string descripcion);
                 void confirmarAltaUsuario();
-                void obtenerVideojuegosJugador(string email);
+                set<DtVideojuego> obtenerVideojuegosJugador(string email);
                 void desvincularSuscripciones(set<Jugador> js, Videojuego v);
                 void desvincularSuscripcion(string email, Videojuego v);
-                Suscripcion buscarSuscripcion(Videojuego v);
-                void agregarSusAJugador(Suscripcion s);
+                Suscripcion buscarSuscripcion(Videojuego v); // No aparece en los DCs, tampoco tiene sentido devolver una sola suscripcion a partir de un videojuego.
+                void agregarSusAJugador(string email, Suscripcion s);
                 set<Jugador> darJugadores(set<DtJugador> dtJugadores);
 };
