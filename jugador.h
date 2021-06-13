@@ -2,13 +2,9 @@
 #define JUGADOR
 #include "usuario.h"
 #include "suscripcion.h"
-<<<<<<< HEAD
 #include "Videojuego.h"
 #include "DataTypes/DtVideojuego.h" // ojo con las forward declarations
-=======
-#include "DataTypes/DtVideojuego.h" // ojo con las forward declarations
-#include <set>
->>>>>>> ecef6d937beb97a226cd2577e55da449f5483e8c
+
 #include <string>
 #include <iostream>
 #include <set>
