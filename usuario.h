@@ -21,7 +21,7 @@ public:
 	string getEmail();
 	string getContrasenia();
 	// funciones
-	virtual tipoUsuario();
+	virtual string tipoUsuario();
 	
 };
 

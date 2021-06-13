@@ -5,7 +5,7 @@ using namespace std;
 
 	//Constructor
 Suscripcion::Suscripcion(string metpago, DtFechaHora fechahoy, float val, Jugador* player, Videojuego* vj) : metodoDePago(metpago), valor(val), fecha(fechahoy)
-		_jugador(player), _videojuego(vj)
+		_jugador(player), _videojuego(vj);
 {
 		std::cout << "acaba de ejecutarse el constructor de Suscripcion" << std::endl;  // borrar este mensaje
 }

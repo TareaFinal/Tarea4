@@ -2,7 +2,7 @@
 #define TEMPORAL
 #include "suscripcion.h"
 #include "jugador.h"
-#include "videojuego.h"
+#include "Videojuego.h"
 #include "DataTypes/DtFechaHora.h"
 #include <string>
 #include <iostream>

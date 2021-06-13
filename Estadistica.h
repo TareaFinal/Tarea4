@@ -1,16 +1,16 @@
 #ifndef ESTADISTICA
 #define ESTADISTICA
 
-#import "../DtEstadistica.h"
+#include "DataTypes/DtEstadistica.h"
 
 #include <string>
 
 class Estadistica {
 	private: 
-		int idEstadistica
-		string nombre
-		string descripcion
-		Estadistica EstrategiaEstadistica;
+		int idEstadistica;
+		string nombre;
+		string descripcion;
+		//Estadistica EstrategiaEstadistica;
 
 	public:
 		virtual float calcular() = 0;
