@@ -1,4 +1,6 @@
-#include "DtFechaHora.h"
+#ifndef COMENTARIO
+#define COMENTARIO
+#include "DataTypes/DtFechaHora.h"
 #include "partidaMultijugador.h"
 #include <string>
 using namespace std;
@@ -24,3 +26,4 @@ public:
 	DtFechaHora getFechaHora();
 	string getTexto();
 };
+#endif
