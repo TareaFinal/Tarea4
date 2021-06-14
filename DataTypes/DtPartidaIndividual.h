@@ -9,7 +9,7 @@ class DtPartidaIndividual : public DtPartida {
 	private: 
 		int partidaContinuada;
 	public:	
-		DtPartidaIndividual(int partidaContinuada);
+		DtPartidaIndividual(DtFechaHora duracion, DtFechaHora fechaInicio, string nicknameCreador, string videojuego, int partidaContinuada);
 
         //getters
 		int getPartidaContinuada();
