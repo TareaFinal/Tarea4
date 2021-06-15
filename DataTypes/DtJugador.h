@@ -17,7 +17,7 @@ class DtJugador {
         //getters
         string getEmail();
         string getContrasenia();
-        string getNickname();
+        string getNickname() const;
         string getDescripcion();
         
 };

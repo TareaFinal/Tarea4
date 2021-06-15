@@ -18,7 +18,7 @@ public:
 	PartidaIndividual* continua;
 	float darTotaldeHorasParticipantes();
 	void terminarPartida();
-	DtPartida getDataPartida();
+	DtPartidaIndividual getDataPartida();
 	string getJugador();
 	int Continua(); // si no continua a ninguna devuelve -1 y si no devuelve a la idPartida de la partida a la que continua.
 };

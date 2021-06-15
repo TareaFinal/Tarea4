@@ -3,8 +3,9 @@
 #include "DataTypes/DtFechaHora.h"
 #include "DataTypes/DtPartida.h"
 //#include "comentario.h"
-#include <string>
 using namespace std;
+#include <string>
+
 
 class Partida {
 
