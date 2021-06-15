@@ -63,7 +63,8 @@ class ControladorPartidas : public iControladorPartidas {
 
 
         // Caso de uso finalizar partida
-        set<DtPartida> ListarPartidasNoFinalizadas(); // devuelve todas las partidas no finalizadas del jugador sin importar el videojuego
+        set<DtPartida> ListarPartidasNoFinalizadas(); // devuelve todas las partidas no finalizadas del jugador sin importar el videojuego ni si es multijugador o individual.
+
         bool ingreseIdPartida(int idPartida); // el sistema guarda esta info para finalizar la partida
         void finalizarPartidaIndividual(); // finaliza la partida cuyo id está en memoria producto de ingresarIdPartida 
         

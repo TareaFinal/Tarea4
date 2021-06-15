@@ -132,16 +132,37 @@ void ControladorPartidas::seleccionarJugadores(set<string> idJugadores) // da un
     else { throw invalid_argument "Esa lista de jugadores es invalida"; }
 
 }
+void ControladorPartidas::iniciarPartida()
+{ // crear una instancia con los datos guardados segun corresponda a una partida individual o a una multijugador
+}
 
+//Abandonar Partida Multijugador
 set<DtPartidaMultijugador> ControladorPartidas::ObtenerPartidasActivas()
 {
-    return set<DtPartidaMultijugador>();
+    string jugador = ControladorUsuarios::getUsuarioEnSesion(); // castear para ver si es jugador????
+    Partida* p = NULL;
+    set<DtPartidaMultijugador> activas;
+    if (dicPartidas.size() != 0) // si hay partidas
+    {
+        std::map<int, Partida*>::iterator it;
+        for (it = dicPartidas.begin(); it != dicPartidas.end(); ++it)
+        {
+            Partida* p = it->second; // obtengo la partida actual
+            if (p->tipo() = "multijugador") { // pregunto el tipo para no castear todas las partidas está bien esto? o casteo de una?
+                PartidaIndividual* partidaM = dynamic_cast <PartidaMultijugador*> (&p); // casteo
+                if (partidaM->g = jugador) { //hay que fijarse si está en el array de los jugadores que participan
+                    activas.insert(partidaM->getDataPartida()); // MAL
+                }
+            }
+        }
+    }
+    return activas;
 }
 
 ControladorPartidas::AbandonarPartidaActiva(int id)
 {
 }
-
+// Caso de uso finalizar partida
 set<DtPartida> ControladorPartidas::ListarPartidasNoFinalizadas()// devuelve todas las partidas no finalizadas del jugador sin importar el videojuego
 {
     set<DtPartida*> noFinalizadas;
@@ -190,9 +211,6 @@ void ControladorPartidas::finalizarPartidaMultijugador()
 
 
 
-void ControladorPartidas::iniciarPartida()
-{ // crear una instancia con los datos guardados segun corresponda a una partida individual o a una multijugador
-}
 
 void ControladorPartidas::eliminarPartidasVideojuego(string nombre) {
     // hay que eliminar todas las partidas de ese videojuego tanto individuales como multijugador
