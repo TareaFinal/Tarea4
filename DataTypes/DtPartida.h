@@ -17,6 +17,7 @@ class DtPartida {
 	public: //esto deberia de ponerlo en las clases hijo
     
         //getters
+        //bool smaller(const DtPartida& left, const DtPartida& right);
         int getIdPartida();
 		DtFechaHora getDuracion();
         DtFechaHora getFechaInicio();

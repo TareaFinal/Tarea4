@@ -25,9 +25,11 @@ public:
 	map<string,DtFechaHora> getSalidas();
 	//operaciones
 	float darTotalDeHorasParticipantes();
-	set<DtJugador> getDtJugadoresUnidos(); //los jugadores que se unieron en algun momento
-	set<DtJugador> getDtJugadoresActivos(); //los jugadores que estan jugando
+	vector<DtJugador> getDtJugadoresUnidos(); //los jugadores que se unieron en algun momento
+	vector<DtJugador> getDtJugadoresActivos(); //los jugadores que estan jugando
 	void terminarPartida();
 	DtPartidaMultijugador getDataPartida();
+	void abandonaPartidaJugador(string jugador);
 };
 #endif
+

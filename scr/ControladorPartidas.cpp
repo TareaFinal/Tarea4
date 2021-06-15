@@ -1,5 +1,5 @@
 #include "../ControladorPartidas.h"
-#include <set>
+#include <vector>
 using namespace std;
 
 ControladorPartidas::ControladorPartidas() {}
@@ -11,7 +11,7 @@ ControladorPartidas* ControladorPartidas::getInstancia()
                 return instancia;
         }
 // float ControladorPartidas::darHorasDePartida(Partida partida) {}
-set<DtVideojuego> ControladorPartidas::obtenerVideojuegosJugador() {
+vector<DtVideojuego> ControladorPartidas::obtenerVideojuegosJugador() {
     /*
     std::set<DtVideojuego>::iterator it;
     for (it = copiaVideojuegosJugador.begin(); it != copiaVideojuegosJugador.end(); ++it)
@@ -21,7 +21,7 @@ set<DtVideojuego> ControladorPartidas::obtenerVideojuegosJugador() {
     ControladorUsuarios* controladorusuarios= ControladorUsuarios::getInstancia();
     */
     string j=controladorusuarios->getUsuarioEnSesion();
-    set<DtVideojuego> VideojuegosJugador= controladorusuarios->obtenerVideojuegosJugador(j);
+    vector<DtVideojuego> VideojuegosJugador= controladorusuarios->obtenerVideojuegosJugador(j);
     /*
     for (it = VideojuegosJugador.begin(); it != VideojuegosJugador.end(); ++it)
     {
@@ -47,7 +47,7 @@ void ControladorPartidas::SeleccionarVideojuego(string Nombre)
     }
     */
 }
-set<DtPartida> ControladorPartidas::ObtenerAnteriores() // se define la partida como INDIVIDUAL y se devuelve todas las partidas anteriores para el usuario en sesion y el videojuego guardado
+vector<DtPartidaIndividual> ControladorPartidas::ObtenerAnteriores() // se define la partida como INDIVIDUAL y se devuelve todas las partidas anteriores para el usuario en sesion y el videojuego guardado
 {
     tipoPartida = "individual";
     
@@ -63,7 +63,7 @@ set<DtPartida> ControladorPartidas::ObtenerAnteriores() // se define la partida 
     */
     string jugador = ControladorUsuarios::getUsuarioEnSesion(); // castear para ver si es jugador????
     Partida* p = NULL;
-    set<DtPartida> anteriores;
+    vector<DtPartidaIndividual> anteriores;
     if (dicPartidas.size() != 0) // si hay partidas
     {
         std::map<int, Partida*>::iterator it;
@@ -74,7 +74,7 @@ set<DtPartida> ControladorPartidas::ObtenerAnteriores() // se define la partida 
                 //Partida* pdtpartida = *p;
                 PartidaIndividual* partidaI = dynamic_cast <PartidaIndividual*> (p); // casteo
                 if (partidaI->getJugador() == jugador) { //la partida no guarda el jugador!! Tremendo ya lo puse en el .h por otro lado ¿TODAS LAS PARTIDAS DE ESE VIDEOJUEGO SE PUEDEN CONTINUAR?
-                    anteriores.insert(partidaI->getDataPartida());
+                    anteriores.push_back(partidaI->getDataPartida());
                 }
                 //delete pdtpartida;
 
@@ -114,7 +114,7 @@ void ControladorPartidas::Transmitida(bool t) // se define la partida como MULTI
     ControladorPartidas::envivo = t;
 }
 
-set<DtJugador> ControladorPartidas::obtenerJugadoresSuscriptos() {  // partida MULTIJUGADOR queremos ver quien mas puede participar
+vector<DtJugador> ControladorPartidas::obtenerJugadoresSuscriptos() {  // partida MULTIJUGADOR queremos ver quien mas puede participar
     /*
     std::set<DtJugador>::iterator it;
     copiaSetJugadores.clear();
@@ -131,7 +131,7 @@ set<DtJugador> ControladorPartidas::obtenerJugadoresSuscriptos() {  // partida M
     */
     return controladorvideojuegos->jugadoresSuscriptosAVideojuego(videojuegoseleccionado);
 }
-void ControladorPartidas::seleccionarJugadores(set<DtJugador> idJugadores) // da un id partida hay que controlar que corresponda a uno de los dados anteriormente.
+void ControladorPartidas::seleccionarJugadores(vector<DtJugador> idJugadores) // da un id partida hay que controlar que corresponda a uno de los dados anteriormente.
 {
     /*
     std::set<string>::iterator itj;
@@ -153,16 +153,16 @@ void ControladorPartidas::seleccionarJugadores(set<DtJugador> idJugadores) // da
     else { throw invalid_argument "Esa lista de jugadores es invalida"; }
     */
 }
-void ControladorPartidas::iniciarPartida()
+void ControladorPartidas::iniciarPartida() //SIN HACER!!!!
 { // crear una instancia con los datos guardados segun corresponda a una partida individual o a una multijugador
 }
 
 //Abandonar Partida Multijugador
-set<DtPartidaMultijugador> ControladorPartidas::ObtenerPartidasActivas()
+vector<DtPartidaMultijugador> ControladorPartidas::ObtenerPartidasActivas()
 {
     string jugador = ControladorUsuarios::getUsuarioEnSesion(); // castear para ver si es jugador????
     Partida* p = NULL;
-    set<DtPartidaMultijugador> activas;
+    vector<DtPartidaMultijugador> activas;
     if (dicPartidas.size() != 0) // si hay partidas
     {
         std::map<int, Partida*>::iterator it;
@@ -171,11 +171,11 @@ set<DtPartidaMultijugador> ControladorPartidas::ObtenerPartidasActivas()
             Partida* p = it->second; // obtengo la partida actual
             if (p->tipo() == "multijugador") { // pregunto el tipo para no castear todas las partidas está bien esto? o casteo de una?
                 PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (p); // casteo
-                set<DtJugador> jugadoresunidos = partidaM->getDtJugadoresActivos();
-                std::set<DtJugador>::iterator itj;
+                vector<DtJugador> jugadoresunidos = partidaM->getDtJugadoresActivos();
+                std::vector<DtJugador>::iterator itj;
                 for (itj = jugadoresunidos.begin(); itj != jugadoresunidos.end(); ++itj)
                 {
-                    if (itj->getNickname() == jugador) activas.insert(partidaM->getDataPartida());
+                    if (itj->getNickname() == jugador) { activas.push_back(partidaM->getDataPartida()); }
                 }
             }
         }
@@ -185,18 +185,26 @@ set<DtPartidaMultijugador> ControladorPartidas::ObtenerPartidasActivas()
 
 void ControladorPartidas::AbandonarPartidaActiva(int id)
 {
+    string j = controladorusuarios->getUsuarioEnSesion();
+    PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (dicPartidas.find(id)->second);
+    if (partidaM!=NULL) { // si la encontro
+        partidaM->abandonaPartidaJugador(j);
+    }
+    else {
+        //throw(invalid_argument, "Esta partida no existe");
+    }
 }
 // Caso de uso finalizar partida
-set<DtPartida> ControladorPartidas::ListarPartidasNoFinalizadas()// devuelve todas las partidas no finalizadas del jugador sin importar el videojuego
+vector<DtPartida> ControladorPartidas::ListarPartidasNoFinalizadas()// devuelve todas las partidas no finalizadas del jugador sin importar el videojuego
 {
     string j = controladorusuarios->getUsuarioEnSesion();
-    set<DtPartida> noFinalizadas;
+    vector<DtPartida> noFinalizadas;
     std::map<int, Partida*>::iterator it;
     for (it = dicPartidas.begin(); it != dicPartidas.end(); ++it)
     {
         Partida* p = it->second; // obtengo la partida actual
         if ((p->getDuracion().getMinuto()==0 )&&(p->getJugador()==j)) { // esto esta mal no se puede chequear contra 0 
-                noFinalizadas.insert(p->getDataPartida());
+                noFinalizadas.push_back(p->getDataPartida());
         }
     }
     return noFinalizadas;
@@ -224,7 +232,17 @@ void ControladorPartidas::finalizarPartida()
         //throw(invalid_argument, "Esta partida no existe");
     }
 }
-set<DtJugador> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {} // devuelve los jugadores suscriptos a el videojuego en memoria. PARTIDA MULTIJUGADOR
+vector<DtJugador> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {
+    PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (dicPartidas.find(idPartida)->second);
+    if (partidaM!=nullptr){
+        return partidaM->getDtJugadoresActivos();
+    }
+    else {
+        delete(partidaM);
+        // throw invalid_argument " Todo mal con esta id";
+    }
+
+} // // dentro de finalizar partidamultijudador devuelve los jugadores que estan jugando PARTIDA MULTIJUGADOR
 
 
 
@@ -239,6 +257,12 @@ void ControladorPartidas::eliminarPartidasVideojuego(string nombre) {
     // hay que eliminar todas las partidas de ese videojuego tanto individuales como multijugador
 }
 ControladorPartidas::~ControladorPartidas() {
-    dicPartidas.clear(); // esto debe estar mal hay que deletear uno por uno
+    std::map<int, Partida*>::iterator it;
+    for (it = dicPartidas.begin(); it != dicPartidas.end(); ++it)
+    {
+        Partida* p = it->second; // obtengo la partida actual
+        delete(p);
+    }
+    dicPartidas.clear(); // ??
 
 }
