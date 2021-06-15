@@ -14,10 +14,10 @@ protected:
 	int duracion;
 	DtFechaHora FechaInicio;
 	string Videojuego;
-	
+	Jugador* player; //Jugador que inició la partida
 public:
 	//Constructor
-	Partida(int idpartida, int duracion, DtFechaHora FechaInicio);
+	Partida(int idpartida, DtFechaHora duracion, DtFechaHora FechaInicio,string videojuego,Jugador* player);
 	//Destructor
 	~Partida();
 	//Setters

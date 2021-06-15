@@ -19,4 +19,8 @@ class iControladorUsuarios {
                 virtual Suscripcion buscarSuscripcion(Videojuego v) = 0;
                 virtual void agregarSusAJugador(string email, Suscripcion s) = 0;
                 virtual set<Jugador> darJugadores(set<DtJugador> dtJugadores) = 0;
+                virtual bool iniciarSesion(string email, string contrasenia) = 0;
+                virtual string getTipoUsuario() = 0;
+                virtual void setFechaSistema(DtFechaHora* fechaSist) = 0;
+                virtual DtFechaHora getFechaSistema() = 0;
 };
