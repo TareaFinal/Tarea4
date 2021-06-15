@@ -18,6 +18,7 @@ class ControladorUsuarios : public iControladorUsuarios {
 		static ControladorUsuarios instancia;
                 set<Usuario> usuarios;
                 string emailUsuarioEnSesion;
+                DtFechaHora* systemTime;
 	public:
                 static ControladorUsuarios getInstancia();
                 string getUsuarioEnSesion();
@@ -29,7 +30,11 @@ class ControladorUsuarios : public iControladorUsuarios {
                 set<DtVideojuego> obtenerVideojuegosJugador(string email);
                 void desvincularSuscripciones(set<Jugador> js, Videojuego v);
                 void desvincularSuscripcion(string email, Videojuego v);
-                Suscripcion buscarSuscripcion(Videojuego v); // No aparece en los DCs, tampoco tiene sentido devolver una sola suscripcion a partir de un videojuego.
+                Suscripcion buscarSuscripcion(Videojuego v); 
                 void agregarSusAJugador(string email, Suscripcion s);
                 set<Jugador> darJugadores(set<DtJugador> dtJugadores);
+                bool iniciarSesion(string email, string contrasenia);
+                string getTipoUsuario();
+                void setFechaSistema(DtFechaHora* fechaSist);
+                DtFechaHora* getFechaSistema();
 };
