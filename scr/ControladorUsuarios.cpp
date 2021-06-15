@@ -181,4 +181,56 @@ set<Jugador> ControladorUsuarios::darJugadores(set<DtJugador> dtJugadores) {
     return jugadores;
 }
 
+bool ControladorUsuarios::iniciarSesion(string email, string contrasenia) {
+    Usuario* usuario = NULL;
+
+    usuarios::iterator user;
+    for (user = s1.begin(); user != s1.end(); user++) {
+        if ((*user).getEmail() == email && (*user).getContrasenia() == contrasenia) {
+            usuario = user;
+            break;
+        }     
+    }
+
+    if ((*usuario) != NULL) {
+        emailUsuarioEnSesion = email;
+        return true;
+    }else {
+        return false;
+    }
+}
+
+string ControladorUsuarios::getTipoUsuario() {
+    Usuario* usuario = NULL;
+
+    usuarios::iterator user;
+    for (user = s1.begin(); user != s1.end(); user++) {
+        if ((*user).getEmail() == emailUsuarioEnSesion) {
+            usuario = user;
+            break;
+        }
+    }
+
+    if (*usuario != NULL) {
+        
+        Jugador* jug = dynamic_cast <Jugador*> (*usuario);
+
+        if (jug != NULL) {
+            return "j";
+        }else {
+            return "d";
+        }
+
+    }
+
+}
+
+void ControladorUsuarios::setFechaSistema(DtFechaHora* fechaSist) {
+    systemTime = fechaSist;
+}
+
+DtFechaHora* ControladorUsuarios::getFechaSistema() {
+    return systemTime;
+}
+
 
