@@ -22,10 +22,12 @@ class Videojuego {
 		Estadistica **estadisticas;
 		
 	public:
+		Videojuego::Videojuego(string n, string d, float* costos, Desarrollador desarrollador, Categoria** categorias, Estadistica** estadisticas)
 		string getNombre();
 		string getDescripcion();
 		float *getCostos();
 		int *getPuntajes();
+		int getCantidadJugadoresSuscriptos();
 		Categoria **getCategorias();
 		Suscripcion **getSuscripciones();
 		DtJugador *getJugadoresSuscriptos();
@@ -39,6 +41,9 @@ class Videojuego {
 		void agregarCategoria(Categoria c);
 		void agregarSuscripcion(Suscripcion s);
 		void agregarEstadistica(Estadistica e);
+		void eliminarCategoria(Categoria c);
+		void eliminarSuscripcion(Suscripcion s);
+		void eliminarEstadistica(Estadistica e);
 		
 		float calcularEstadistica(int idEstadistica);
 		int calcularPuntajePromedio();
