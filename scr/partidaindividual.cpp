@@ -1,4 +1,6 @@
-#include "../partidaIndividual.h"
+#include "partidaIndividual.h"
+#include "DtPartidaIndividual.h"
+#include "DtFechaHora.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -20,13 +22,18 @@ PartidaIndividual::~PartidaIndividual(){
 
 	//funciones
 	float darTotalDeHorasParticipantes(){
-		return this->
 	}
 	bool esContinuacion(){
-		return (continuacion!=null)
+		return (continuacion!=null);
 	}
 	void terminarPartida(){
+		
 	}
 	DtPartida getDataPartida(){
+		int k;
+		if (continuacion==null) k=0;
+		else k=continuacion.getPartida(); //retorna el id de la partida que se esta continuando
+		DtPartida dtp=DtPartidaIndividual(duracion,fechaini,player,Videojuego,k);
+		return dtp;
 	}
 }

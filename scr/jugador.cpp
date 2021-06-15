@@ -28,7 +28,7 @@ string Jugador::getNick() { return nick }
 	// Funciones
 void Jugador::desvincularSub(Videojuego* v) {
 	string idVideojuego = v->getNombre();
-	map<string, Suscripcion*>::iterator it = dicSuscripciones.find(idVideojuego);
+	map<string, Suscripcion>::iterator it = dicSuscripciones.find(idVideojuego);
 	
 	if (it != dicSuscripciones.end()) // si la encontro
 		dicSuscripciones.erase(idVideojuego);

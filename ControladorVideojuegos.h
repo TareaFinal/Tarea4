@@ -6,8 +6,8 @@
 #include "Videojuego.h"
 #include "suscripcion.h"
 #include "Categoria.h"
-#include <string>
-#include <set>
+//#include <string>
+//#include <set>
 using namespace std;
 
 class ControladorVideojuegos : public iControladorVideojuegos {

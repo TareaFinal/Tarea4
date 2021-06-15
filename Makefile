@@ -1,5 +1,8 @@
 laboratorio:	DtCategoria.o DtComentario.o DtEstadistica.o DtFechaHora.o DtJugador.o DtPartida.o DtPartidaIndividual.o DtPartidaMultijugador.o DtVideojuego.o 
-	g++ DtCategoria.o DtComentario.o DtEstadistica.o DtFechaHora.o DtJugador.o DtPartida.o DtPartidaIndividual.o DtPartidaMultijugador.o DtVideojuego.o -o laboratorio
+	g++ DtCategoria.o DtComentario.o DtEstadistica.o DtFechaHora.o DtJugador.o DtPartida.o DtPartidaIndividual.o DtPartidaMultijugador.o DtVideojuego.o CotroladorPartidas.o -o laboratorio
+
+ControladorPartidas.o: ControladorPartidas.cpp
+	g++ -c scr/ControladorPartidas.cpp
 
 DtCategoria.o: DtCategoria.cpp
 	g++ -c DataTypes/cpp/DtCategoria.cpp
