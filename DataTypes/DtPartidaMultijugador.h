@@ -4,20 +4,21 @@
 #include "DtPartida.h"
 #include "DtComentario.h"
 #include <string>
+#include <set>
 using namespace std;
 
 class DtPartidaMultijugador : public DtPartida {
 	private: 
 		bool transmitida;
-		string *nicknameJugadoresUnidos;
-		DtComentario *comentarios;
+		set<string> nicknameJugadoresUnidos;
+		set<DtComentario> comentarios;
 	public:	
-		DtPartidaMultijugador(DtFechaHora duracion, DtFechaHora fechaInicio, string nicknameCreador, string videojuego, bool transmitida, string *nicknameJugadoresUnidos, DtComentario *comentarios);
+		DtPartidaMultijugador(DtFechaHora duracion, DtFechaHora fechaInicio, string nicknameCreador, string videojuego, bool transmitida, set<string> nicknameJugadoresUnidos, set<DtComentario> comentarios);
 
         //getters
 		bool getTransmitida();
-		string *getNicknameJugadoresUnidos();
-		DtComentario *getComentarios();
+		set<string> getNicknameJugadoresUnidos();
+		set<DtComentario> getComentarios();
 
 };
 
