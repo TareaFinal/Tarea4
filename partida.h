@@ -1,5 +1,7 @@
-#include "DtFechaHora.h"
-#include "DtPartida.h"
+#ifndef PARTIDA
+#define PARTIDA
+#include "DataTypes/DtFechaHora.h"
+#include "DataTypes/DtPartida.h"
 #include "comentario.h"
 #include <string>
 using namespace std;
@@ -8,12 +10,13 @@ class Partida {
 
 protected:
 	int idParida;
-	DtFechaHora duracion;
+	int duracion;
 	DtFechaHora FechaInicio;
 	string Videojuego;
+	
 public:
 	//Constructor
-	Partida(int idpartida, DtFechaHora duracion, DtFechaHora FechaInicio);
+	Partida(int idpartida, int duracion, DtFechaHora FechaInicio);
 	//Destructor
 	~Partida();
 	//Setters
@@ -33,3 +36,4 @@ public:
 	virtual string tipo(); // devuelve "individual" o "multijugador" segun coresponda
 
 };
+#endif
