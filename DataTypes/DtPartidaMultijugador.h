@@ -12,7 +12,7 @@ class DtPartidaMultijugador : public DtPartida {
 		string *nicknameJugadoresUnidos;
 		DtComentario *comentarios;
 	public:	
-		DtPartidaMultijugador(bool transmitida, string *nicknameJugadoresUnidos, DtComentario *comentarios);
+		DtPartidaMultijugador(DtFechaHora duracion, DtFechaHora fechaInicio, string nicknameCreador, string videojuego, bool transmitida, string *nicknameJugadoresUnidos, DtComentario *comentarios);
 
         //getters
 		bool getTransmitida();
