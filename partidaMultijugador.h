@@ -12,6 +12,12 @@ class PartidaMultijugador : public Partida {
 private:
 	bool Transmitida;
 	//Jugador j; DtFechaHora Salidas[*, *];
+	set<Comentario> colComentarios;
+	struct {
+		DtJugador jug;
+		DtFechaHora fecha;
+	} str;
+	set<str> Conjunto;
 public:
 	//Constructor
 	PartidaMultijugador(int idPartida, DtFechaHora duracion, DtFechaHora FechaInicio, string juego, bool transmitida, string jugador,map<string,DtFechaHora> Salidas);
