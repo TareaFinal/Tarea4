@@ -13,10 +13,10 @@ private:
 	bool Transmitida;
 	//Jugador j; DtFechaHora Salidas[*, *];
 	set<Comentario> colComentarios;
-	struct {
+	struct str {
 		DtJugador jug;
 		DtFechaHora fecha;
-	} str;
+	};
 	set<str> Conjunto;
 public:
 	//Constructor
