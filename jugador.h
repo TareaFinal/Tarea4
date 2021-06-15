@@ -14,7 +14,7 @@ using namespace std;
 class Jugador : public Usuario {
 private:
 	string nick, descripcion;
-	std::map<string, Suscripcion*> dicSuscripciones; // un diccionario donde la clave es el nombre del videojuego.
+	std::map<string, Suscripcion> dicSuscripciones; // un diccionario donde la clave es el nombre del videojuego.
 	std::set<DtVideojuego*> colDTVideojuego;
 protected:
 

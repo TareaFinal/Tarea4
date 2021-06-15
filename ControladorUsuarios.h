@@ -14,7 +14,7 @@ using namespace std;
 class ControladorUsuarios : public iControladorUsuarios {
 	
 	private:
-                string mail = '', contra = '', nickname = '', desc ='', empresa = '';
+                string mail = " ", contra = " ", nickname = " ", desc = " ", empresa = " ";
 		static ControladorUsuarios instancia;
                 set<Usuario> usuarios;
                 string emailUsuarioEnSesion;

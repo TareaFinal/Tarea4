@@ -4,7 +4,6 @@
 #include "DataTypes/DtCategoria.h"
 #include "desarrollador.h"
 
-#include <string>
 
 class Categoria {
 	private: 
