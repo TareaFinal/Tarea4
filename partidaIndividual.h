@@ -17,9 +17,6 @@ public:
 	//operaciones
 	PartidaIndividual* continua;
 	float darTotaldeHorasParticipantes();
-	//bool esContinuacion();
-
-
 	void terminarPartida();
 	DtPartida getDataPartida();
 	string getJugador();
