@@ -2,7 +2,6 @@
 #define COMENTARIO
 #include "DataTypes/DtFechaHora.h"
 #include "partidaMultijugador.h"
-#include <string>
 using namespace std;
 
 class Comentario {

@@ -2,7 +2,7 @@
 #define PARTIDA
 #include "DataTypes/DtFechaHora.h"
 #include "DataTypes/DtPartida.h"
-#include "comentario.h"
+//#include "comentario.h"
 #include <string>
 using namespace std;
 
@@ -29,10 +29,11 @@ public:
 	DtFechaHora getDuracion();
 	DtFechaHora getFechaInicio();
 	string getVideojuego();
+	virtual string getJugador(); //devuelve el jugador o el que la inicio si es multi
 	//operaciones
 	float darTotalDeHorasParticipantes();
-	virtual Partida terminarPartida();
-	DtPartida getDataPartida();
+	virtual void terminarPartida();
+	DtPartida getDataPartida(); // ojo con esto capaz que no tiene que haber y solo tiene que haber una getdtpartidaindividual y otra multi
 	virtual string tipo(); // devuelve "individual" o "multijugador" segun coresponda
 
 };

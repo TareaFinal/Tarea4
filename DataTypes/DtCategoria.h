@@ -1,7 +1,7 @@
 #ifndef DTCATEGORIA
 #define DTCATEGORIA
 
-#include <string>
+//#include <string>
 #include <iostream>
 using namespace std;
 
