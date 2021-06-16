@@ -8,7 +8,6 @@ using namespace std;
 class Desarrollador : public Usuario {
 private:
 	string empresa;
-protected:
 
 public:
 	// Constructor
