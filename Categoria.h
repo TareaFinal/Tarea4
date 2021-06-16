@@ -13,6 +13,7 @@ class Categoria {
 		Desarrollador desarrollador;
 	
 	public:
+		Categoria(string n, string t, string d, Desarrollador desarrollador);
 		string getNombre();
 		string getTipo();
 		string getDescripcion();

@@ -16,10 +16,12 @@ class ControladorVideojuegos : public iControladorVideojuegos {
 	        static ControladorVideojuegos* instancia;
                 set<Categoria> categorias;
                 set<Videojuego> videojuegos;
+                set<Estadistica> estadisticas;
 	public:
                 static ControladorVideojuegos* getInstancia();
                 float calcularEstadistica(int estadistica); //no deberia de ser de la misma clase que el identificador de estadisticas que viene a ser un int? ---- Ag: Si, lo deje porque asi estaba
                 float calcularHorasJugadas(Videojuego videojuego);
+                cantidadJugadoresSuscriptosVideojuego(string videojuego);
                 set<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
                 void eliminarVideojuego(string nombre);
                 set<DtVideojuego> obtenerVideojuegos();
@@ -29,4 +31,8 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 bool esTemporal(Suscripcion s);
                 Suscripcion ingresarNombre(string nombre);
                 void ingresarCategoria(DtCategoria cat);
+                
+                bool existeVideojuego(string nombre);
+                bool existeCategoria(string nombre);
+                bool existeEstadistica(int id);
 };

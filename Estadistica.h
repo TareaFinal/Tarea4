@@ -13,8 +13,8 @@ class Estadistica {
 		//Estadistica EstrategiaEstadistica;
 
 	public:
-		virtual float calcular() = 0;
-		DtEstadistica getDataEstadistica();
+		virtual float calcular(string videojuego) = 0;
+		virtual DtEstadistica getDataEstadistica();
 };
 
 #endif
