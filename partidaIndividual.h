@@ -11,7 +11,7 @@ class PartidaIndividual : public Partida {
 public:
 	
 	//Constructor
-	PartidaIndividual(int idPartida, int duracion, DtFechaHora FechaInicio, string juego, string emailjugador);
+	PartidaIndividual(int idPartida, DtFechaHora* duracion, DtFechaHora FechaInicio, string juego, string emailjugador);
 	//Destructor
 	~PartidaIndividual();
 	//operaciones

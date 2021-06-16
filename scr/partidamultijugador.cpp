@@ -4,8 +4,8 @@
 using namespace std;
 
 	// Constructor
-PartidaMultijugador::PartidaMultijugador(int idPartida, DtFechaHora duracion, DtFechaHora fechaInicio,string juego, Jugador* player, bool transmitida, 
-										Jugador sal1,DtFechaHora sal2) : Partida(idPartida,duracion,fechaInicio,juego,player)
+PartidaMultijugador::PartidaMultijugador(int idPartida, DtFechaHora* duracion, DtFechaHora fechaInicio,string juego, Jugador* player, bool transmitida, 
+										Jugador sal1,DtFechaHora sal2) : Partida(idPartida,null,fechaInicio,juego,player)
 {
 	Transmitida=transmitida;
 	salida1=sal1
@@ -38,7 +38,18 @@ PartidaMultijugador::~PartidaMultijugador(){
 	}
 
 	//funciones
-	set<DtJugador> PartidaMultijugador::getDtJugadoresUnidos(){
-		get
+	float darTotalDeHorasParticipantes(){
+		
+	}
+	set<DtJugador> getDtJugadoresUnidos(){
+		
+	}
+	void terminarPartida(){
+		
+	}
+	DtPartida getDataPartida(){
+		DtPartidaMultijugador dtpm=DtPartidaMultijugador(duracion,FechaInicio,player.getNick(),Videojuego, 
+								Transmitida, string *nicknameJugadoresUnidos, colComentarios);
+
 	}
 }

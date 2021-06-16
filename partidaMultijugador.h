@@ -20,7 +20,7 @@ private:
 	set<str> Conjunto;
 public:
 	//Constructor
-	PartidaMultijugador(int idPartida, DtFechaHora duracion, DtFechaHora FechaInicio, string juego, bool transmitida, string jugador,map<string,DtFechaHora> Salidas);
+	PartidaMultijugador(int idPartida, DtFechaHora* duracion, DtFechaHora FechaInicio, string juego, bool transmitida, string jugador,map<string,DtFechaHora> Salidas);
 	//Destructor
 	~PartidaMultijugador();
 	//Setters
