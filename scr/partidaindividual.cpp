@@ -6,8 +6,8 @@
 using namespace std;
 
 	// Constructor
-PartidaIndividual::PartidaIndividual(int idPartida,DtFechaHora duracion, DtFechaHora fechaInicio,string juego, 
-									Jugador* player,PartidaIndividual* cont) : Partida(idPartida,duracion,fechaInicio,juego,player)
+PartidaIndividual::PartidaIndividual(int idPartida,DtFechaHora* duracion, DtFechaHora fechaInicio,string juego, 
+									Jugador* player,PartidaIndividual* cont) : Partida(idPartida,null,fechaInicio,juego,player)
 {
 	continuacion=cont;
 }
