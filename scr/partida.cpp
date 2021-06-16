@@ -4,11 +4,11 @@
 using namespace std;
 
 	// Constructor
-Partida::Partida(int idpartida, DtFechaHora duracion,DtFechaHora inicio, string videojuego, Jugador* player)
+Partida::Partida(int idpartida, DtFechaHora* duracion,DtFechaHora inicio, string videojuego, Jugador* player)
 {
 	idPartida=idpartida;
-	duracion=duracion;
-	FechaInicio=inicio;
+	duracion=null;
+	FechaInicio=getFechaSistema();
 	Videojuego=videojuego;
 	player=player;
 }
