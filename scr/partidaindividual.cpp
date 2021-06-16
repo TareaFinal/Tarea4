@@ -22,10 +22,15 @@ PartidaIndividual::~PartidaIndividual(){
 
 	//funciones
 	float darTotalDeHorasParticipantes(){
+		if (duracion!=null){
+			float dur=duracion->getAnio()*365*24 + duracion->getMes()*30*24 + duracion->getDia()*24 + duracion->getHora() + duracion->getMinuto()/24;
+		}
+		else { throw invalid_argument "Aun no ha terminado"; }
 	}
 	bool esContinuacion(){
 		return (continuacion!=null);
 	}
+
 	void terminarPartida(){
 		
 	}
