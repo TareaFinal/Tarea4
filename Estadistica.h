@@ -6,15 +6,18 @@
 #include <string>
 
 class Estadistica {
-	private: 
+	protected: 
 		int idEstadistica;
 		string nombre;
 		string descripcion;
 		//Estadistica EstrategiaEstadistica;
 
 	public:
+		int getID();
+		string getNombre();
+		string getDescripcion();
 		virtual float calcular(string videojuego) = 0;
-		virtual DtEstadistica getDataEstadistica();
+		virtual DtEstadistica *getDataEstadistica(float valor);
 };
 
 #endif

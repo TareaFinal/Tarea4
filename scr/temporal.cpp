@@ -1,14 +1,14 @@
 #include "../temporal.h"
-#include "jugador.h"
-#include "Videojuego.h"
-#include "DataTypes/DtFechaHora.h"
+#include "../jugador.h"
+#include "../Videojuego.h"
+#include "../DataTypes/DtFechaHora.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 
 	// Constructor
-Temporal::Temporal(string metpago, DtFechaHora fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo)
+/*Temporal::Temporal(string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo)
 	:Suscripcion(metpago,fechahoy,val, Player,Vj), cancelada(false)
 		// validez se calcula sumandole a la fecha de hoy el tiempo en tipo
 {
@@ -35,7 +35,7 @@ Temporal::Temporal(string metpago, DtFechaHora fechahoy, float val, Jugador* Pla
 		throw invalid_argument("el tipo de suscripcion no es v�lido\n");
 	}
 }
-	
+	*/
 	// Destructor
 Temporal::~Temporal () {
 	}
@@ -51,31 +51,35 @@ bool Temporal::getCancelada() {
 	return cancelada;
 }
 	// Funciones
+/*
 bool Temporal::activa() {
 	bool valida; //hoy < validez
-	DtFechaHora ahora = contusuarios.getFechaHoraActual(); // Esta funcion no est� creada OJOOOOO!!!
-	if (validez.getAnio() > ahora.getAnio()) {
+	Fabrica *fabrica = Fabrica::getInstancia();
+	iControladorUsuarios *controlador = fabrica->getControladorUsuarios(); 
+	DtFechaHora *ahora = controlador->getFechaHoraActual(); // Esta funcion no est� creada OJOOOOO!!!
+	if (validez->getAnio() > ahora->getAnio()) {
 		valida= true;
 	}
-	else if ((validez.getAnio() == ahora.getAnio()) && (validez.getMes() > ahora.getMes())) {
+	else if ((validez->getAnio() == ahora->getAnio()) && (validez->getMes() > ahora->getMes())) {
 		valida = true;
 	}
-	else if (((validez.getAnio() == ahora.getAnio()) && (validez.getMes() == ahora.getMes()) && validez.getDia() > ahora.getDia())) {
+	else if (((validez->getAnio() == ahora->getAnio()) && (validez->getMes() == ahora->getMes()) && validez->getDia() > ahora->getDia())) {
 		valida = true;
 	}
-	else if ((((validez.getAnio() == ahora.getAnio()) && (validez.getMes() == ahora.getMes()) && validez.getDia() == ahora.getDia()))
-				&& (validez.getHora() > ahora.getHora())) {
+	else if ((((validez->getAnio() == ahora->getAnio()) && (validez->getMes() == ahora->getMes()) && validez->getDia() == ahora->getDia()))
+				&& (validez->getHora() > ahora->getHora())) {
 		valida = true;
 	}
-	else if (((((validez.getAnio() == ahora.getAnio()) && (validez.getMes() == ahora.getMes()) && validez.getDia() == ahora.getDia()))
-			&& (validez.getHora() > ahora.getHora())) && (validez.getMinuto() >= ahora.getMinuto())) {
+	else if (((((validez->getAnio() == ahora->getAnio()) && (validez->getMes() == ahora->getMes()) && validez->getDia() == ahora->getDia()))
+			&& (validez->getHora() > ahora->getHora())) && (validez->getMinuto() >= ahora->getMinuto())) {
 		valida = true;
 	}
 	else {
 		valida = true;
 	}
 	return !cancelada && valida;
-} 
+}*/ 
+
 string Temporal::TipoSuscripcion() {
 	return "temporal";
 }

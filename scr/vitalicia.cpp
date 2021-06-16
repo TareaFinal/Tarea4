@@ -6,13 +6,13 @@
 using namespace std;
 
 // Constructor
-Vitalicia::Vitalicia(string metpago, DtFechaHora fechahoy, float val, Jugador* player, Videojuego* vj): 
-		Suscripcion(string metpago, DtFechaHora fechahoy, float val, Jugador* player, Videojuego* vj) // construyo una suscripcion con los mismos parametros
-	{}
+//Vitalicia::Vitalicia(string metpago, DtFechaHora *fechahoy, float val, Jugador* player, Videojuego* vj): {}
+	/*	Suscripcion(metpago, fechahoy, val, player, vj) // construyo una suscripcion con los mismos parametros
+	{}*/
 	// Destructor
-~Vitalicia() {
+/*~Vitalicia() {
 	std::cout << "acaba de ejecutarse el destructor de Vitalicia" << std::endl;  // borrar este mensaje
-}
+}*/
 // Funciones
 bool Activa() {
 	return true;

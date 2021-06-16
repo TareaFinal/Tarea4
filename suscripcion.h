@@ -1,11 +1,17 @@
 #ifndef SUSCRIPCION
 #define SUSCRIPCION
+
 #include <string>
 #include <iostream>
 #include "DataTypes/DtFechaHora.h"
 #include "jugador.h"
 #include "Videojuego.h"
+
+#include <string>
 using namespace std;
+
+class Jugador;
+class Videojuego;
 
 class Suscripcion {
 private:

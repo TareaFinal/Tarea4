@@ -37,4 +37,5 @@ public:
 	DtPartidaMultijugador getDataPartida();
 	void abandonaPartidaJugador(string jugador);
 };
+
 #endif

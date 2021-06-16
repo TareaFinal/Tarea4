@@ -13,7 +13,7 @@ protected:
 
 public:
 	// Constructor
-	Vitalicia(string metpago, DtFechaHora fechahoy, float val, Jugador* player, Videojuego* vj);
+	Vitalicia(string metpago, DtFechaHora *fechahoy, float val, Jugador* player, Videojuego* vj);
 
 	// Destructor
 	~Vitalicia();

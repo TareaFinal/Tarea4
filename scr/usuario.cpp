@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <stdexcept> 
 #include "../usuario.h"
 using namespace std;
 

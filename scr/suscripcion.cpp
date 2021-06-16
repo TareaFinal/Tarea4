@@ -4,8 +4,8 @@
 using namespace std;
 
 	//Constructor
-Suscripcion::Suscripcion(string metpago, DtFechaHora fechahoy, float val, Jugador* player, Videojuego* vj) : metodoDePago(metpago), valor(val), fecha(fechahoy)
-		_jugador(player), _videojuego(vj);
+Suscripcion::Suscripcion(string metpago, DtFechaHora fechahoy, float val, Jugador* player, Videojuego* vj) : metodoDePago(metpago), valor(val), fecha(fechahoy),
+		_jugador(player), _videojuego(vj)
 {
 		std::cout << "acaba de ejecutarse el constructor de Suscripcion" << std::endl;  // borrar este mensaje
 }
@@ -20,13 +20,13 @@ Suscripcion::~Suscripcion()
 	//Getters
 
 string Suscripcion::getMetodoDePago() {
-	return metodoDePago;
+	return this->metodoDePago;
 }
 float Suscripcion::getValor() {
-	return valor;
+	return this->valor;
 }
 DtFechaHora Suscripcion::getFecha() {
-	return fecha;
+	return this->fecha;
 }
 
 DtVideojuego Suscripcion::getDataVideojuego()

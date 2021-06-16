@@ -11,11 +11,11 @@ Desarrollador::~Desarrollador() {
 }
 	// Setters
 void Desarrollador::setEmpresa(string nombre) {
-	empresa = nombre;
+	this->empresa = nombre;
 }
 	// Getters
 string Desarrollador::getEmpresa() { 
-	return empresa;
+	return this->empresa;
 }
 	// Funciones
 string Desarrollador::tipoUsuario() { 
