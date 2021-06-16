@@ -10,6 +10,7 @@ PartidaMultijugador::PartidaMultijugador(int idPartida, DtFechaHora* duracion, D
 	Transmitida=transmitida;
 	salida1=sal1
 	salida2=sal2;
+	
 }
 	// Destructor
 PartidaMultijugador::~PartidaMultijugador(){
@@ -42,7 +43,12 @@ PartidaMultijugador::~PartidaMultijugador(){
 		
 	}
 	set<DtJugador> getDtJugadoresUnidos(){
-		
+		set<DtJugador> conj;
+		set<DtJugador>::iterator it;
+		for (it = Conjunto.begin(); it != Conjunto.end(); ++it) {
+    		conj.insert(*it.jug);
+		}
+		return conj;
 	}
 	void terminarPartida(){
 		
