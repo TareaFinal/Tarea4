@@ -141,3 +141,7 @@ DtFechaHora* ControladorUsuarios::getFechaSistema() {
     return systemTime;
 }
 
+vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego){
+    vector<DtJugador> jugadores;
+	return jugadores;
+}

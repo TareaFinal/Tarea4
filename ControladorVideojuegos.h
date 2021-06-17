@@ -26,18 +26,18 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 set<Categoria*> categorias;
                 set<Videojuego*> videojuegos;
                 set<Estadistica*> estadisticas;
-            ControladorVideojuegos();
+                ControladorVideojuegos();
 	public:
                 static ControladorVideojuegos *getInstancia();
                 
-                float calcularEstadistica(int estadistica); //no deberia de ser de la misma clase que el identificador de estadisticas que viene a ser un int? ---- Ag: Si, lo deje porque asi estaba
+                float calcularEstadistica(int estadistica, string nomVideojuego); //no deberia de ser de la misma clase que el identificador de estadisticas que viene a ser un int? ---- Ag: Si, lo deje porque asi estaba
                 float calcularHorasJugadas(string videojuego);
-                set<DtJugador*> jugadoresSuscriptosAVideojuego(string nombre);
+                vector<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
                 void eliminarVideojuego(string nombre);
-                set<DtVideojuego*> obtenerVideojuegos();
+                vector<DtVideojuego> obtenerVideojuegos();
                 void confirmarEliminacion();
                 bool ingreseNombreVideojuego(string nombreVideojuego);
-                set<DtEstadistica*> listarEstadisticas(string nombreVideojuego);
+                vector<DtEstadistica> listarEstadisticas(string nombreVideojuego);
                 bool esTemporal(Suscripcion *s);
                 Suscripcion *ingresarNombre(string nombre);
                 void ingresarCategoria(DtCategoria *cat);

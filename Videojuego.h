@@ -40,6 +40,7 @@ class Videojuego {
 		DtJugador *getJugadoresSuscriptos();
 		Jugador *getJugadores();
 		DtVideojuego *getDataVideojuego(float promedio, float totalDeHorasJugadas);
+		Desarrollador* getDesarrollador();
 		
 		void setNombre(string nombre);
 		void setDescripcion(string descripcion);

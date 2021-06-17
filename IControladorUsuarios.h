@@ -7,6 +7,7 @@
 
 #include <string>
 #include <set>
+#include <vector>
 //#include "jugador.h"
 using namespace std;
 
@@ -32,6 +33,7 @@ class iControladorUsuarios {
                 virtual string getTipoUsuario() = 0;
                 virtual void setFechaSistema(DtFechaHora* fechaSist) = 0;
                 virtual DtFechaHora *getFechaSistema() = 0;
+                virtual vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego) = 0;
 };
 
 #endif

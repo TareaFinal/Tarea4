@@ -2,7 +2,7 @@
 #define CATEGORIA 
 
 #include "DataTypes/DtCategoria.h"
-#include "Desarrollador.h"
+#include "desarrollador.h"
 #include "fabrica.h"
 
 
