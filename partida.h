@@ -18,23 +18,23 @@ class Partida {
 		string Videojuego;
 	public:
 		//Constructor
-	
+		Partida(int idpartida, Jugador* duenio, DtFechaHora* duracion, DtFechaHora FechaInicio,string videojuego);
+		//Destructor
+		~Partida();
 		//Setters
 		void setIdPartida(int id);
-	//	void setDuracion(DtFechaHora *duracion);
+		void setDuenio(Jugador *duenio);
+		void setDuracion(DtFechaHora *duracion);
 		void setFechaInicio(DtFechaHora *fechainicio);
 		void setVideoJuego(string juego);
 		//Getters
 		int getPartida();
 		DtFechaHora *getFechaInicio();
 		string getVideojuego();
-		//operaciones
-	//	virtual float darTotalDeHorasParticipantes() = 0;
-	//	virtual void terminarPartida();
-	//	virtual DtPartida *getDataPartida();
-		
+		DtFechaHora* getDuracion();
+		Jugador* getDuenio();
 		//Destructor
-		
+		Partida::~Partida();
 };
 
 #endif
