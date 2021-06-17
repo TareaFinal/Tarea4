@@ -29,6 +29,7 @@ class iControladorUsuarios {
                 virtual void agregarSusAJugador(Suscripcion *s) = 0;
                 virtual set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores) = 0;
                 virtual DtFechaHora *getFechaHoraActual() = 0;
+                virtual set<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego) = 0;
 };
 
 #endif

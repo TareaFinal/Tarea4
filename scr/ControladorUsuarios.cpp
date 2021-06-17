@@ -69,3 +69,7 @@ int ControladorUsuarios::cantidadJugadoresSuscriptosVideojuego(string videojuego
 DtFechaHora *ControladorUsuarios::getFechaHoraActual() {
 	return NULL;
 }
+
+set<DtJugador> ControladorUsuarios::listarJugadoresSuscriptosVideojuego(string videojuego){
+
+}

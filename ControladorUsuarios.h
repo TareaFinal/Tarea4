@@ -32,6 +32,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 void agregarSusAJugador(Suscripcion *s);
                 set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores);
                 DtFechaHora *getFechaHoraActual();
+                set<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego);
 };
 
 #endif
