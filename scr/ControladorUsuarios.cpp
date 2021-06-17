@@ -14,12 +14,34 @@ ControladorUsuarios::ControladorUsuarios() {
 }
 
 string ControladorUsuarios::getUsuarioEnSesion() {
-	return "hola";
+	return emailUsuarioEnSesion;
 }
 
 set<string> ControladorUsuarios::getVideojuegoJugador(string email) {
-	set<string> cosas;
-	return cosas;
+	//set<DtVideojuego> *videojuegos;
+    set<string> nombresVideojuegos;
+    /*Usuario* usuario = NULL;
+
+    set<Usuario*>::iterator user;
+    for (user = usuarios.begin(); user != usuarios.end(); user++) {
+        if ((*user)->getEmail() == email) {
+            usuario = *user;
+            break;
+        }
+    }
+
+    if (usuario != NULL) {
+    	Jugador* jugador = dynamic_cast<Jugador*> (usuario);
+        videojuegos = jugador->videojuegosSuscripto();
+
+        set<DtVideojuego>::iterator it;
+        for (it = videojuegos->begin(); it != videojuegos->end(); it++) {
+            string nombre = it->getNombre();
+			nombresVideojuegos.insert(nombre);
+        }
+    }
+*/
+    return nombresVideojuegos;
 }
 
 void ControladorUsuarios::registrarUsuario(string email, string contrasenia) {
@@ -66,6 +88,56 @@ int ControladorUsuarios::cantidadJugadoresSuscriptosVideojuego(string videojuego
 	return 1;
 }
 
-DtFechaHora *ControladorUsuarios::getFechaHoraActual() {
-	return NULL;
+bool ControladorUsuarios::iniciarSesion(string email, string contrasenia) {
+    /*Usuario* usuario = NULL;
+
+    usuarios::iterator user;
+    for (user = s1.begin(); user != s1.end(); user++) {
+        if ((*user).getEmail() == email && (*user).getContrasenia() == contrasenia) {
+            usuario = user;
+            break;
+        }     
+    }
+
+    if ((*usuario) != NULL) {
+        emailUsuarioEnSesion = email;
+        return true;
+    }else {*/
+    	emailUsuarioEnSesion = email;
+        return false;
+    //}
 }
+
+string ControladorUsuarios::getTipoUsuario() {
+    /*Usuario* usuario = NULL;
+
+    usuarios::iterator user;
+    for (user = s1.begin(); user != s1.end(); user++) {
+        if ((*user).getEmail() == emailUsuarioEnSesion) {
+            usuario = user;
+            break;
+        }
+    }
+
+    if (*usuario != NULL) {
+        
+        Jugador* jug = dynamic_cast <Jugador*> (*usuario);
+
+        if (jug != NULL) {
+            return "j";
+        }else {
+            return "d";
+        }
+
+    }*/return "s";
+
+}
+
+void ControladorUsuarios::setFechaSistema(DtFechaHora* fechaSist) {
+    systemTime = fechaSist;
+}
+
+DtFechaHora* ControladorUsuarios::getFechaSistema() {
+    return systemTime;
+}
+

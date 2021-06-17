@@ -14,9 +14,15 @@ class Suscripcion;
 
 class Jugador : public Usuario {
 private:
+<<<<<<< HEAD
 	string nick, descripcion, contrasenia, email;
 	std::map<string,Suscripcion*> dicSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
 	//std::set<DtVideojuego> colDTVideojuego;
+=======
+	string nick, descripcion;
+	std::set<Suscripcion*> colSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
+	std::set<DtVideojuego> colDTVideojuego;
+>>>>>>> 3f89ae7b76c5129d05194c5fb15484ff6e5a5f74
 
 public:
 	// Constructor
@@ -36,9 +42,15 @@ public:
 	string getNick();
 
 	// Funciones
+<<<<<<< HEAD
 	void desvincularSub(string v);
 	void agregarSuscripcion(Suscripcion* s);
 	vector<DtVideojuego> videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
+=======
+	void desvincularSub(Suscripcion s);
+	void agregarSuscripcion(Suscripcion s);
+	set<DtVideojuego> *videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
+>>>>>>> 3f89ae7b76c5129d05194c5fb15484ff6e5a5f74
 	
 		
 };

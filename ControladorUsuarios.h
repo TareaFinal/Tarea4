@@ -11,10 +11,12 @@ using namespace std;
 class ControladorUsuarios : public iControladorUsuarios {
 	
 	private:
-		static ControladorUsuarios *instancia;
+				string mail = " ", contra = " ", nickname = " ", desc = " ", empresa = " ";
+				static ControladorUsuarios *instancia;
                 set<Usuario*> usuarios;
                 string emailUsuarioEnSesion;
-        ControladorUsuarios();
+                DtFechaHora* systemTime;
+        		ControladorUsuarios();
 	public:
                 static ControladorUsuarios *getInstancia();
 		        
@@ -31,7 +33,10 @@ class ControladorUsuarios : public iControladorUsuarios {
                 Suscripcion *buscarSuscripcion(Videojuego *v);
                 void agregarSusAJugador(Suscripcion *s);
                 set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores);
-                DtFechaHora *getFechaHoraActual();
+                bool iniciarSesion(string email, string contrasenia);
+                string getTipoUsuario();
+                void setFechaSistema(DtFechaHora* fechaSist);
+                DtFechaHora* getFechaSistema();
 };
 
 #endif

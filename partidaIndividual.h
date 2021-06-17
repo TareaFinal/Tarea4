@@ -23,6 +23,7 @@ class PartidaIndividual : public Partida {
 		float darTotalDeHorasParticipantes();
 		void terminarPartida();
 		DtPartida *getDataPartida();
+		DtFechaHora duracionDt(DtFechaHora fechaInicial, DtFechaHora fechaFinal); //auxiliar;
 };
 
 #endif
