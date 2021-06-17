@@ -10,7 +10,7 @@ private:
 protected:
 	string email, contrasenia;
 public:
-	void setEmail(string direccion);
+	virtual void setEmail(string direccion);
 	void setContrasenia(string pass);
 	// Getters
 	string getEmail();

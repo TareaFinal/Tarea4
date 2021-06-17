@@ -15,7 +15,7 @@ class Jugador : public Usuario {
 private:
 	string nick, descripcion;
 	std::set<Suscripcion*> colSuscripciones; // para hacer find capaz es mejor tener un map, pero para eso necesitamos una clave que identifique a la suscripcion
-	std::set<DtVideojuego*> colDTVideojuego;
+	std::set<DtVideojuego> colDTVideojuego;
 
 public:
 	// Constructor
@@ -37,7 +37,7 @@ public:
 	// Funciones
 	void desvincularSub(Suscripcion s);
 	void agregarSuscripcion(Suscripcion s);
-	DtVideojuego** videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
+	set<DtVideojuego> *videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
 	
 		
 };
