@@ -53,8 +53,8 @@ vector<Suscripcion*> Videojuego::getSuscripciones() {
 }
 
 				
-DtVideojuego *Videojuego::getDataVideojuego() {
-	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, 1, 1, this->desarrollador->getEmpresa()); /////////////////////////////// ¿Qué le paso al constructor?
+DtVideojuego *Videojuego::getDataVideojuego(float promedio, float totalDeHorasJugadas) {
+	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, promedio, totalDeHorasJugadas, this->desarrollador->getEmpresa()); /////////////////////////////// ¿Qué le paso al constructor?
 	return dataVideojuego;
 }
 
@@ -139,7 +139,7 @@ float Videojuego::calcularEstadistica(int idEstadistica) {
 		if (estadisticas[i].getID() == idEstadistica) 				
 			return (estadisticas[i].calcular(this->nombre));					// Si la encuentra la calcula y retorna el resultado.											
 }
-*/
+
 int Videojuego::calcularPuntajePromedio() {
 	float promedio = 0.0;
 	int suma = 0;
@@ -153,4 +153,4 @@ int Videojuego::calcularPuntajePromedio() {
 	
 	return promedio;
 }
-
+*/

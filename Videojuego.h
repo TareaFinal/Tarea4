@@ -39,7 +39,7 @@ class Videojuego {
 		vector<Suscripcion*> getSuscripciones();
 		DtJugador *getJugadoresSuscriptos();
 		Jugador *getJugadores();
-		DtVideojuego getDataVideojuego();
+		DtVideojuego *getDataVideojuego(float promedio, float totalDeHorasJugadas);
 		
 		void setNombre(string nombre);
 		void setDescripcion(string descripcion);
@@ -53,7 +53,7 @@ class Videojuego {
 	//	void eliminarEstadistica(Estadistica *e);
 		
 	//	float calcularEstadistica(int idEstadistica);
-		int calcularPuntajePromedio();
+	//	int calcularPuntajePromedio();
 };
 
 #endif

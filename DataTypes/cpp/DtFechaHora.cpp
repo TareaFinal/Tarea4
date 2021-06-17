@@ -3,16 +3,16 @@
 #include <stdio.h>
 
 
-DtFechaHora::DtFechaHora(int dia, int mes, int anio, int hora, int minuto) {
-	/*
+DtFechaHora::DtFechaHora() {
+	
 	time_t ahora = time(NULL);
   	struct tm *ahoralocal = localtime(&ahora);	
-	*/
-	this->dia = dia;
-	this->mes = mes;
-	this->anio = anio;
-	this->hora = hora;
-	this->minuto = minuto;
+	
+	this->dia = ahoralocal->tm_mday;
+	this->mes = ahoralocal->tm_mon + 1;
+	this->anio = ahoralocal->tm_year + 1900;
+	this->hora = ahoralocal->tm_hour;
+	this->minuto = ahoralocal->tm_min;
 }
 
 int DtFechaHora::getDia() {
