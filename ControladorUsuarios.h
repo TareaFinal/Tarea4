@@ -3,6 +3,8 @@
 
 #include "IControladorUsuarios.h"
 #include "usuario.h"
+#include "desarrollador.h"
+#include "jugador.h"
 #include <string>
 #include <set>
 
@@ -11,10 +13,12 @@ using namespace std;
 class ControladorUsuarios : public iControladorUsuarios {
 	
 	private:
-		static ControladorUsuarios *instancia;
+				string mail = " ", contra = " ", nickname = " ", desc = " ", empresa = " ";
+				static ControladorUsuarios *instancia;
                 set<Usuario*> usuarios;
                 string emailUsuarioEnSesion;
-        ControladorUsuarios();
+                DtFechaHora* systemTime;
+        		ControladorUsuarios();
 	public:
                 static ControladorUsuarios *getInstancia();
 		        
@@ -25,13 +29,16 @@ class ControladorUsuarios : public iControladorUsuarios {
                 void darEmpresa(string nombre);
                 void darDatosJugador(string nick, string descripcion);
                 void confirmarAltaUsuario();
-                void obtenerVideojuegosJugador(string email);
+                set<DtVideojuego> *obtenerVideojuegosJugador(string email);
                 void desvincularSuscripciones(set<Jugador*> &js, Videojuego *v);
                 void desvincularSuscripcion(string email, Videojuego *v);
                 Suscripcion *buscarSuscripcion(Videojuego *v);
                 void agregarSusAJugador(Suscripcion *s);
                 set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores);
-                DtFechaHora *getFechaHoraActual();
+                bool iniciarSesion(string email, string contrasenia);
+                string getTipoUsuario();
+                void setFechaSistema(DtFechaHora* fechaSist);
+                DtFechaHora* getFechaSistema();
 };
 
 #endif

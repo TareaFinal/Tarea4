@@ -22,13 +22,16 @@ class iControladorUsuarios {
                 virtual void darEmpresa(string nombre) = 0;
                 virtual void darDatosJugador(string nick, string descripcion) = 0;
                 virtual void confirmarAltaUsuario() = 0;
-                virtual void obtenerVideojuegosJugador(string email) = 0;
+                virtual set<DtVideojuego> *obtenerVideojuegosJugador(string email) = 0;
                 virtual void desvincularSuscripciones(set<Jugador*> &js, Videojuego *v) = 0;
                 virtual void desvincularSuscripcion(string email, Videojuego *v) = 0;
                 virtual Suscripcion *buscarSuscripcion(Videojuego *v) = 0;
                 virtual void agregarSusAJugador(Suscripcion *s) = 0;
                 virtual set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores) = 0;
-                virtual DtFechaHora *getFechaHoraActual() = 0;
+                virtual bool iniciarSesion(string email, string contrasenia) = 0;
+                virtual string getTipoUsuario() = 0;
+                virtual void setFechaSistema(DtFechaHora* fechaSist) = 0;
+                virtual DtFechaHora *getFechaSistema() = 0;
 };
 
 #endif
