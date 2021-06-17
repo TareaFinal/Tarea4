@@ -11,5 +11,8 @@ float Suscripcion::getValor() {
 	return this->valor;
 }
 DtFechaHora Suscripcion::getFecha() {
-	return this->fecha;
+	return this->fechahoy;
+}
+DtVideojuego Suscripcion::getDataVideojuego() {
+	return this->_videojuego->getDataVideojuego();
 }

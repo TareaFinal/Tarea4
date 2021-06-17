@@ -4,14 +4,6 @@
 #include "../usuario.h"
 using namespace std;
 
-/*class Usuario {  // abstracta
-private:
-	
-protected:
-	string email, contrasenia;
-public:
-*/
-
 // Setters
 void Usuario::setEmail(string direccion) {
 	this->email = direccion;

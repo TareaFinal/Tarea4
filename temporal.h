@@ -10,13 +10,13 @@
 using namespace std;
 class Temporal : public Suscripcion {
 private:
-	DtFechaHora *validez;
+	DtFechaHora validez;
 	bool cancelada;
 protected:
 
 public:
 	// Constructor
-//	Temporal (string metpago, DtFechaHora fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
+	Temporal (string metpago, DtFechaHora fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
 	
 	// Destructor
 	~Temporal();
@@ -24,7 +24,7 @@ public:
 	// Setters
 
 	// Getters
-	DtFechaHora *getValidez();
+	DtFechaHora getValidez();
 	bool getCancelada();
 	
 	

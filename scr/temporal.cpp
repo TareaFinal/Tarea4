@@ -2,14 +2,15 @@
 #include "../jugador.h"
 #include "../Videojuego.h"
 #include "../DataTypes/DtFechaHora.h"
+#include "../suscripcion.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 
 	// Constructor
-/*Temporal::Temporal(string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo)
-	:Suscripcion(metpago,fechahoy,val, Player,Vj), cancelada(false)
+Temporal::Temporal(string metpago, DtFechaHora fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo)
+	
 		// validez se calcula sumandole a la fecha de hoy el tiempo en tipo
 {
 	if (tipo == "anual"){
@@ -32,10 +33,10 @@ using namespace std;
 		}
 	}
 	else {
-		throw invalid_argument("el tipo de suscripcion no es v�lido\n");
+		throw invalid_argument("el tipo de suscripcion no es valido\n");
 	}
+	cancelada = false;
 }
-	*/
 
 
 	
@@ -43,7 +44,7 @@ using namespace std;
 
 	
 	// Getters
-DtFechaHora *Temporal::getValidez() {
+DtFechaHora Temporal::getValidez() {
 	return this->validez;
 }
 bool Temporal::getCancelada() {
