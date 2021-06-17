@@ -35,8 +35,8 @@ public:
 	string getNick();
 
 	// Funciones
-	void desvincularSub(Suscripcion s);
-	void agregarSuscripcion(Suscripcion s);
+	void desvincularSub(Suscripcion *s);
+	void agregarSuscripcion(Suscripcion *s);
 	DtVideojuego** videojuegosSuscripto();  // al implementar deberiamos vaciar la coleccion antes de mandar asi no se acumulan con las anteriores
 	
 		

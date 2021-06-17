@@ -17,7 +17,7 @@ class Estadistica {
 		string getNombre();
 		string getDescripcion();
 		virtual float calcular(string videojuego) = 0;
-		virtual DtEstadistica *getDataEstadistica(float valor);
+		virtual DtEstadistica *getDataEstadistica(float valor) = 0;
 };
 
 #endif
