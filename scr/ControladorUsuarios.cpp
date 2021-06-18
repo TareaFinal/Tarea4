@@ -145,3 +145,7 @@ vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego){
     vector<DtJugador> jugadores;
 	return jugadores;
 }
+
+bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia) {
+    return true;    
+}

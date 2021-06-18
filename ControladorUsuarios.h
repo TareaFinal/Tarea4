@@ -38,7 +38,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 void setFechaSistema(DtFechaHora* fechaSist);
                 DtFechaHora* getFechaSistema();
                 vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego);
+                bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia);
 };
 
 #endif
-

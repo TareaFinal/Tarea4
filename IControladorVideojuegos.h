@@ -34,7 +34,8 @@ class iControladorVideojuegos {
                 virtual bool existeVideojuego(string nombre) = 0;
                 virtual bool existeCategoria(string nombre) = 0;
                 virtual bool existeEstadistica(int id) = 0;
+                virtual bool altaSuscripcion(string nomJugador, string video, Suscripcion sus, bool isVitalicia) = 0;
+                virtual bool asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) = 0;
 };
 
 #endif
-

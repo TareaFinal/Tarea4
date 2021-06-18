@@ -34,7 +34,7 @@ class iControladorUsuarios {
                 virtual void setFechaSistema(DtFechaHora* fechaSist) = 0;
                 virtual DtFechaHora *getFechaSistema() = 0;
                 virtual vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego) = 0;
+                virtual bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia) = 0;
 };
 
 #endif
-

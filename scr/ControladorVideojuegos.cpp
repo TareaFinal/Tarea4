@@ -148,3 +148,18 @@ bool ControladorVideojuegos::existeEstadistica(int id) {
     }
     return ret;
 }
+
+bool ControladorVideojuegos::altaSuscripcion(string nomJugador, string videojuego, Suscripcion sus, bool isVitalicia) {
+    return fab->getControladorUsuarios()->altaSuscripcion(nomJugador, videojuego, sus, isVitalicia);
+}
+
+bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) {
+    bool ret = false;
+    for (auto f : ControladorVideojuegos::videojuegos) {
+        Videojuego v = *f;
+        if (v.getNombre() == nomVideojuego){
+            v.agregarPuntaje(puntaje);
+        }
+    }
+    return ret;
+}
