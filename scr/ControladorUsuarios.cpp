@@ -141,11 +141,15 @@ DtFechaHora* ControladorUsuarios::getFechaSistema() {
     return systemTime;
 }
 
-vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego){
+vector<DtJugador> ControladorUsuarios::listarJugadoresSuscriptosVideojuego(string videojuego){
     vector<DtJugador> jugadores;
 	return jugadores;
 }
 
-bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia) {
+bool ControladorUsuarios::altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia) {
     return true;    
+}
+
+bool ControladorUsuarios::esTemporal(Suscripcion *s) {
+    return true;
 }

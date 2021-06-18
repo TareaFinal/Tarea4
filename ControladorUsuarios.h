@@ -39,6 +39,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 DtFechaHora* getFechaSistema();
                 vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego);
                 bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia);
+                bool esTemporal(Suscripcion *s);
 };
 
 #endif

@@ -105,7 +105,7 @@ vector<DtEstadistica> ControladorVideojuegos::listarEstadisticas(string nombreVi
 }
 
 bool ControladorVideojuegos::esTemporal(Suscripcion *s) {
-	return true;
+	return fab->getControladorUsuarios()->esTemporal(s);
 }
 
 Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
