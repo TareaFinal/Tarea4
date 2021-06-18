@@ -40,7 +40,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 vector<DtEstadistica> listarEstadisticas(string nombreVideojuego);
                 bool esTemporal(Suscripcion *s);
                 Suscripcion *ingresarNombre(string nombre);
-                void ingresarCategoria(DtCategoria *cat);
+                void ingresarCategoria(DtCategoria *cat, Desarrollador *des);
                 
                 bool existeVideojuego(string nombre);
                 bool existeCategoria(string nombre);

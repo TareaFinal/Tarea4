@@ -113,8 +113,20 @@ Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
 	return s;
 }
 
-void ControladorVideojuegos::ingresarCategoria(DtCategoria *cat) {
-	
+void ControladorVideojuegos::ingresarCategoria(DtCategoria *cat, Desarrollador *des) {
+    bool encontreCategoria = false;
+	for (auto f : ControladorVideojuegos::categorias) {
+        Categoria v = *f;
+        if (v.getNombre() == v.getNombre()){
+            encontreCategoria = true;
+        }   
+    }
+    if(!encontreCategoria){
+        categorias.insert(new Categoria(cat->getNombre(),cat->getTipo(),cat->getDescripcion(),des));
+    }
+    else{
+        cout << "Ya existe esta categoria";
+    }
 }
 
 bool ControladorVideojuegos::existeVideojuego(string nombre) {

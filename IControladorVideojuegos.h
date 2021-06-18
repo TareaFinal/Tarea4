@@ -29,7 +29,7 @@ class iControladorVideojuegos {
                 virtual vector<DtEstadistica> listarEstadisticas(string nombreVideojuego) = 0;
                 virtual bool esTemporal(Suscripcion *s) = 0;
                 virtual Suscripcion *ingresarNombre(string nombre) = 0;
-                virtual void ingresarCategoria(DtCategoria *cat) = 0;
+                virtual void ingresarCategoria(DtCategoria *cat, Desarrollador *des) = 0;
                 
                 virtual bool existeVideojuego(string nombre) = 0;
                 virtual bool existeCategoria(string nombre) = 0;
