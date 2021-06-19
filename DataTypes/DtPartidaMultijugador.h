@@ -3,22 +3,30 @@
 
 #include "DtPartida.h"
 #include "DtComentario.h"
+#include "DtFechaHora.h"
+#include <vector>
+#include <set>
+#include <map>
 #include <string>
 using namespace std;
+
 
 class DtPartidaMultijugador : public DtPartida {
 	private: 
 		bool transmitida;
-		string *nicknameJugadoresUnidos;
-		DtComentario *comentarios;
+		map<string, DtFechaHora*> conjuntoSalidas;
+		vector<DtComentario*> comentarios;
 	public:	
-		DtPartidaMultijugador(bool transmitida, string *nicknameJugadoresUnidos, DtComentario *comentarios);
+		typedef map<string, DtFechaHora*> map_type;
+		DtPartidaMultijugador(int idPartida, DtFechaHora* duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, const map_type& = map_type());
 
         //getters
 		bool getTransmitida();
-		string *getNicknameJugadoresUnidos();
-		DtComentario *getComentarios();
+		set<string> getNicknameJugadoresUnidos();
+		set<string> getNicknameJugadoresActivos();
+		vector<DtComentario*> getComentarios();
 
+		friend ostream &operator<< (ostream &os, DtPartidaMultijugador* pm);
 };
 
 #endif

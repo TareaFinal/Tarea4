@@ -21,6 +21,7 @@ class DtComentario {
 		string getNicknameJugador();
         string getTexto();
         
+		friend ostream &operator<< (ostream &os, DtComentario* com);
 };
 
 #endif

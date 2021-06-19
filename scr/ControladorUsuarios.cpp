@@ -256,3 +256,14 @@ vector<DtJugador> ControladorUsuarios::listarJugadoresSuscriptosVideojuego(strin
 	return jugadores;
 }
 
+bool ControladorUsuarios::altaSuscripcion(string nomJugador, string video, Suscripcion* sus, bool isVital) {
+	return true;
+}
+bool ControladorUsuarios::esTemporal(Suscripcion *s) {
+	bool esTemporal = false;
+	if (s->TipoSuscripcion() == "temporal")
+		esTemporal = true;
+
+	return esTemporal;
+}
+

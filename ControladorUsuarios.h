@@ -37,10 +37,14 @@ class ControladorUsuarios : public iControladorUsuarios {
                 void agregarSusAJugador(Suscripcion *s);
                 set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores);
                 bool iniciarSesion(string email, string contrasenia);
+                
                 string getTipoUsuario();
                 void setFechaSistema(DtFechaHora *fechaSist);
                 DtFechaHora *getFechaSistema();
                 vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego);
+                
+              	bool altaSuscripcion(string nomJugador, string video, Suscripcion* sus, bool isVital);
+			 	bool esTemporal(Suscripcion *s);
 };
 
 #endif

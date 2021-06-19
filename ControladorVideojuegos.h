@@ -9,6 +9,7 @@
 #include "Categoria.h"
 //#include "Videojuego.h"
 #include "Estadistica.h"
+#include "desarrollador.h"
 
 #include <string>
 #include <set>
@@ -40,11 +41,13 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 vector<DtEstadistica> listarEstadisticas(string nombreVideojuego);
                 bool esTemporal(Suscripcion *s);
                 Suscripcion *ingresarNombre(string nombre);
-                void ingresarCategoria(DtCategoria *cat);
+                void ingresarCategoria(DtCategoria *cat, Desarrollador* des);
                 
                 bool existeVideojuego(string nombre);
                 bool existeCategoria(string nombre);
                 bool existeEstadistica(int id);
+              	bool altaSuscripcion(string nomJugador, string video, Suscripcion *sus, bool isVitalicia);
+                bool asignarPuntajeAVideojuego(string nomVideojuego, int puntaje);
 };
 
 

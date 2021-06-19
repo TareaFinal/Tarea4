@@ -3,7 +3,6 @@
 
 #include "DataTypes/DtFechaHora.h"
 #include "DataTypes/DtPartida.h"
-#include "jugador.h"
 
 #include <string>
 
@@ -12,7 +11,7 @@ class Partida {
 
 	protected:
 		int idPartida;
-		Jugador *duenio;
+		string duenio;
 		DtFechaHora *duracion;
 		DtFechaHora *FechaInicio;
 		string Videojuego;
@@ -21,17 +20,21 @@ class Partida {
 	
 		//Setters
 		void setIdPartida(int id);
-	//	void setDuracion(DtFechaHora *duracion);
+		void setDuracion(DtFechaHora* dur);
 		void setFechaInicio(DtFechaHora *fechainicio);
 		void setVideoJuego(string juego);
+		void setJugador(string jugador);
 		//Getters
 		int getPartida();
-		DtFechaHora *getFechaInicio();
+		DtFechaHora* getFechaInicio();
 		string getVideojuego();
+		DtFechaHora* getDuracion();
+		string getJugador();
+		DtFechaHora *diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin);
 		//operaciones
-	//	virtual float darTotalDeHorasParticipantes() = 0;
-	//	virtual void terminarPartida();
-	//	virtual DtPartida *getDataPartida();
+		virtual float darTotalDeHorasParticipantes() = 0;
+		virtual void terminarPartida() = 0;
+		virtual DtPartida *getDataPartida() = 0;
 		
 		//Destructor
 		

@@ -18,3 +18,14 @@ string DtEstadistica::getDescripcion(){
 float DtEstadistica::getValor(){
     return this->valor;
 };
+
+ostream &operator<< (ostream &os, DtEstadistica* est) {
+	os << "----------------------------------------\n"
+	   << "---Estadistica---" << endl
+       << "Id: " << est->getIdEstadistica() << "\n"
+	   << "Nombre de la Estadistica: " << est->getNombre() << "\n"
+       << "Descripcion: " << est->getDescripcion() << "\n"
+       << "Valor: " << est->getValor() << "\n";
+	   
+	return os;
+};

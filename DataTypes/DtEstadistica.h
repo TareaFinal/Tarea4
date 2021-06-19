@@ -20,6 +20,7 @@ class DtEstadistica {
 		string getDescripcion();
 		float getValor();
         
+		friend ostream &operator<< (ostream &os, DtEstadistica* est);
 };
 
 #endif

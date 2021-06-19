@@ -20,6 +20,7 @@ class DtJugador {
         string getNickname();
         string getDescripcion();
         
+        friend ostream &operator<< (ostream &os, DtJugador* est);
 };
 
 #endif

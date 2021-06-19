@@ -41,7 +41,6 @@ float ControladorVideojuegos::calcularEstadistica(int estadistica, string nomVid
 
     //return numeroEncontrado;
 
-    return 0.0;
 }
 
 
@@ -105,7 +104,7 @@ vector<DtEstadistica> ControladorVideojuegos::listarEstadisticas(string nombreVi
 }
 
 bool ControladorVideojuegos::esTemporal(Suscripcion *s) {
-	return true;
+	return fab->getControladorUsuarios()->esTemporal(s);
 }
 
 Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
@@ -113,8 +112,20 @@ Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
 	return s;
 }
 
-void ControladorVideojuegos::ingresarCategoria(DtCategoria *cat) {
-	
+void ControladorVideojuegos::ingresarCategoria(DtCategoria *cat, Desarrollador* des) {
+	bool encontreCategoria = false;
+	for (auto f : ControladorVideojuegos::categorias) {
+        Categoria v = *f;
+        if (v.getNombre() == v.getNombre()){
+            encontreCategoria = true;
+        }   
+    }
+    if(!encontreCategoria){
+        categorias.insert(new Categoria(cat->getNombre(),cat->getTipo(),cat->getDescripcion(),des));
+    }
+    else{
+        cout << "Ya existe esta categoria";
+    }
 }
 
 bool ControladorVideojuegos::existeVideojuego(string nombre) {
@@ -144,6 +155,21 @@ bool ControladorVideojuegos::existeEstadistica(int id) {
     for (auto f : ControladorVideojuegos::estadisticas) {
         if (f->getID() == id){
             return true;
+        }
+    }
+    return ret;
+}
+
+bool ControladorVideojuegos::altaSuscripcion(string nomJugador, string videojuego, Suscripcion *sus, bool isVitalicia) {
+    return fab->getControladorUsuarios()->altaSuscripcion(nomJugador, videojuego, sus, isVitalicia);
+}
+
+bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) {
+    bool ret = false;
+    for (auto f : ControladorVideojuegos::videojuegos) {
+        Videojuego v = *f;
+        if (v.getNombre() == nomVideojuego){
+            v.agregarPuntaje(puntaje);
         }
     }
     return ret;

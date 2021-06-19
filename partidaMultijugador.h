@@ -2,7 +2,13 @@
 #define PARTIDAMULTIJUGADOR
 
 #include "partida.h"
-
+#include "fabrica.h"
+#include "DataTypes/DtPartida.h"
+#include "DataTypes/DtComentario.h"
+#include "DataTypes/DtPartidaMultijugador.h"
+#include <vector>
+#include <set>
+#include <map>
 #include <string>
 using namespace std;
 
@@ -10,27 +16,37 @@ using namespace std;
 class PartidaMultijugador : public Partida {
 	private:
 		bool Transmitida;
-		//Jugador, DtFechaHora Salidas[*,*];
+		
+	map<string, DtFechaHora*> conjuntoSalidas;
+	vector<DtComentario*> colComentarios;	
+	
 	public:
+		typedef std::map<std::string, DtFechaHora*> map_type;
 		//Constructor
-		PartidaMultijugador(int idPartida, string juego, bool transmitida);
+		PartidaMultijugador(int idPartida, string duenio, DtFechaHora* fechaInicio, string juego, bool transmitida, const map_type& = map_type());
 
 		//Setters
 		void setTransmitida(bool transmit);
-		void setSalidas(Jugador *jug,DtFechaHora *fecha);
+		void setSalida(string jugador,DtFechaHora *fechaSalida);
+
 		
 		//Getters
 		bool getTransmitida();
+		set<string> getNicknameJugadoresActivos();
 	//	Jugador,DtFechaHora *getSalidas();
 		
 		//operaciones
 		float darTotalDeHorasParticipantes();
-		set<DtJugador*> getDtJugadoresUnidos();
+		set<string> getDtJugadoresUnidos();
 		void terminarPartida();
 		DtPartida *getDataPartida();
 		
+		
+		void abandonaPartidaJugador(string jugador);
+		
 		//Destructor
-		~PartidaMultijugador();
+		~PartidaMultijugador() {
+		};
 };
 
 #endif

@@ -32,7 +32,10 @@ class iControladorUsuarios {
                 virtual string getTipoUsuario() = 0;
                 virtual void setFechaSistema(DtFechaHora *fechaSist) = 0;
                 virtual DtFechaHora *getFechaSistema() = 0;
-                virtual vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego) = 0; 
+                virtual vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego) = 0;
+				
+				virtual bool altaSuscripcion(string nomJugador, string video, Suscripcion* sus, bool isVital) = 0;
+				virtual bool esTemporal(Suscripcion *s) = 0;
 };
 
 #endif
