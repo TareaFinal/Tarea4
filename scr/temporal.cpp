@@ -8,34 +8,40 @@
 using namespace std;
 
 	// Constructor
-/*Temporal::Temporal(string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo)
-	:Suscripcion(metpago,fechahoy,val, Player,Vj), cancelada(false)
-		// validez se calcula sumandole a la fecha de hoy el tiempo en tipo
-{
+Temporal::Temporal(string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo)  {
+	this->metodoDePago = metpago;
+	this->valor = val;
+	this->fecha = fechahoy;
+	this->_jugador = Player;
+	this->_videojuego = Vj;
+	this->cancelada = false;
+	
+/*	Fabrica *fabrica = Fabrica::getInstancia();
+	iControladorUsuarios *controlador = fabrica->getControladorUsuarios();
+	
+	DtFechaHora *fechahoy = controlador->getFechaHoraActual();*/
+		
 	if (tipo == "anual"){
-		validez = DtFechaHora(fechahoy.getAnio()+1, fechahoy.getMes(), fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
+		this->validez = new DtFechaHora(fechahoy->getAnio()+1, fechahoy->getMes(), fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 	}
 	else if (tipo == "semestral") {
-		if (fechahoy.getMes() <= 6) {
-			validez = DtFechaHora(fechahoy.getAnio(), fechahoy.getMes()+6, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
+		if (fechahoy->getMes() <= 6) {
+			validez = new DtFechaHora(fechahoy->getAnio(), fechahoy->getMes()+6, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}
 		else {
-			validez = DtFechaHora(fechahoy.getAnio()+1, fechahoy.getMes()-6, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
+			this->validez = new DtFechaHora(fechahoy->getAnio()+1, fechahoy->getMes()-6, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}
 	}
 	else if (tipo == "mensual") {
-		if (fechahoy.getMes() == 12) {
-			validez = DtFechaHora(fechahoy.getAnio() + 1, 1, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
+		if (fechahoy->getMes() == 12) {
+			this->validez = new DtFechaHora(fechahoy->getAnio() + 1, 1, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}
 		else {
-			validez = DtFechaHora(fechahoy.getAnio(), fechahoy.getMes() +1, fechahoy.getDia(), fechahoy.getHora(), fechahoy.getMinuto());
+			this->validez = new DtFechaHora(fechahoy->getAnio(), fechahoy->getMes() +1, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}
 	}
-	else {
-		throw invalid_argument("el tipo de suscripcion no es v�lido\n");
-	}
 }
-	*/
+	
 
 
 	
@@ -50,12 +56,12 @@ bool Temporal::getCancelada() {
 	return this->cancelada;
 }
 	// Funciones
-/*
+
 bool Temporal::activa() {
 	bool valida; //hoy < validez
 	Fabrica *fabrica = Fabrica::getInstancia();
 	iControladorUsuarios *controlador = fabrica->getControladorUsuarios(); 
-	DtFechaHora *ahora = controlador->getFechaHoraActual(); // Esta funcion no est� creada OJOOOOO!!!
+	DtFechaHora *ahora = controlador->getFechaSistema(); // Esta funcion no est� creada OJOOOOO!!!
 	if (validez->getAnio() > ahora->getAnio()) {
 		valida= true;
 	}
@@ -76,8 +82,8 @@ bool Temporal::activa() {
 	else {
 		valida = true;
 	}
-	return !cancelada && valida;
-}*/ 
+	return (!this->cancelada && valida);
+}
 
 string Temporal::TipoSuscripcion() {
 	return "temporal";

@@ -16,10 +16,9 @@ protected:
 
 public:
 	// Constructor
-//	Temporal (string metpago, DtFechaHora fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
+	Temporal (string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
 	
 	// Destructor
-	~Temporal();
 	
 	// Setters
 

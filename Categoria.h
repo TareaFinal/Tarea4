@@ -8,6 +8,8 @@
 
 #include <string>
 
+class Desarrollador;
+
 class Categoria {
 	private: 
 		string nombre;

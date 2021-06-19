@@ -45,7 +45,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 bool existeVideojuego(string nombre);
                 bool existeCategoria(string nombre);
                 bool existeEstadistica(int id);
-                bool altaSuscripcion(string nomJugador, string video, Suscripcion sus, bool isVitalicia);
+                bool altaSuscripcion(string nomJugador, string video, Suscripcion *sus, bool isVitalicia);
                 bool asignarPuntajeAVideojuego(string nomVideojuego, int puntaje);
 };
 

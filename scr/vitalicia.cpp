@@ -5,18 +5,18 @@
 #include <iostream>
 using namespace std;
 
-// Constructor
-//Vitalicia::Vitalicia(string metpago, DtFechaHora *fechahoy, float val, Jugador* player, Videojuego* vj): {}
-	/*	Suscripcion(metpago, fechahoy, val, player, vj) // construyo una suscripcion con los mismos parametros
-	{}*/
-	// Destructor
-/*~Vitalicia() {
-	std::cout << "acaba de ejecutarse el destructor de Vitalicia" << std::endl;  // borrar este mensaje
-}*/
-// Funciones
-bool Activa() {
+Vitalicia::Vitalicia(string metpago, DtFechaHora *fechahoy, float val, Jugador* player, Videojuego* vj) {
+	this->metodoDePago = metpago;
+	this->valor = val;
+	this->fecha = fechahoy;
+	this->_jugador = player;
+	this->_videojuego = vj;
+}
+
+
+bool Vitalicia::Activa() {
 	return true;
 }
-string TipoSuscripcion() { // esta es una funcion abstracta pero aca no se define con virtual porque estamos en la clase derivada
+string Vitalicia::TipoSuscripcion() { // esta es una funcion abstracta pero aca no se define con virtual porque estamos en la clase derivada
 	return "vitalicia";
 }

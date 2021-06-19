@@ -161,7 +161,7 @@ bool ControladorVideojuegos::existeEstadistica(int id) {
     return ret;
 }
 
-bool ControladorVideojuegos::altaSuscripcion(string nomJugador, string videojuego, Suscripcion sus, bool isVitalicia) {
+bool ControladorVideojuegos::altaSuscripcion(string nomJugador, string videojuego, Suscripcion *sus, bool isVitalicia) {
     return fab->getControladorUsuarios()->altaSuscripcion(nomJugador, videojuego, sus, isVitalicia);
 }
 

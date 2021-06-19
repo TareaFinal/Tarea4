@@ -9,7 +9,7 @@ class DtFechaHora {
 		int hora;
 		int minuto;
 	public:
-		DtFechaHora();
+		DtFechaHora(int anio, int mes, int dia, int hora, int minuto);
 		int getDia();
 		int getMes();
 		int getAnio();

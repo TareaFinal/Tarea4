@@ -9,8 +9,8 @@ using namespace std;
 class DtPartida {
 	protected:
         int idPartida;
-		DtFechaHora duracion; //no deberia de ser de tipo float?
-        DtFechaHora fechaInicio;
+		DtFechaHora *duracion; //no deberia de ser de tipo float?
+        DtFechaHora *fechaInicio;
         string nicknameCreador;
         string videojuego;
 
@@ -18,8 +18,8 @@ class DtPartida {
     
         //getters
         int getIdPartida();
-		DtFechaHora getDuracion();
-        DtFechaHora getFechaInicio();
+		DtFechaHora *getDuracion();
+        DtFechaHora *getFechaInicio();
         string getNicknameCreador();
         string getVideojuego();
 

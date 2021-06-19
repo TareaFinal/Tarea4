@@ -7,6 +7,7 @@
 #include "Categoria.h"
 #include "suscripcion.h"
 #include "Estadistica.h"
+#include "desarrollador.h"
 
 
 #include <string>
@@ -16,6 +17,7 @@ using namespace std;
 
 class Categoria;
 class Jugador;
+class Desarrollador;
 
 class Videojuego {
 	private: 
@@ -39,7 +41,7 @@ class Videojuego {
 		vector<Suscripcion*> getSuscripciones();
 		DtJugador *getJugadoresSuscriptos();
 		Jugador *getJugadores();
-		DtVideojuego *getDataVideojuego(float promedio, float totalDeHorasJugadas);
+		DtVideojuego *getDataVideojuego();
 		Desarrollador* getDesarrollador();
 		
 		void setNombre(string nombre);
@@ -49,12 +51,12 @@ class Videojuego {
 		void agregarCategoria(Categoria *c);
 		void agregarSuscripcion(Suscripcion *s);
 		void agregarEstadistica(Estadistica *e);
-	//	void eliminarCategoria(Categoria *c);
-	//	void eliminarSuscripcion(Suscripcion *s);
-	//	void eliminarEstadistica(Estadistica *e);
+		void eliminarCategoria(Categoria *c);
+		void eliminarSuscripcion(Suscripcion *s);
+		void eliminarEstadistica(Estadistica *e);
 		
-	//	float calcularEstadistica(int idEstadistica);
-	//	int calcularPuntajePromedio();
+		float calcularEstadistica(int idEstadistica);
+		float calcularPuntajePromedio();
 };
 
 #endif

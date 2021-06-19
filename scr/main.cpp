@@ -20,6 +20,7 @@ int main(int argc, char** argv) {
     iControladorVideojuegos *ctrlVideojuegos = fabrica->getControladorVideojuegos();
     iControladorPartidas *ctrlPartidas = fabrica->getControladorPartidas();
     iControladorUsuarios *ctrlUsuarios = fabrica->getControladorUsuarios();
+    
     int n = 4;
     while (n != 0) {
         cout << "1: Alta de usuario" << endl;

@@ -9,15 +9,15 @@ using namespace std;
 class DtComentario {
 	private:
 		int idComentario;
-		DtFechaHora fecha;
+		DtFechaHora *fecha;
 		string nicknameJugador;
         string texto;
 	public:
-		DtComentario(int idComentario, DtFechaHora fecha, string nicknameJugador, string texto);
+		DtComentario(int idComentario, DtFechaHora *fecha, string nicknameJugador, string texto);
 
         //getters
 		int getIdComentario();
-		DtFechaHora getFecha();
+		DtFechaHora *getFecha();
 		string getNicknameJugador();
         string getTexto();
         

@@ -5,17 +5,18 @@
 using namespace std;
 
 class Usuario {  // abstracta
-private:
 	
 protected:
 	string email, contrasenia;
 public:
-	virtual void setEmail(string direccion);
+	void setEmail(string direccion);
 	void setContrasenia(string pass);
 	// Getters
 	string getEmail();
 	string getContrasenia();
 	// funciones
+	
+	virtual ~Usuario() = default;
 
 };
 

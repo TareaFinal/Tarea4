@@ -10,6 +10,14 @@ string Suscripcion::getMetodoDePago() {
 float Suscripcion::getValor() {
 	return this->valor;
 }
-DtFechaHora Suscripcion::getFecha() {
+DtFechaHora *Suscripcion::getFecha() {
 	return this->fecha;
+}
+
+Videojuego *Suscripcion::getVideojuego() {
+	return this->_videojuego;
+}
+
+Jugador *Suscripcion::getJugador() {
+	return this->_jugador;
 }

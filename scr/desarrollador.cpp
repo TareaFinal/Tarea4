@@ -23,3 +23,24 @@ string Desarrollador::getEmpresa() {
 string Desarrollador::tipoUsuario() { 
 	return "desarrollador";
 }
+
+void Desarrollador::agregarVideojuego(Videojuego *v) {
+	set<Videojuego*>::iterator it = this->videojuegos.find(v);
+	
+	if (it != this->videojuegos.end()) {
+		this->videojuegos.insert(v);
+		cout << "Videojuego agregado correctamente al desarrollador.";
+	} else {
+		cout << "El videojuego ya esta ingresado.";
+	}
+}
+
+void Desarrollador::eliminarVideojuego(Videojuego *v) {
+	for (auto it = this->videojuegos.begin(); it != this->videojuegos.end();) {
+		if (*it == v) {
+			this->videojuegos.erase(it++);
+			cout << "Videojuego removido correctamente.";
+			break;
+		}		
+	}
+}

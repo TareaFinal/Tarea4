@@ -3,7 +3,10 @@
 
 #include "IControladorUsuarios.h"
 #include "usuario.h"
+#include "desarrollador.h"
+#include "jugador.h"
 #include <string>
+#include <vector>
 #include <set>
 
 using namespace std;
@@ -15,7 +18,7 @@ class ControladorUsuarios : public iControladorUsuarios {
 				static ControladorUsuarios *instancia;
                 set<Usuario*> usuarios;
                 string emailUsuarioEnSesion;
-                DtFechaHora* systemTime;
+                DtFechaHora *systemTime;
         		ControladorUsuarios();
 	public:
                 static ControladorUsuarios *getInstancia();
@@ -27,7 +30,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 void darEmpresa(string nombre);
                 void darDatosJugador(string nick, string descripcion);
                 void confirmarAltaUsuario();
-                void obtenerVideojuegosJugador(string email);
+                vector<DtVideojuego> obtenerVideojuegosJugador(string email);
                 void desvincularSuscripciones(set<Jugador*> &js, Videojuego *v);
                 void desvincularSuscripcion(string email, Videojuego *v);
                 Suscripcion *buscarSuscripcion(Videojuego *v);
@@ -35,11 +38,12 @@ class ControladorUsuarios : public iControladorUsuarios {
                 set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores);
                 bool iniciarSesion(string email, string contrasenia);
                 string getTipoUsuario();
-                void setFechaSistema(DtFechaHora* fechaSist);
-                DtFechaHora* getFechaSistema();
+                void setFechaSistema(DtFechaHora *fechaSist);
+                DtFechaHora *getFechaSistema();
                 vector<DtJugador> listarJugadoresSuscriptosVideojuego(string videojuego);
-                bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion sus, bool isVitalicia);
+                bool altaSuscripcion(string nomJugador, string nomVideo, Suscripcion *sus, bool isVitalicia);
                 bool esTemporal(Suscripcion *s);
 };
 
 #endif
+
