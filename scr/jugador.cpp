@@ -41,6 +41,12 @@ string Jugador::getNick() {
 	return this->nick; 
 }
 
+Suscripcion *Jugador::getSuscripcion(string videojuego) {
+	Suscripcion* sus = this->colSuscripciones[videojuego];
+	return sus;
+}
+
+
 	// Funciones
 void Jugador::desvincularSub(Videojuego* v) {
 	string idVideojuego = v->getNombre();

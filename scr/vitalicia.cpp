@@ -1,6 +1,4 @@
 #include "../vitalicia.h"
-#include "../jugador.h"
-#include "../Videojuego.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -14,7 +12,7 @@ Vitalicia::Vitalicia(string metpago, DtFechaHora *fechahoy, float val, Jugador* 
 }
 
 
-bool Vitalicia::Activa() {
+bool Vitalicia::activa() {
 	return true;
 }
 string Vitalicia::TipoSuscripcion() { // esta es una funcion abstracta pero aca no se define con virtual porque estamos en la clase derivada

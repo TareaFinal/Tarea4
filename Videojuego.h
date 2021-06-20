@@ -12,18 +12,20 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
 class Categoria;
 class Jugador;
 class Desarrollador;
+class Suscripcion;
 
 class Videojuego {
 	private: 
 		string nombre;
 		string descripcion;
-		float *costos;
+		map<int,float> costos;
 		Desarrollador *desarrollador;
 		vector<Categoria*> categorias;
 		vector<Estadistica*> estadisticas;
@@ -31,10 +33,13 @@ class Videojuego {
 		vector<int> puntajes;
 		
 	public:
-		Videojuego(string n, string d, float* costos, Desarrollador *desarrollador);
+		typedef map<int, float> map_type;
+		
+		Videojuego(string n, string d, Desarrollador *desarrollador, vector<Categoria*> categorias, const map_type = map_type());
+		
 		string getNombre();
 		string getDescripcion();
-		float *getCostos();
+		map<int,float> getCostos();
 		vector<int> getPuntajes();
 		int getCantidadJugadoresSuscriptos();
 		vector<Categoria*> getCategorias();
@@ -46,7 +51,7 @@ class Videojuego {
 		
 		void setNombre(string nombre);
 		void setDescripcion(string descripcion);
-		void setCostos(float *costos);
+		void setCostos(map<int,float> costos);
 		void agregarPuntaje(int puntaje);
 		void agregarCategoria(Categoria *c);
 		void agregarSuscripcion(Suscripcion *s);

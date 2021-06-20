@@ -24,7 +24,7 @@ class DtPartida {
         string getVideojuego();
 
         virtual ~DtPartida() {
-		};
+		}
         
 };
 

@@ -14,3 +14,13 @@ string DtCategoria::getTipo(){
 string DtCategoria::getDescripcion(){
     return this->descripcion;
 };
+
+ostream &operator<< (ostream &os, DtCategoria* cat) {
+	os << "----------------------------------------\n"
+	   << "---Categoria---" << endl
+	   << "Nombre: " << cat->getNombre() << "\n"
+       << "Tipo: " << cat->getTipo() << "\n"
+       << "Descripcion: " << cat->getDescripcion() << "\n";
+	   
+	return os;
+};

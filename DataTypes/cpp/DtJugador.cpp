@@ -18,3 +18,14 @@ string DtJugador::getNickname(){
 string DtJugador::getDescripcion(){
     return this->descripcion;
 };
+
+ostream &operator<< (ostream &os, DtJugador* jug) {
+	os << "----------------------------------------\n"
+	   << "---Jugador---" << endl
+       << "Nickname: " << jug->getNickname() << "\n"
+	   << "E-mail: " << jug->getEmail() << "\n"
+       << "Contrasenia: " << jug->getContrasenia() << "\n"
+       << "Descripcion: " << jug->getDescripcion() << "\n";
+	   
+	return os;
+};

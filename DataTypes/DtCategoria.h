@@ -18,6 +18,7 @@ class DtCategoria {
 		string getTipo();
 		string getDescripcion();
         
+        friend ostream &operator<< (ostream &os, DtCategoria* cat);
 };
 
 #endif

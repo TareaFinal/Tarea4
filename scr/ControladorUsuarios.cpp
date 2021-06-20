@@ -17,6 +17,23 @@ string ControladorUsuarios::getUsuarioEnSesion() {
 	return emailUsuarioEnSesion;
 }
 
+string ControladorUsuarios::getNickJugadorEnSesion() {
+	Usuario* usuario = NULL;
+
+    set<Usuario*>::iterator user;
+    for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
+        if ((*user)->getEmail() == this->emailUsuarioEnSesion) {
+            usuario = *user;
+            break;
+        }
+    }
+ 
+    Jugador* jugador = dynamic_cast<Jugador*> (usuario);
+    
+    return jugador->getNick();
+}
+
+
 set<string> ControladorUsuarios::getVideojuegoJugador(string email) {
 	vector<DtVideojuego> videojuegos;
     set<string> nombresVideojuegos;
@@ -32,7 +49,7 @@ set<string> ControladorUsuarios::getVideojuegoJugador(string email) {
 
     if (usuario != NULL) {
     	Jugador* jugador = dynamic_cast<Jugador*> (usuario);
-        //videojuegos = jugador->videojuegosSuscripto();
+        //videojuegos = jugador->videojuegosSuscripto();   ///////////////////////////////////////////////////////////////////////////////////////
 
         vector<DtVideojuego>::iterator it;
         for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
@@ -43,36 +60,66 @@ set<string> ControladorUsuarios::getVideojuegoJugador(string email) {
     return nombresVideojuegos;
 }
 
-void ControladorUsuarios::registrarUsuario(string email, string contrasenia) {
+bool ControladorUsuarios::registrarUsuario(string email, string contrasenia) {
 	if (email.find('@') == string::npos || email.find('.') == string::npos) {
         throw "Formato incorrecto de email, necesita contener '@' y '.'. Por ejemplo: example@email.ex";
     }
 
-    this->mail = email;
-    this->contra = contrasenia;
+	set<Usuario*>::iterator user;
+    for (user = usuarios.begin(); user != usuarios.end(); user++) {
+    	if ((*user) != NULL) {
+        	if ((*user)->getEmail() == email) {
+        		return false;
+			}
+		}
+    }
+
+    mail = email;
+    contra = contrasenia;
+    
+    return true;
 }
 
 void ControladorUsuarios::darEmpresa(string nombre) {
 	this->empresa = nombre;
 }
 
-void ControladorUsuarios::darDatosJugador(string nick, string descripcion) {
+bool ControladorUsuarios::darDatosJugador(string nick, string descripcion) {
+	set<Usuario*>::iterator user;
+    for (user = usuarios.begin(); user != usuarios.end(); user++) {
+        Jugador* jugador = dynamic_cast<Jugador*> (*user);
+        
+        if (jugador != NULL) {
+        	if (jugador->getNick() == nick) {
+        		return false;
+			}
+		
+    	}
+	}	
 	this->nickname = nick;
     this->desc = descripcion;
+    
+    return true;
 }
 
 void ControladorUsuarios::confirmarAltaUsuario() {
-	if (empresa == "" && (nickname != "" && desc != "")) {
-        //usuarios.insert(new Jugador(mail, contra, nickname, desc));
+	if ((empresa == "") && (nickname != "")) {
+        usuarios.insert(new Jugador(this->mail, this->contra, this->nickname, this->desc));
     }else if (empresa != "") {
-        usuarios.insert(new Desarrollador(mail, contra, empresa));
+        usuarios.insert(new Desarrollador(this->mail, this->contra, this->empresa));
     }else {
         throw "Datos insuficientes para realizar la operacion";
     }
+    
+    this->empresa = "";
+    this->mail = "";
+    this->contra = "";
+    this->desc = "";
+    this->nickname = "";
 }
 
-vector<DtVideojuego> ControladorUsuarios::obtenerVideojuegosJugador(string email) {
-	vector<DtVideojuego> videojuegos;
+vector<DtVideojuego*> ControladorUsuarios::obtenerVideojuegosJugador(string email) {
+	vector<DtVideojuego*> videojuegos;
     Usuario* usuario = NULL;
 
     set<Usuario*>::iterator user;
@@ -85,7 +132,7 @@ vector<DtVideojuego> ControladorUsuarios::obtenerVideojuegosJugador(string email
 
     if (usuario != NULL) {
         Jugador* jugador = dynamic_cast<Jugador*> (usuario);
-        //videojuegos = jugador->videojuegosSuscripto();
+        videojuegos = jugador->videojuegosSuscripto();
     }
 
     return videojuegos;
@@ -110,7 +157,7 @@ void ControladorUsuarios::desvincularSuscripcion(string email, Videojuego *v) {
 
     if (usuario != NULL) {
     	Jugador* jugador = dynamic_cast<Jugador*> (usuario);
-        //videojuegos = jugador->desvincularSub(*v);
+        jugador->desvincularSub(v);
     }
 }
 
@@ -127,16 +174,9 @@ Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
 
     if (usuario != NULL) {
     	Jugador* jugador = dynamic_cast<Jugador*> (usuario);
-        //set<Suscripcion*> *sus= jugador->getSuscripciones();
-
-        /*set<Suscripcion*>::iterator it;
-        for (it = sus->begin(); it != sus->end(); it++) {
-            if ((*it)->getVideojuego() == v) {
-                return *it;
-            }
-        }*/
+        Suscripcion* sus= jugador->getSuscripcion(v->getNombre());
+        return sus;
     }
-    return NULL;
 }
 
 void ControladorUsuarios::agregarSusAJugador(Suscripcion *s) {
@@ -152,7 +192,7 @@ void ControladorUsuarios::agregarSusAJugador(Suscripcion *s) {
     
     if (usuario != NULL) {
     	Jugador* jugador = dynamic_cast<Jugador*> (usuario);
-        //jugador->agregarSuscripcion(*s);
+        jugador->agregarSuscripcion(s);
     }
 }
 set<Jugador*> ControladorUsuarios::darJugadores(set<DtJugador*> &dtJugadores) {
@@ -185,15 +225,15 @@ int ControladorUsuarios::cantidadJugadoresSuscriptosVideojuego(string videojuego
     	Jugador* jugador = dynamic_cast<Jugador*> (*user);
     	
     	if (jugador != NULL) {
-			/*vector<DtVideojuego> vdj = jugador->videojuegosSuscripto();
+			vector<DtVideojuego*> vdj = jugador->videojuegosSuscripto();
 			
-			vector<DtVideojuego>::iterator it;
+			vector<DtVideojuego*>::iterator it;
 			for (it = vdj.begin(); it != vdj.end(); it++) {
-				if (it->getNombre() == videojuego) {
+				if ((*it)->getNombre() == videojuego) {
 					cant++;
 					break;
 				}
-			}*/
+			}
 		}
     }
     
@@ -224,7 +264,7 @@ string ControladorUsuarios::getTipoUsuario() {
 
     set<Usuario*>::iterator user;
     for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
-        if ((*user)->getEmail() == emailUsuarioEnSesion) {
+        if ((*user)->getEmail() == this->emailUsuarioEnSesion) {
             usuario = *user;
             break;
         }
@@ -255,4 +295,47 @@ vector<DtJugador> ControladorUsuarios::listarJugadoresSuscriptosVideojuego(strin
 	vector<DtJugador> jugadores;
 	return jugadores;
 }
+
+
+bool ControladorUsuarios::esTemporal(Suscripcion *s) {
+	bool esTemporal = false;
+	if (s->TipoSuscripcion() == "temporal")
+		esTemporal = true;
+
+	return esTemporal;
+}
+
+Usuario *ControladorUsuarios::getUsuarioEnSistema() {
+	Usuario* usuario = NULL;
+
+    set<Usuario*>::iterator user;
+    for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
+        if ((*user)->getEmail() == this->emailUsuarioEnSesion) {
+            usuario = *user;
+            return usuario;
+        }
+    }
+
+}
+
+Desarrollador *ControladorUsuarios::getDesarrolladorEnSesion(){
+    Usuario* usuario = NULL;
+
+    set<Usuario*>::iterator user;
+    for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
+        if ((*user)->getEmail() == emailUsuarioEnSesion) {
+            usuario = *user;
+            break;
+        }
+    }
+
+    if (usuario != NULL) {      
+        Desarrollador* des = dynamic_cast <Desarrollador*> (usuario);
+        if (des != NULL){
+            return des;
+        }
+    }
+	return NULL;
+};
+
 

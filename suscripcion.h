@@ -1,11 +1,11 @@
 #ifndef SUSCRIPCION
 #define SUSCRIPCION
 
+#include "jugador.h"
+#include "Videojuego.h"
 #include <string>
 #include <iostream>
 #include "DataTypes/DtFechaHora.h"
-#include "jugador.h"
-#include "Videojuego.h"
 
 #include <string>
 using namespace std;

@@ -2,7 +2,9 @@
 #define COMENTARIO
 
 #include "DataTypes/DtFechaHora.h"
+#include "partida.h"
 #include "partidaMultijugador.h"
+#include "jugador.h"
 #include <string>
 using namespace std;
 

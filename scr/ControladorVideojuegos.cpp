@@ -1,5 +1,7 @@
-#include "../fabrica.h"
 #include "../ControladorVideojuegos.h"
+#include "../temporal.h"
+#include "../vitalicia.h"
+#include "../DataTypes/DtCategoria.h"
 
 ControladorVideojuegos *ControladorVideojuegos::instancia = NULL;
 Fabrica *fab = Fabrica::getInstancia();
@@ -41,7 +43,6 @@ float ControladorVideojuegos::calcularEstadistica(int estadistica, string nomVid
 
     //return numeroEncontrado;
 
-    return 0.0;
 }
 
 
@@ -55,9 +56,10 @@ vector<DtJugador> ControladorVideojuegos::jugadoresSuscriptosAVideojuego(string 
 
 void ControladorVideojuegos::eliminarVideojuego(string nombre) {
 	for (auto f : ControladorVideojuegos::videojuegos) {
-        Videojuego v = *f;
-        if (v.getNombre() == nombre){
+        Videojuego *v = f;
+        if (v->getNombre() == nombre){
                 ControladorVideojuegos::videojuegos.erase(f);
+                delete v;
         }
     }
 }
@@ -89,23 +91,34 @@ bool ControladorVideojuegos::ingreseNombreVideojuego(string nombreVideojuego) {
     return ret;
 }
 
-vector<DtEstadistica> ControladorVideojuegos::listarEstadisticas(string nombreVideojuego) {
+vector<string> ControladorVideojuegos::consultarEstadisticas(string nombreVideojuego) {
     /**/
-    vector<DtEstadistica> dtEstadisticas;
+    vector<string> estadisticasAMostrar;
     for (auto f : ControladorVideojuegos::estadisticas) {
-        DtEstadistica ret = DtEstadistica(f->getID(), f->getNombre(), f->getDescripcion(), f->calcular(nombreVideojuego));
+        string ret = "Nombre: " + f->getNombre() + " Valor: " + to_string(f->calcular(nombreVideojuego)); 
+        estadisticasAMostrar.push_back(ret);
+        //dtEstadisticas.insert(ret);
+        }
+    return estadisticasAMostrar;
+    /**/
+	//set<DtEstadistica> estadisticas;
+	//return estadisticas;
+}
+
+vector<DtEstadistica> ControladorVideojuegos::listarEstadisticas() {
+	vector<DtEstadistica> dtEstadisticas;
+    for (auto f : ControladorVideojuegos::estadisticas) {
+        DtEstadistica ret = DtEstadistica(f->getID(), f->getNombre(), f->getDescripcion(), 0);
         dtEstadisticas.push_back(ret);
         //dtEstadisticas.insert(ret);
         }
     return dtEstadisticas;
-    /**/
-	//set<DtEstadistica> estadisticas;
-	//return estadisticas;
 	
 }
 
+
 bool ControladorVideojuegos::esTemporal(Suscripcion *s) {
-	return true;
+	return fab->getControladorUsuarios()->esTemporal(s);
 }
 
 Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
@@ -113,8 +126,22 @@ Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
 	return s;
 }
 
-void ControladorVideojuegos::ingresarCategoria(DtCategoria *cat) {
-	
+void ControladorVideojuegos::ingresarCategoria(string nombre, string tipo, string descripcion) {
+	bool encontreCategoria = false;
+	for (auto f : ControladorVideojuegos::categorias) {
+        Categoria v = *f;
+        if (nombre == v.getNombre()){
+            encontreCategoria = true;
+        }   
+    }
+    
+    Desarrollador *des = fab->getControladorUsuarios()->getDesarrolladorEnSesion();
+    if(!encontreCategoria){
+        categorias.insert(new Categoria(nombre, tipo, descripcion, des));
+    }
+    else{
+        cout << "Ya existe esta categoria";
+    }
 }
 
 bool ControladorVideojuegos::existeVideojuego(string nombre) {
@@ -147,4 +174,99 @@ bool ControladorVideojuegos::existeEstadistica(int id) {
         }
     }
     return ret;
+}
+
+bool ControladorVideojuegos::altaSuscripcion(string videojuego, string tipo, string metodoPago, int validez) {
+   iControladorUsuarios *controladorUsuarios = fab->getControladorUsuarios();
+	Usuario* usuario = controladorUsuarios->getUsuarioEnSistema(); 
+	
+	Jugador* jugador = dynamic_cast <Jugador*> (usuario);
+	
+	for (auto f : ControladorVideojuegos::videojuegos) {
+        Videojuego *v = f;
+        if (v->getNombre() == videojuego){
+   	    	Suscripcion *s = NULL;
+            if (tipo == "temporal")
+            	s = new Temporal(metodoPago, controladorUsuarios->getFechaSistema(), 0, jugador, v, validez);              //////////////////// Agregar costo del videojuego
+			else
+				s = new Vitalicia(metodoPago, controladorUsuarios->getFechaSistema(), 0, jugador, v);
+			
+			jugador->agregarSuscripcion(s);
+			
+			return true;	
+        }
+    }
+    
+    return true;
+    
+}
+
+bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) {
+    bool ret = false;
+    for (auto f : ControladorVideojuegos::videojuegos) {
+        Videojuego v = *f;
+        if (v.getNombre() == nomVideojuego){
+            v.agregarPuntaje(puntaje);
+        }
+    }
+    return ret;
+}
+
+void ControladorVideojuegos::publicarVideojuego(){
+
+    Desarrollador *nomDesarrolladorEnSesion = fab->getControladorUsuarios()->getDesarrolladorEnSesion(); //nueva funcion en el controlador
+    std::map<int,float> mapaCostos;
+    mapaCostos.insert(std::pair<int,float>(0,this->costoVitalicio));
+    mapaCostos.insert(std::pair<int,float>(1,this->costoMensual));
+    mapaCostos.insert(std::pair<int,float>(3,this->costoTrimestral));
+    mapaCostos.insert(std::pair<int,float>(12,this->costoAnual));
+
+    vector<Categoria*> c;
+
+    for (auto f : this->categoriasVideojuego) {
+            for (auto f : ControladorVideojuegos::categorias) {
+                Categoria *cate = f;
+                if (cate->getNombre() == f->getNombre() && cate->getTipo() == f->getTipo()){
+                    c.push_back(cate);
+                }
+            }
+    }
+
+    //catVideojuego
+    Videojuego* newV = new Videojuego(this->nombreVideojuego, this->descripcionVideojuego, nomDesarrolladorEnSesion, c, mapaCostos);
+    ControladorVideojuegos::videojuegos.insert(newV);
+}
+
+void ControladorVideojuegos::setearDatosVideojuego(string nombre, string descripcion, float precioMes, float precioTri, float precioAnio, float precioVit) {
+	this->nombreVideojuego = nombre;
+	this->descripcionVideojuego = descripcion;
+	this->costoMensual = precioMes;
+	this->costoTrimestral = precioTri;
+	this->costoAnual = precioAnio;
+	this->costoVitalicio = precioVit;
+}
+
+void ControladorVideojuegos::asignarGenero(DtCategoria* gen) {
+	this->genero = gen;
+}
+
+void ControladorVideojuegos::asignarPlataforma(DtCategoria* plat) {
+	this->plataforma = plat;
+}
+
+void ControladorVideojuegos::asignarCategorias(vector<DtCategoria*> cats) {
+	this->categoriasVideojuego = cats;
+	this->categoriasVideojuego.push_back(plataforma);
+	this->categoriasVideojuego.push_back(genero);
+}
+
+vector<DtCategoria*> ControladorVideojuegos::solicitarCategorias() {
+	vector<DtCategoria*> categoriasSolicitadas;
+	
+	for (auto f : this->categorias) {
+                Categoria *cate = f;
+                categoriasSolicitadas.push_back(new DtCategoria(cate->getNombre(), cate->getTipo(), cate->getDescripcion()));
+            }
+	return categoriasSolicitadas;
+	
 }

@@ -35,6 +35,7 @@ public:
 
 	string getDescripcion();
 	string getNick();
+	Suscripcion *getSuscripcion(string videojuego);
 
 	// Funciones
 	void desvincularSub(Videojuego *v);

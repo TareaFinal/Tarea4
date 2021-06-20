@@ -1,7 +1,4 @@
-#include <string>
-#include <iostream>
 #include "../suscripcion.h"
-using namespace std;
 
 
 string Suscripcion::getMetodoDePago() {

@@ -24,6 +24,8 @@ class DtVideojuego {
         float getTotalDeHorasJugadas();
         string getEmpresa();
 
+		friend ostream &operator<< (ostream &os, DtVideojuego* vi);
+
 };
 
 #endif

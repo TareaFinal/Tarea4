@@ -13,7 +13,8 @@ class DtPartidaIndividual : public DtPartida {
 
         //getters
 		int getPartidaContinuada();
-
+		
+		friend ostream &operator<< (ostream &os, DtPartidaIndividual* pi);
 };
 
 #endif

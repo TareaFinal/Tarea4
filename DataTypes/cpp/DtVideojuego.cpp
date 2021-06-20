@@ -28,3 +28,14 @@ float DtVideojuego::getTotalDeHorasJugadas(){
 string DtVideojuego::getEmpresa(){
     return this->empresa;
 };
+
+ostream &operator<< (ostream &os, DtVideojuego* vi) {
+	os 	<< "----------------------------------------\n"
+		<< "Titulo: " << vi->getNombre() << endl
+		<< "Empresa: " << vi->getEmpresa() << endl
+		<< "Puntaje promedio: " << vi->getPuntajePromedio() << endl
+		<< "Descripcion: " << vi->getDescripcion() << endl
+		<< "Total de horas jugadas: " << vi->getTotalDeHorasJugadas() << "\n";
+
+	return os;
+}

@@ -1,22 +1,22 @@
 #ifndef TEMPORAL
 #define TEMPORAL
+
 #include "suscripcion.h"
-#include "jugador.h"
-#include "Videojuego.h"
-#include "DataTypes/DtFechaHora.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
+
+class Jugador;
+class Suscripcion;
+
 class Temporal : public Suscripcion {
 private:
 	DtFechaHora *validez;
 	bool cancelada;
-protected:
-
 public:
 	// Constructor
-	Temporal (string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, string tipo ); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
+	Temporal (string metpago, DtFechaHora *fechahoy, float val, Jugador* Player, Videojuego* Vj, int tipo); // validez se calcula sumandole a la fecha de hoy el el tiempo en tipo
 	
 	// Destructor
 	

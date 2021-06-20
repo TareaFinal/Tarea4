@@ -8,14 +8,15 @@
 
 using namespace std;
 
-Videojuego::Videojuego::Videojuego(string n, string d, float* costos, Desarrollador *desarrollador) {
+Videojuego::Videojuego(string n, string d, Desarrollador *desarrollador, vector<Categoria*> categorias, const map_type) {
 	Fabrica *fabrica = Fabrica::getInstancia();
 	iControladorVideojuegos *controlador = fabrica->getControladorVideojuegos(); 
 	if (!controlador->existeVideojuego(n)) {
 		this->nombre = n;
 		this->descripcion = d;
-		this->costos = costos;
+		this->costos = map_type();
 		this->desarrollador = desarrollador;
+		this->categorias = categorias;
 		
 		cout << "Videojuego creado correctamente.";
 		
@@ -32,7 +33,7 @@ string Videojuego::getDescripcion() {
 	return this->descripcion;
 }
 
-float *Videojuego::getCostos() {
+map<int,float> Videojuego::getCostos() {
 	return this->costos;
 }
 
@@ -40,7 +41,7 @@ vector<int> Videojuego::getPuntajes() {
 	return this->puntajes;
 }
 
-int Videojuego::getCantidadJugadoresSuscriptos() {
+int Videojuego::getCantidadJugadoresSuscriptos() { /////////////////// Arreglar. No se controla que sean solo las activas
 	return this->suscripciones.size();
 }
 
@@ -76,7 +77,7 @@ void Videojuego::setDescripcion(string descripcion) {
 	this->descripcion = descripcion;
 }
 		
-void Videojuego::setCostos(float *costos) {
+void Videojuego::setCostos(map<int,float> costos) {
 	this->costos = costos;
 }
 		

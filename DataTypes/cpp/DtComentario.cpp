@@ -18,3 +18,14 @@ string DtComentario::getNicknameJugador(){
 string DtComentario::getTexto(){
     return this->texto;
 };
+
+ostream &operator<< (ostream &os, DtComentario* com) {
+	os << "----------------------------------------\n"
+	   << "---Comentario---" << endl
+       << "Id: " << com->getIdComentario() << "\n"
+	   << "Fecha: " <<  com->getFecha()->getDia() << "/" << com->getFecha()->getMes() << "/" << com->getFecha()->getAnio() << " Esto es un DtFechahora, ojo!!!\n" 
+       << "Nickname del Jugador: " << com->getNicknameJugador() << "\n"
+       << "Texto: " << com->getTexto() << "\n";
+	   
+	return os;
+};
