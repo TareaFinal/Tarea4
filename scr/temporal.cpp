@@ -48,7 +48,7 @@ bool Temporal::getCancelada() {
 	// Funciones
 
 bool Temporal::activa() {
-	bool valida; //hoy < validez
+	bool valida = false; //hoy < validez
 	Fabrica *fabrica = Fabrica::getInstancia();
 	iControladorUsuarios *controlador = fabrica->getControladorUsuarios(); 
 	DtFechaHora *ahora = controlador->getFechaSistema(); // Esta funcion no est� creada OJOOOOO!!!

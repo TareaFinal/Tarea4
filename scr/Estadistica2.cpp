@@ -1,5 +1,5 @@
 #include "../Estadistica2.h"
-#include "../Fabrica.h"
+#include "../fabrica.h"
 
 #include <string>
 
@@ -11,6 +11,6 @@ float Estadistica2::calcular(string videojuego) {
 }
 
 DtEstadistica *Estadistica2::getDataEstadistica(float valor) {
-	DtEstadistica *dataEstadistica = new DtEstadistica(this->idEstadistica, this->nombre, this->descripcion,	valor);  /// ¿Qué le paso al Dt?
+	DtEstadistica *dataEstadistica = new DtEstadistica(this->idEstadistica, this->nombre, this->descripcion,	valor);  /// ï¿½Quï¿½ le paso al Dt?
 	return dataEstadistica;	
 }

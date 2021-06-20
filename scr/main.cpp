@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 	DtCategoria* generoPrueba = NULL;
 	DtCategoria* plataformaPrueba = NULL;
 	
-	ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
 	ctrlVideojuegos->setearDatosVideojuego("KingdomRush", "", 1, 2, 7, 14);
 	
 	vector<DtCategoria*> categoriasDatosAIngresar;
@@ -66,6 +66,8 @@ int main(int argc, char** argv) {
 	ctrlVideojuegos->asignarPlataforma(plataformaPrueba);
 	ctrlVideojuegos->asignarCategorias(categoriasDatosAIngresar);
 	ctrlVideojuegos->publicarVideojuego();
+	
+	
 	
 	
     
@@ -808,8 +810,8 @@ int main(int argc, char** argv) {
                         	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegos();
 							
 							vector<DtVideojuego>::iterator it;
-							for (it = juegos.begin(); it != juegos.end(); it++) {
-								cout << &it << endl;
+							for (it = juegos.begin(); it != juegos.end(); it++) {	
+								cout << it->getNombre() << endl;
 							}
 							
 							cout << "Ingrese el nombre del videojuego a eliminar: " << endl;
@@ -931,7 +933,7 @@ int main(int argc, char** argv) {
 
                            	vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << &it << endl;
+                                cout << it->getNombre() << endl;
                             }
 
                             bool nombreValido = false;
@@ -943,7 +945,7 @@ int main(int argc, char** argv) {
                                 vector<DtVideojuego>::iterator it;
                                 for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
                                     if ((*it).getNombre() == nombreVideojuego) {
-                                    	cout << &it << endl;
+                                    	cout << &(*it) << endl;
                                         nombreValido = true;
                                         break;
                                     }
