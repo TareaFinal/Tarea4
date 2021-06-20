@@ -39,6 +39,8 @@ class iControladorVideojuegos {
                 
             	virtual bool altaSuscripcion(string nomJugador, string video, Suscripcion *sus, bool isVitalicia) = 0;
                 virtual bool asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) = 0;
+
+                virtual void publicarVideojuego(string nombre, string descripcion, float costoMensual, float costoTrimestral, float costoAnual, float costoVitalicio, vector<DtCategoria> catVideojuego) = 0;
 };
 
 #endif

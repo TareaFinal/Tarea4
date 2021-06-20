@@ -36,6 +36,7 @@ class iControladorUsuarios {
 				
 				virtual bool altaSuscripcion(string nomJugador, string video, Suscripcion* sus, bool isVital) = 0;
 				virtual bool esTemporal(Suscripcion *s) = 0;
+                virtual Desarrollador *getDesarrolladorEnSesion() = 0;
 };
 
 #endif

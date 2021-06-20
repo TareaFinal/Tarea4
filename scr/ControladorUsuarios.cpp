@@ -267,3 +267,22 @@ bool ControladorUsuarios::esTemporal(Suscripcion *s) {
 	return esTemporal;
 }
 
+Desarrollador *ControladorUsuarios::getDesarrolladorEnSesion(){
+    Usuario* usuario = NULL;
+
+    set<Usuario*>::iterator user;
+    for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
+        if ((*user)->getEmail() == emailUsuarioEnSesion) {
+            usuario = *user;
+            break;
+        }
+    }
+
+    if (usuario != NULL) {      
+        Desarrollador* des = dynamic_cast <Desarrollador*> (usuario);
+        if (des != NULL){
+            return des;
+        }
+    }
+	return NULL;
+};

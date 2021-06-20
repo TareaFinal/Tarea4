@@ -48,6 +48,8 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 bool existeEstadistica(int id);
               	bool altaSuscripcion(string nomJugador, string video, Suscripcion *sus, bool isVitalicia);
                 bool asignarPuntajeAVideojuego(string nomVideojuego, int puntaje);
+
+                void publicarVideojuego(string nombre, string descripcion, float costoMensual, float costoTrimestral, float costoAnual, float costoVitalicio, vector<DtCategoria> catVideojuego);
 };
 
 

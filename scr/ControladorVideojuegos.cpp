@@ -174,3 +174,28 @@ bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int
     }
     return ret;
 }
+
+void ControladorVideojuegos::publicarVideojuego(string nombre, string descripcion, float costoMensual, float costoTrimestral, float costoAnual, float costoVitalicio, vector<DtCategoria> catVideojuego){
+
+    Desarrollador *nomDesarrolladorEnSesion = fab->getControladorUsuarios()->getDesarrolladorEnSesion(); //nueva funcion en el controlador
+    std::map<int,float> mapaCostos;
+    mapaCostos.insert(std::pair<int,float>(0,costoVitalicio));
+    mapaCostos.insert(std::pair<int,float>(1,costoMensual));
+    mapaCostos.insert(std::pair<int,float>(3,costoTrimestral));
+    mapaCostos.insert(std::pair<int,float>(12,costoAnual));
+
+    vector<Categoria*> c;
+
+    for (auto f : catVideojuego) {
+            for (auto f : ControladorVideojuegos::categorias) {
+                Categoria *cate = f;
+                if (cate->getNombre() == f->getNombre() && cate->getTipo() == f->getTipo()){
+                    c.push_back(cate);
+                }
+            }
+    }
+
+    //catVideojuego
+    Videojuego* newV = new Videojuego(nombre, descripcion, mapaCostos, nomDesarrolladorEnSesion, c);
+    ControladorVideojuegos::videojuegos.insert(newV);
+};

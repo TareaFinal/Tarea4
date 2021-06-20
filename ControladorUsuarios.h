@@ -45,6 +45,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 
               	bool altaSuscripcion(string nomJugador, string video, Suscripcion* sus, bool isVital);
 			 	bool esTemporal(Suscripcion *s);
+                Desarrollador *getDesarrolladorEnSesion();
 };
 
 #endif
