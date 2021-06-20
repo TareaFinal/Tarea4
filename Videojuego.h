@@ -31,6 +31,7 @@ class Videojuego {
 		vector<Estadistica*> estadisticas;
 		vector<Suscripcion*> suscripciones;
 		vector<int> puntajes;
+		int puntajesIngresados;
 		
 	public:
 		typedef map<int, float> map_type;

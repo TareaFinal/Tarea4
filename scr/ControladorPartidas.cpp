@@ -13,7 +13,6 @@ ControladorPartidas::ControladorPartidas() {
 	
 }
 
-// holaaaaaaaaaaaaaaaaa, esto es una prueba
 float ControladorPartidas::darHorasDePartida(string videojuego) {
 	Partida* p = NULL;
 	float horas=0;
@@ -58,7 +57,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerAnteriores() { // se define la pa
             Partida* p = it->second; // obtengo la partida actual
             PartidaIndividual* partidaI = dynamic_cast <PartidaIndividual*> (p);
             if ((p!=NULL) && (p->getVideojuego() == videojuegoseleccionado)) { 
-                if (partidaI->getJugador() == j) { //la partida no guarda el jugador!! Tremendo ya lo puse en el .h por otro lado ï¿½TODAS LAS PARTIDAS DE ESE VIDEOJUEGO SE PUEDEN CONTINUAR?
+                if (partidaI->getJugador() == j) { //la partida no guarda el jugador!! Tremendo ya lo puse en el .h por otro lado ¿TODAS LAS PARTIDAS DE ESE VIDEOJUEGO SE PUEDEN CONTINUAR?
                     anteriores.push_back(partidaI->getDataPartida());
                 }
                 //delete pdtpartida;
@@ -93,14 +92,27 @@ void ControladorPartidas::seleccionarJugadores(vector<string> idJugadores) { // 
     this->JugadoresApartidaMulti = idJugadores;
 }
 
+void ControladorPartidas::setTipoPartida(string tipo) {
+	this->tipoPartida = tipo;
+	cout << "Tipo seteado";
+}
+
+
 void ControladorPartidas::iniciarPartida() {  // crear una instancia con los datos guardados segun corresponda a una partida individual o a una multijugador
- ControladorPartidas::identificadorpartida++;
-	ControladorUsuarios* controladorusuarios = ControladorUsuarios::getInstancia();
+
+cout << "Llega a pregutnar el tipo de partida\n";
+
+ 	ControladorPartidas::identificadorpartida++;
+ 	Fabrica* fabrica = Fabrica::getInstancia();
+	iControladorUsuarios* controladorusuarios = fabrica->getControladorUsuarios();
 	string jugador = controladorusuarios->getNickJugadorEnSesion();
 	DtFechaHora* fechaInicio=controladorusuarios->getFechaSistema();
 	Partida* partida;
 	if (this->tipoPartida == "individual"){
-		PartidaIndividual* p =new PartidaIndividual(this->identificadorpartida,fechaInicio,this->videojuegoseleccionado,jugador);
+		
+		cout << "Llega a crear la partida inidividual";
+		
+		PartidaIndividual* p =new PartidaIndividual(this->identificadorpartida,fechaInicio,this->videoJuegoAContinuar,jugador);
 		partida =p;
 		this->Continuacion=NULL;
 	}
@@ -115,7 +127,7 @@ void ControladorPartidas::iniciarPartida() {  // crear una instancia con los dat
             dicSalidas.insert(std::make_pair(*it, s)); // se crea el map de salidas con los nick de los jugadores y vacia la salida
         }
     }
-		PartidaMultijugador* p =new PartidaMultijugador(this->identificadorpartida,jugador,fechaInicio,videojuegoseleccionado,this->envivo, dicSalidas);
+		PartidaMultijugador* p =new PartidaMultijugador(this->identificadorpartida,jugador,fechaInicio,this->videoJuegoAContinuar,this->envivo, dicSalidas);
 		Partida* partida =p;
 	}
 	
@@ -138,7 +150,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerPartidasActivas() {
             Partida* p = it->second; // obtengo la partida actual
             PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (p);
             if (partidaM != NULL) { 
-                set<string> jugadoresunidos = partidaM->getNicknameJugadoresActivos(); // en cada partida multi hay que fijarse si el jugador estï¿½
+                set<string> jugadoresunidos = partidaM->getNicknameJugadoresActivos(); // en cada partida multi hay que fijarse si el jugador está
                 std::set<string>::iterator itj;
                 for (itj = jugadoresunidos.begin(); itj != jugadoresunidos.end(); ++itj)
                 {
@@ -182,22 +194,21 @@ vector<DtPartida*> ControladorPartidas::ListarPartidasNoFinalizadas() {
 
 
 set<string> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {
-	set<string> s;
+	
     PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (this->dicPartidas.find(idPartida)->second);
     if (partidaM!=NULL){
-        s = partidaM->getNicknameJugadoresActivos();
+        return partidaM->getNicknameJugadoresActivos();
     }
     else {
         delete(partidaM);
         // throw invalid_argument " Todo mal con esta id";
     }
-    return s;
+
 } // // dentro de finalizar partidamultijudador devuelve los jugadores que estan jugando PARTIDA MULTIJUGADOR
 
-//CAMBIAR ESTO ESTO ES UN VOID Y NO UN BOOL
+
 bool ControladorPartidas::ingreseIdPartida(int idPartida) {// el sistema guarda esta info para continuar partida INDIVIDUAL no finalizada.
     this->partidaAfinalizar = idPartida;
-    return true; 
 }
 
 void ControladorPartidas::finalizarPartida() {

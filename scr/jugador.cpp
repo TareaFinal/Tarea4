@@ -58,16 +58,18 @@ void Jugador::desvincularSub(Videojuego* v) {
 
 // borrar suscripcion al videojuego v. o hay que cancelarla y nada mas?
 void Jugador::agregarSuscripcion(Suscripcion* s) {
-	this->colSuscripciones.insert(pair<string, Suscripcion*> (s->getVideojuego()->getNombre(), s));
+	this->colSuscripciones.insert(pair<string, Suscripcion*> ((s->getVideojuego())->getNombre(), s));
+	cout << "Suscripcion agregada correctamente al jugador\n";
 }
 
 vector <DtVideojuego*> Jugador::videojuegosSuscripto() {
 	
-	vector <DtVideojuego*> colDtVideojuego;
+	vector<DtVideojuego*> colDtVideojuego;
 
-	for (auto it = this->colSuscripciones.begin(); it != this->colSuscripciones.end();)
+	map<string, Suscripcion*>::iterator it;
+	for (it = this->colSuscripciones.begin(); it != this->colSuscripciones.end(); it++) 
 	{
-		DtVideojuego* dataVideojuego = ((it->second)->getVideojuego())->getDataVideojuego();
+		DtVideojuego* dataVideojuego = (((it->second)->getVideojuego())->getDataVideojuego());
 		colDtVideojuego.push_back(dataVideojuego);
 	}
 	return colDtVideojuego;

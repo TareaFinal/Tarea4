@@ -60,6 +60,8 @@ class ControladorPartidas : public iControladorPartidas {
         void seleccionarJugadores(vector<string> idJugadores); // guarda los jugadores en la memoria y controla que efectivamente esten suscriptos.
         void iniciarPartida();
         
+        void setTipoPartida(string tipo);
+        
         
         // Caso de uso abandonar partida multijugador
          void AbandonarPartidaActiva(int id);  // manda el id de la partida multijugador  

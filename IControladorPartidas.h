@@ -25,6 +25,7 @@ class iControladorPartidas {
                	virtual void seleccionarPartida(int idPartida) = 0;
                
                	virtual void Transmitida(bool t) = 0;  // se define la partida como MULTIJUGADOR y se guarda ese dato para luego armar la partida.
+               	virtual void setTipoPartida(string tipo) = 0;
          
         		virtual void seleccionarJugadores(vector<string> idJugadores) = 0; // guarda los jugadores en la memoria y controla que efectivamente esten suscriptos.
         		virtual void iniciarPartida() = 0;

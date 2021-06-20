@@ -68,6 +68,13 @@ int main(int argc, char** argv) {
 	ctrlVideojuegos->publicarVideojuego();
 	
 	
+		ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 1, 9, 0));
+		ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+		ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 3);
+		
+		ctrlUsuarios->iniciarSesion("jugador@mail.com", "123");
+		ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 3);
+		ctrlVideojuegos->asignarPuntajeAVideojuego("KingdomRush", 3);
 	
 	
     
@@ -203,7 +210,7 @@ int main(int argc, char** argv) {
 
                            vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << &it << endl;
+                                cout << &(*it) << endl;
                             }
 
                             bool nombreValido = false;
@@ -280,7 +287,7 @@ int main(int argc, char** argv) {
 
                            vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << (&it) << endl;
+                                cout << it->getNombre() << endl;
                             }
 
                             bool nombreValido = false;
@@ -317,11 +324,14 @@ int main(int argc, char** argv) {
                         break;
                         case 3: {
                         	int n;
-							vector<DtVideojuego*> videojuegos = ctrlPartidas->obtenerVideojuegosJugador();
-
+        					string emailUsuario = ctrlUsuarios->getUsuarioEnSesion();
+        					cout << emailUsuario;
+							vector<DtVideojuego*> videojuegos = ctrlUsuarios->obtenerVideojuegosJugador(emailUsuario);
+			
+							cout << "Llega a obtenerVideojuegosJugador";
                            vector<DtVideojuego*>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << (*it) << endl;
+                                cout << (*it)->getNombre() << endl;
                             }
 
                             bool nombreValido = false;
@@ -353,7 +363,7 @@ int main(int argc, char** argv) {
     	                    		
     	                    		vector<DtPartida*>::iterator it;
     	                    		for (it = partidas.begin(); it != partidas.end(); it++) {
-    	                    			cout << *it << endl;
+    	                    			cout << (*it) << endl;
 									}
 									
 									cout << "Ingrese el id de la partida que desea continuar: " << endl;
@@ -385,8 +395,11 @@ int main(int argc, char** argv) {
 									
 										isNumber(x) ? n = stoi(x) : n = 3;
 										if (n == 1) {
+											cout << "Va a seterar el tipo de partida como individual\n";
+											ctrlPartidas->setTipoPartida("individual");
 											break;
 										}else if (n == 2) {
+											ctrlPartidas->setTipoPartida("multijugador");
 											cout << "La partida sera transmitida en vivo?" << endl << "1: Si" << endl << "2: No" << endl;
 											
 											while (true) {
@@ -408,7 +421,7 @@ int main(int argc, char** argv) {
 											
 											vector<DtJugador>::iterator it;
                             				for (it = jugadores.begin(); it != jugadores.end(); it++) {
-                                				cout << (&it) << endl;
+                                				cout << it->getNickname() << endl;
                             				}
                             				
                             				vector<string> jugadoresQParticipan;
@@ -442,6 +455,7 @@ int main(int argc, char** argv) {
 											}
 											
 											ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
+											break;
 										}else {
 											cout << "Ingrese una opcion valida" << endl;	
 										}
@@ -449,8 +463,10 @@ int main(int argc, char** argv) {
 								}else { 
 									cout << "Ingrese una opcion valida" << endl;
 								}
+								break;
 							}
 							
+							cout << "Intenta iniciar la partida";
 							ctrlPartidas->iniciarPartida();
                         }
                         break;
@@ -521,19 +537,19 @@ int main(int argc, char** argv) {
 
                            	vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << (&it) << endl;
+                                cout << it->getNombre() << endl;
                             }
 
                             bool nombreValido = false;
                             string nombreVideojuego = "";
                             while (!nombreValido) {
-                                cout << "Ingrese el nombre del videojuego al que quiere suscribirse: " << endl;
+                                cout << "Ingrese el nombre del videojuego que quiere consultar: " << endl;
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
                                 for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
                                     if ((*it).getNombre() == nombreVideojuego) {
-                                    	cout << &it << endl;
+                                    	cout << &(*it) << endl;
                                         nombreValido = true;
                                         break;
                                     }

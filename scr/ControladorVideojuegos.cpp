@@ -69,7 +69,7 @@ vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegos() {
 //	return videojuegos;
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), 0.0, 0.0, f->getDesarrollador()->getEmpresa());
+        DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), 0.0, f->getDesarrollador()->getEmpresa());
         dtVideojuegos.push_back(ret);
         //dtEstadisticas.insert(ret);
         }
@@ -197,7 +197,7 @@ bool ControladorVideojuegos::altaSuscripcion(string videojuego, string tipo, str
         }
     }
     
-    return true;
+    return false;
     
 }
 
@@ -207,6 +207,8 @@ bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int
         Videojuego v = *f;
         if (v.getNombre() == nomVideojuego){
             v.agregarPuntaje(puntaje);
+            ret = true;
+            break;
         }
     }
     return ret;

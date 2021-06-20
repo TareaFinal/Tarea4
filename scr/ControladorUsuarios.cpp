@@ -315,10 +315,10 @@ Usuario *ControladorUsuarios::getUsuarioEnSistema() {
     for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
         if ((*user)->getEmail() == this->emailUsuarioEnSesion) {
             usuario = *user;
-            break;
+            return usuario;
         }
     }
-    return usuario;
+
 }
 
 Desarrollador *ControladorUsuarios::getDesarrolladorEnSesion(){

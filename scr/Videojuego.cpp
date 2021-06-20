@@ -17,6 +17,7 @@ Videojuego::Videojuego(string n, string d, Desarrollador *desarrollador, vector<
 		this->costos = map_type();
 		this->desarrollador = desarrollador;
 		this->categorias = categorias;
+		this->puntajesIngresados = 0;
 		
 		cout << "Videojuego creado correctamente.";
 		
@@ -53,11 +54,6 @@ vector<Suscripcion*> Videojuego::getSuscripciones() {
 	return this->suscripciones;
 }
 
-				
-DtVideojuego *Videojuego::getDataVideojuego() {
-	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, this->calcularPuntajePromedio(), this->calcularEstadistica(2), this->desarrollador->getEmpresa()); /////////////////////////////// �Qu� le paso al constructor?
-	return dataVideojuego;
-}
 
 Desarrollador* Videojuego::getDesarrollador() {
 	return this->desarrollador;
@@ -83,6 +79,9 @@ void Videojuego::setCostos(map<int,float> costos) {
 		
 void Videojuego::agregarPuntaje(int puntaje) {
 	this->puntajes.push_back(puntaje); ////////////////////////////////////////
+	cout << "Puntaje: " << puntajes[0];
+	cout << "Puntaje agregado\n";
+	this->puntajesIngresados++;
 }
 
 void Videojuego::agregarCategoria(Categoria *c) {
@@ -150,26 +149,32 @@ void Videojuego::eliminarEstadistica(Estadistica *e) {
 }
 
 float Videojuego::calcularEstadistica(int idEstadistica) {
-	float calculada = 0.0;
 	for (auto it = this->estadisticas.begin(); it != this->estadisticas.end();) {
 		if ((*it)->getID() == idEstadistica) {
 			this->estadisticas.erase(it++);
-			calculada = (*it)->calcular(this->nombre);
+			return (*it)->calcular(this->nombre);
 		}		
-	}  
-	return calculada;      										
+	}          										
 }
 
 float Videojuego::calcularPuntajePromedio() {
 	float promedio = 0.0;
 	int suma = 0;
-	if (this->puntajes.size() != 0)
-	{
-		for (auto it = this->puntajes.begin(); it != this->puntajes.end();)
+	cout << "Funcion de calcular puntaje promedio";
+	if (this->puntajesIngresados > 0) {
+		cout << "Entra a calcualr puntajes";
+		for (auto it = this->puntajes.begin(); it != this->puntajes.end();it++) {
 			suma = suma + (*it);
+			cout << "La suma es: " << to_string(suma) << endl;
+		}
 		promedio = suma/(this->puntajes.size());	
 	}
 	
 	return promedio;
+}
+
+DtVideojuego *Videojuego::getDataVideojuego() {
+	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, this->calcularPuntajePromedio(), this->calcularEstadistica(2), this->desarrollador->getEmpresa()); /////////////////////////////// �Qu� le paso al constructor?
+	return dataVideojuego;
 }
 
