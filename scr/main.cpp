@@ -21,8 +21,13 @@ int main(int argc, char** argv) {
     iControladorPartidas *ctrlPartidas = fabrica->getControladorPartidas();
     iControladorUsuarios *ctrlUsuarios = fabrica->getControladorUsuarios();
     
+	//USUARIO NUESTRO, BORRAR LUEGO
+	ctrlUsuarios->registrarUsuario("a@m.c", "123");
+	ctrlUsuarios->darDatosJugador("gamer2", "");
+	ctrlUsuarios->confirmarAltaUsuario();
+
     
-    // Ingreso de desarrollador
+	// Ingreso de desarrollador
     ctrlUsuarios->registrarUsuario("desarrollador@mail.com", "123");
 	ctrlUsuarios->darEmpresa("EA Sports");
 	ctrlUsuarios->confirmarAltaUsuario();
@@ -41,6 +46,7 @@ int main(int argc, char** argv) {
     ctrlVideojuegos->ingresarCategoria("PS4", "plataforma", "");
     ctrlVideojuegos->ingresarCategoria("E", "genero", "");
 	ctrlVideojuegos->ingresarCategoria("Deporte", "genero", "");
+	
 
 	DtCategoria* generoPrueba = NULL;
 	DtCategoria* plataformaPrueba = NULL;
@@ -51,7 +57,7 @@ int main(int argc, char** argv) {
 	vector<DtCategoria*> categoriasDatosAIngresar;
 	vector<DtCategoria*> categoriasDatos = ctrlVideojuegos->solicitarCategorias();	
 	vector<DtCategoria*>::iterator it;
-	for (it = categoriasDatos.begin(); it != categoriasDatos.end(); it++) {
+	for (it = categoriasDatos.begin(); it != categoriasDatos.end(); ++it) {
 		if ((*it)->getNombre() == "Xbox One") {
 			plataformaPrueba = *it;
 		}
@@ -202,7 +208,7 @@ int main(int argc, char** argv) {
                            vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
 
                            vector<DtVideojuego>::iterator it;
-                            for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                            for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                 cout << &it << endl;
                             }
 
@@ -212,7 +218,7 @@ int main(int argc, char** argv) {
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
-                                for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                                for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                     if ((*it).getNombre() == nombreVideojuego) {
                                         nombreValido = true;
                                         break;
@@ -279,7 +285,7 @@ int main(int argc, char** argv) {
 							vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
 
                            vector<DtVideojuego>::iterator it;
-                            for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                            for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                 cout << (&it) << endl;
                             }
 
@@ -290,7 +296,7 @@ int main(int argc, char** argv) {
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
-                                for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                                for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                     if ((*it).getNombre() == nombreVideojuego) {
                                         nombreValido = true;
                                         break;
@@ -320,7 +326,7 @@ int main(int argc, char** argv) {
 							vector<DtVideojuego*> videojuegos = ctrlPartidas->obtenerVideojuegosJugador();
 
                            vector<DtVideojuego*>::iterator it;
-                            for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                            for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                 cout << (*it) << endl;
                             }
 
@@ -331,7 +337,7 @@ int main(int argc, char** argv) {
                                 cin >> nombreVideojuego;
 
                             	vector<DtVideojuego*>::iterator it;
-                                for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                                for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                     if ((*it)->getNombre() == nombreVideojuego) {
                                         nombreValido = true;
                                         break;
@@ -352,7 +358,7 @@ int main(int argc, char** argv) {
     	                    		vector<DtPartida*> partidas = ctrlPartidas->ObtenerAnteriores(); 
     	                    		
     	                    		vector<DtPartida*>::iterator it;
-    	                    		for (it = partidas.begin(); it != partidas.end(); it++) {
+    	                    		for (it = partidas.begin(); it != partidas.end(); ++it) {
     	                    			cout << *it << endl;
 									}
 									
@@ -364,7 +370,7 @@ int main(int argc, char** argv) {
 										isNumber(x) ? n = stoi(x) : n = -1;
 										if (n != -1) {
 											vector<DtPartida*>::iterator it;
-											for (it = partidas.begin(); it != partidas.end(); it++) {
+											for (it = partidas.begin(); it != partidas.end(); ++it) {
     	                    					if ((*it)->getIdPartida() == n) {
     	                    						esValido = true;
 												}
@@ -407,7 +413,7 @@ int main(int argc, char** argv) {
 											vector<DtJugador> jugadores = ctrlPartidas->obtenerJugadoresSuscriptos(); 
 											
 											vector<DtJugador>::iterator it;
-                            				for (it = jugadores.begin(); it != jugadores.end(); it++) {
+                            				for (it = jugadores.begin(); it != jugadores.end(); ++it) {
                                 				cout << (&it) << endl;
                             				}
                             				
@@ -424,7 +430,7 @@ int main(int argc, char** argv) {
                             						cin >> x;
                             						
 													vector<DtJugador>::iterator it;
-													for (it = jugadores.begin(); it != jugadores.end(); it++) {
+													for (it = jugadores.begin(); it != jugadores.end(); ++it) {
     	                    							if (it->getNickname() == x) {
     	                    								jugadoresQParticipan.push_back(x);
     	                    								esValido = true;
@@ -458,7 +464,7 @@ int main(int argc, char** argv) {
 							vector<DtPartida*> partidas = ctrlPartidas->ObtenerPartidasActivas();
 							
 							vector<DtPartida*>::iterator it;
-							for (it = partidas.begin(); it != partidas.end(); it++) {
+							for (it = partidas.begin(); it != partidas.end(); ++it) {
 								cout << *it << endl;
 							}
 							cout << "Ingrese el id de la partida a abandonar: " << endl;
@@ -471,7 +477,7 @@ int main(int argc, char** argv) {
 								isNumber(x) ? n = stoi(x) : n = -1;
 								if (n != -1) {
 									vector<DtPartida*>::iterator it;
-									for (it = partidas.begin(); it != partidas.end(); it++) {
+									for (it = partidas.begin(); it != partidas.end(); ++it) {
     	                   		 		if ((*it)->getIdPartida() == n) {
     	                    				esValido = true;
 										}
@@ -488,7 +494,7 @@ int main(int argc, char** argv) {
 							vector<DtPartida*> partidas = ctrlPartidas->ListarPartidasNoFinalizadas();
 							
 							vector<DtPartida*>::iterator it;
-							for (it = partidas.begin(); it != partidas.end(); it++) {
+							for (it = partidas.begin(); it != partidas.end(); ++it) {
 								cout << *it << endl;
 							}
 							
@@ -502,7 +508,7 @@ int main(int argc, char** argv) {
 								isNumber(x) ? n = stoi(x) : n = -1;
 								if (n != -1) {
 									vector<DtPartida*>::iterator it;
-									for (it = partidas.begin(); it != partidas.end(); it++) {
+									for (it = partidas.begin(); it != partidas.end(); ++it) {
     	                   		 		if ((*it)->getIdPartida() == n) {
     	                    				esValido = true;
 										}
@@ -520,7 +526,7 @@ int main(int argc, char** argv) {
 							vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
-                            for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                            for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                 cout << (&it) << endl;
                             }
 
@@ -531,7 +537,7 @@ int main(int argc, char** argv) {
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
-                                for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                                for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                     if ((*it).getNombre() == nombreVideojuego) {
                                     	cout << &it << endl;
                                         nombreValido = true;
@@ -717,7 +723,7 @@ int main(int argc, char** argv) {
 							vector<DtCategoria*> categorias = ctrlVideojuegos->solicitarCategorias();
 							
 							vector<DtCategoria*>::iterator it;
-							for (it = categorias.begin(); it != categorias.end(); it++) {
+							for (it = categorias.begin(); it != categorias.end(); ++it) {
 								if ((*it)->getTipo() == "genero") {
 									cout << (*it)->getNombre() << endl;
 								}
@@ -731,7 +737,7 @@ int main(int argc, char** argv) {
 							while (!esValido) {
 								cin >> genero;
 							
-								for (it = categorias.begin(); it != categorias.end(); it++) {
+								for (it = categorias.begin(); it != categorias.end(); ++it) {
 									if ((*it)->getTipo() == "genero" && (*it)->getNombre() == genero) {
 										esValido = true;
 										gen = *it;
@@ -746,7 +752,7 @@ int main(int argc, char** argv) {
 							
 							ctrlVideojuegos->asignarGenero(gen);
 							
-							for (it = categorias.begin(); it != categorias.end(); it++) {
+							for (it = categorias.begin(); it != categorias.end(); ++it) {
 								if ((*it)->getTipo() == "plataforma") {
 									cout << (*it)->getNombre() << endl;
 								}
@@ -757,7 +763,7 @@ int main(int argc, char** argv) {
 							while (!esValido) {
 								cin >> plataforma;
 							
-								for (it = categorias.begin(); it != categorias.end(); it++) {
+								for (it = categorias.begin(); it != categorias.end(); ++it) {
 									if ((*it)->getTipo() == "plataforma" && (*it)->getNombre() == plataforma) {
 										esValido = true;
 										plat = *it;
@@ -773,7 +779,7 @@ int main(int argc, char** argv) {
 							ctrlVideojuegos->asignarPlataforma(plat);
 							
 
-							for (it = categorias.begin(); it != categorias.end(); it++) {
+							for (it = categorias.begin(); it != categorias.end(); ++it) {
 									cout << (*it) << endl;
 							}
 							
@@ -790,7 +796,7 @@ int main(int argc, char** argv) {
 									cout << "Ingrese el nombre: " << endl;
 									cin >> cat;
 									
-									for (it = categorias.begin(); it != categorias.end(); it++) {
+									for (it = categorias.begin(); it != categorias.end(); ++it) {
 										if ((*it)->getNombre() == cat) {
 											esValido = true;
 											cats.push_back(*it);
@@ -810,7 +816,7 @@ int main(int argc, char** argv) {
                         	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegos();
 							
 							vector<DtVideojuego>::iterator it;
-							for (it = juegos.begin(); it != juegos.end(); it++) {	
+							for (it = juegos.begin(); it != juegos.end(); ++it) {	
 								cout << it->getNombre() << endl;
 							}
 							
@@ -821,7 +827,7 @@ int main(int argc, char** argv) {
 								cin >> nombre;
 								
 								vector<DtVideojuego>::iterator it;
-								for (it = juegos.begin(); it != juegos.end(); it++) {
+								for (it = juegos.begin(); it != juegos.end(); ++it) {
 									if (it->getNombre() == nombre) {
 										esValido = true;
 										break;
@@ -859,7 +865,7 @@ int main(int argc, char** argv) {
 							vector<DtEstadistica> estadisticas = ctrlVideojuegos->listarEstadisticas();
 							
 							vector<DtEstadistica>::iterator it;
-							for (it = estadisticas.begin(); it != estadisticas.end(); it++){
+							for (it = estadisticas.begin(); it != estadisticas.end(); ++it){
 								cout << &it << endl;
 							}
 							
@@ -868,7 +874,7 @@ int main(int argc, char** argv) {
 								cout << "Ingrese el nombre de la estadistica:" << endl;
 								cin >> x;
 							
-								for (it = estadisticas.begin(); it != estadisticas.end(); it++){
+								for (it = estadisticas.begin(); it != estadisticas.end(); ++it){
 									if (it->getNombre() == x) {
 										esValido = true;
 										est.push_back(*it);
@@ -897,7 +903,7 @@ int main(int argc, char** argv) {
                         	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegos();
 							
 							vector<DtVideojuego>::iterator it;
-							for (it = juegos.begin(); it != juegos.end(); it++) {
+							for (it = juegos.begin(); it != juegos.end(); ++it) {
 								cout << &it << endl;
 							}
 							
@@ -908,7 +914,7 @@ int main(int argc, char** argv) {
 								cin >> nombre;
 								
 
-								for (it = juegos.begin(); it != juegos.end(); it++) {
+								for (it = juegos.begin(); it != juegos.end(); ++it) {
 									if (it->getNombre() == nombre) {
 										esValido = true;
 										break;
@@ -923,7 +929,7 @@ int main(int argc, char** argv) {
 							vector<string> result = ctrlVideojuegos->consultarEstadisticas(nombre);
 							
 							vector<string>::iterator its;
-							for (its = result.begin(); its != result.end(); its++){
+							for (its = result.begin(); its != result.end(); ++its){
 								cout << *its << endl;
 							}
                         }
@@ -932,7 +938,7 @@ int main(int argc, char** argv) {
                         	vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
-                            for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                            for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                 cout << it->getNombre() << endl;
                             }
 
@@ -943,7 +949,7 @@ int main(int argc, char** argv) {
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
-                                for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
+                                for (it = videojuegos.begin(); it != videojuegos.end(); ++it) {
                                     if ((*it).getNombre() == nombreVideojuego) {
                                     	cout << &(*it) << endl;
                                         nombreValido = true;
@@ -1111,7 +1117,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->setearDatosVideojuego("KingdomRush", "", 1, 2, 7, 14);
 				vector<DtCategoria*> categorias1 = ctrlVideojuegos->solicitarCategorias();	
 				vector<DtCategoria*>::iterator it;
-				for (it = categorias1.begin(); it != categorias1.end(); it++) {
+				for (it = categorias1.begin(); it != categorias1.end(); ++it) {
 					if ((*it)->getNombre() == "PC") {
 						plat = *it;
 					}
@@ -1133,7 +1139,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->setearDatosVideojuego("Fortnite", "", 3, 8, 30, 60);
 				vector<DtCategoria*> categorias2 = ctrlVideojuegos->solicitarCategorias();	
 	//			vector<DtCategoria*>::iterator it;
-				for (it = categorias2.begin(); it != categorias2.end(); it++) {
+				for (it = categorias2.begin(); it != categorias2.end(); ++it) {
 					if ((*it)->getNombre() == "PC") {
 						plat = *it;
 					}
@@ -1155,7 +1161,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->setearDatosVideojuego("Minecraft", "", 2, 5, 20, 40);
 				vector<DtCategoria*> categorias3 = ctrlVideojuegos->solicitarCategorias();	
 	//			vector<DtCategoria>::iterator it;
-				for (it = categorias3.begin(); it != categorias3.end(); it++) {
+				for (it = categorias3.begin(); it != categorias3.end(); ++it) {
 					if ((*it)->getNombre() == "PC") {
 						plat = *it;
 					}
@@ -1177,7 +1183,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->setearDatosVideojuego("FIFA 21", "", 3, 8, 28, 50);
 				vector<DtCategoria*> categorias4 = ctrlVideojuegos->solicitarCategorias();	
 	//			vector<DtCategoria>::iterator it;
-				for (it = categorias4.begin(); it != categorias4.end(); it++) {
+				for (it = categorias4.begin(); it != categorias4.end(); ++it) {
 					if ((*it)->getNombre() == "PC") {
 						plat = *it;
 					}
@@ -1243,7 +1249,7 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 10, 0));
 				vector<DtPartida*> partidasNoFinalizadasGamer1 = ctrlPartidas->ListarPartidasNoFinalizadas();			
 				vector<DtPartida*>::iterator itp;
-				for (itp = partidasNoFinalizadasGamer1.begin(); itp != partidasNoFinalizadasGamer1.end(); itp++) {
+				for (itp = partidasNoFinalizadasGamer1.begin(); itp != partidasNoFinalizadasGamer1.end(); ++itp) {
 					if ((*itp)->getVideojuego() == "KingdomRush") {
 						id = (*itp)->getIdPartida();
 						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
@@ -1263,7 +1269,7 @@ int main(int argc, char** argv) {
 				
 				vector<DtPartida*> partidasNoFinalizadasGamer2 = ctrlPartidas->ListarPartidasNoFinalizadas();
 				
-				for (itp = partidasNoFinalizadasGamer2.begin(); itp != partidasNoFinalizadasGamer2.end(); itp++) {
+				for (itp = partidasNoFinalizadasGamer2.begin(); itp != partidasNoFinalizadasGamer2.end(); ++itp) {
 					if ((*itp)->getVideojuego() == "KingdomRush") {
 						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
 						ctrlPartidas->finalizarPartida();
@@ -1283,7 +1289,7 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
 				vector<DtPartida*> partidasActivasAri1 = ctrlPartidas->ObtenerPartidasActivas();
 							
-				for (itp = partidasActivasAri1.begin(); itp != partidasActivasAri1.end(); itp++) {
+				for (itp = partidasActivasAri1.begin(); itp != partidasActivasAri1.end(); ++itp) {
 					if ((*itp)->getVideojuego() == "Fortnite") {
 						ctrlPartidas->AbandonarPartidaActiva((*itp)->getIdPartida());
 					}
@@ -1292,7 +1298,7 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
 				vector<DtPartida*> partidasNoFinalizadasAri2 = ctrlPartidas->ListarPartidasNoFinalizadas();			
 				
-				for (itp = partidasNoFinalizadasAri2.begin(); itp != partidasNoFinalizadasAri2.end(); it++) {
+				for (itp = partidasNoFinalizadasAri2.begin(); itp != partidasNoFinalizadasAri2.end(); ++it) {
 					if ((*itp)->getVideojuego() == "Fortnite") {
 						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
 						ctrlPartidas->finalizarPartida();
@@ -1315,7 +1321,7 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
 				vector<DtPartida*> partidasActivasAri2 = ctrlPartidas->ObtenerPartidasActivas();
 							
-				for (itp = partidasActivasAri2.begin(); itp != partidasActivasAri2.end(); itp++) {
+				for (itp = partidasActivasAri2.begin(); itp != partidasActivasAri2.end(); ++itp) {
 					if ((*itp)->getVideojuego() == "Fortnite") {
 						ctrlPartidas->AbandonarPartidaActiva((*itp)->getIdPartida());
 					}
@@ -1323,7 +1329,7 @@ int main(int argc, char** argv) {
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 19, 0));
 				vector<DtPartida*> partidasNoFinalizadasAri3 = ctrlPartidas->ListarPartidasNoFinalizadas();			
-				for (itp = partidasNoFinalizadasAri3.begin(); itp != partidasNoFinalizadasAri3.end(); itp++) {
+				for (itp = partidasNoFinalizadasAri3.begin(); itp != partidasNoFinalizadasAri3.end(); ++itp) {
 					if ((*itp)->getVideojuego() == "Fortnite") {
 						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
 						ctrlPartidas->finalizarPartida();
