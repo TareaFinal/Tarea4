@@ -21,7 +21,7 @@ class Estadistica;
 
 class ControladorVideojuegos : public iControladorVideojuegos {
 	
-	private:
+	private: 
 	        static ControladorVideojuegos *instancia;
             set<Categoria*> categorias;
             set<Videojuego*> videojuegos;
