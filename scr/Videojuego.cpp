@@ -151,12 +151,14 @@ void Videojuego::eliminarEstadistica(Estadistica *e) {
 }
 
 float Videojuego::calcularEstadistica(int idEstadistica) {
+	float promedio = 0.0;
 	for (auto it = this->estadisticas.begin(); it != this->estadisticas.end();) {
 		if ((*it)->getID() == idEstadistica) {
 			this->estadisticas.erase(it++);
 			return (*it)->calcular(this->nombre);
 		}		
-	}          										
+	}       
+	return promedio;   										
 }
 
 float Videojuego::calcularPuntajePromedio() {

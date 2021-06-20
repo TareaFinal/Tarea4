@@ -39,7 +39,7 @@ float ControladorVideojuegos::calcularEstadistica(int estadistica, string nomVid
     */
     //falta calcular la estaditica que encontramos que esta en la variable cat
 
-    //return numeroEncontrado;
+    return numeroEncontrado;
 
 }
 
