@@ -35,7 +35,7 @@ class ControladorUsuarios : public iControladorUsuarios {
                 vector<DtVideojuego*> obtenerVideojuegosJugador(string email);
                 void desvincularSuscripciones(set<Jugador*> &js, Videojuego *v);
                 void desvincularSuscripcion(string email, Videojuego *v);
-                //Suscripcion *buscarSuscripcion(Videojuego *v);
+                Suscripcion *buscarSuscripcion(Videojuego *v);
                 void agregarSusAJugador(Suscripcion *s);
                 set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores);
                 bool iniciarSesion(string email, string contrasenia);

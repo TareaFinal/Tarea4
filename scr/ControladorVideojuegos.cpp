@@ -41,7 +41,7 @@ float ControladorVideojuegos::calcularEstadistica(int estadistica, string nomVid
     */
     //falta calcular la estaditica que encontramos que esta en la variable cat
 
-    return numeroEncontrado;
+    //return numeroEncontrado;
 
 }
 
@@ -51,7 +51,15 @@ float ControladorVideojuegos::calcularHorasJugadas(string videojuego) {
 }
 
 vector<DtJugador> ControladorVideojuegos::jugadoresSuscriptosAVideojuego(string videojuego) {
-	return fab->getControladorUsuarios()->listarJugadoresSuscriptosVideojuego(videojuego);
+	vector<DtJugador> jugadores;
+	
+	for (auto f : ControladorVideojuegos::videojuegos) {
+        Videojuego *v = f;
+        if (v->getNombre() == videojuego){
+              jugadores = v->getJugadoresSuscriptos();
+        }
+    }
+	return jugadores;
 }
 
 void ControladorVideojuegos::eliminarVideojuego(string nombre) {
@@ -192,6 +200,7 @@ bool ControladorVideojuegos::altaSuscripcion(string videojuego, string tipo, str
 				s = new Vitalicia(metodoPago, controladorUsuarios->getFechaSistema(), 0, jugador, v);
 			
 			jugador->agregarSuscripcion(s);
+			v->agregarSuscripcion(s);
 			
 			return true;	
         }

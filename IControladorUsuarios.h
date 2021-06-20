@@ -28,7 +28,7 @@ class iControladorUsuarios {
                 virtual vector<DtVideojuego*> obtenerVideojuegosJugador(string email) = 0;
                 virtual void desvincularSuscripciones(set<Jugador*> &js, Videojuego *v) = 0;
                 virtual void desvincularSuscripcion(string email, Videojuego *v) = 0;
-                //virtual Suscripcion *buscarSuscripcion(Videojuego *v) = 0;
+                virtual Suscripcion *buscarSuscripcion(Videojuego *v) = 0;
                 virtual void agregarSusAJugador(Suscripcion *s) = 0;
                 virtual set<Jugador*> darJugadores(set<DtJugador*> &dtJugadores) = 0;
                 virtual bool iniciarSesion(string email, string contrasenia) = 0;

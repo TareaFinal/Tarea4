@@ -45,7 +45,7 @@ class Videojuego {
 		int getCantidadJugadoresSuscriptos();
 		vector<Categoria*> getCategorias();
 		vector<Suscripcion*> getSuscripciones();
-		DtJugador *getJugadoresSuscriptos();
+		vector<DtJugador> getJugadoresSuscriptos();
 		Jugador *getJugadores();
 		DtVideojuego *getDataVideojuego();
 		Desarrollador* getDesarrollador();

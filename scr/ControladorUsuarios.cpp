@@ -161,9 +161,8 @@ void ControladorUsuarios::desvincularSuscripcion(string email, Videojuego *v) {
     }
 }
 
-/*
 Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
-	Usuario* usuario = NULL;
+	 Usuario* usuario = NULL;
 
     set<Usuario*>::iterator user;
     for (user = usuarios.begin(); user != usuarios.end(); user++) {
@@ -178,9 +177,7 @@ Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
         Suscripcion* sus= jugador->getSuscripcion(v->getNombre());
         return sus;
     }
-
-    //FALTA UN RETURN A ESTO, CAPAZ LA FUNCION ESTA MAL
-}*/
+}
 
 void ControladorUsuarios::agregarSusAJugador(Suscripcion *s) {
 	Usuario* usuario = NULL;
