@@ -20,7 +20,7 @@ class Videojuego;
 class Estadistica;
 
 class ControladorVideojuegos : public iControladorVideojuegos {
-	
+	 
 	private:
 	        static ControladorVideojuegos *instancia;
             set<Categoria*> categorias;
