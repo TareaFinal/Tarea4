@@ -1,4 +1,6 @@
 #include "../DtVideojuego.h"
+#include "../../fabrica.h"
+#include "../../IControladorUsuarios.h"
 
 DtVideojuego::DtVideojuego(string nombre, string descripcion, float puntajePromedio, float totalDeHorasJugadas, string empresa){
 
@@ -30,12 +32,20 @@ string DtVideojuego::getEmpresa(){
 };
 
 ostream &operator<< (ostream &os, DtVideojuego* vi) {
+	Fabrica* fabrica = Fabrica::getInstancia();
+	iControladorUsuarios *ctrlUsuarios = fabrica->getControladorUsuarios();
+	string tipo = ctrlUsuarios->getTipoUsuario();
+	
 	os 	<< "----------------------------------------\n"
 		<< "Titulo: " << vi->getNombre() << endl
-		<< "Empresa: " << vi->getEmpresa() << endl
-		<< "Puntaje promedio: " << vi->getPuntajePromedio() << endl
-		<< "Descripcion: " << vi->getDescripcion() << endl
-		<< "Total de horas jugadas: " << vi->getTotalDeHorasJugadas() << "\n";
+		<< "Empresa: " << vi->getEmpresa() << endl;
+		if (tipo == "d") {
+			os << "Puntaje promedio: " << vi->getPuntajePromedio() << endl;
+		}
+		os << "Descripcion: " << vi->getDescripcion() << endl;
+		if (tipo == "d") {
+			os << "Total de horas jugadas: " << vi->getTotalDeHorasJugadas() << "\n";
+		}
 
 	return os;
 }

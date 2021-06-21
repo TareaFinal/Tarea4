@@ -69,8 +69,10 @@ vector <DtVideojuego*> Jugador::videojuegosSuscripto() {
 	map<string, Suscripcion*>::iterator it;
 	for (it = this->colSuscripciones.begin(); it != this->colSuscripciones.end(); it++) 
 	{
-		DtVideojuego* dataVideojuego = (((it->second)->getVideojuego())->getDataVideojuego());
-		colDtVideojuego.push_back(dataVideojuego);
+		if ((it->second)->activa() ){
+			DtVideojuego* dataVideojuego = (((it->second)->getVideojuego())->getDataVideojuego());
+			colDtVideojuego.push_back(dataVideojuego);
+		}
 	}
 	return colDtVideojuego;
 }

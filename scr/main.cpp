@@ -79,7 +79,6 @@ int main(int argc, char** argv) {
 	*/
     
     int n = 4;
-	system("clear");
     while (n != 0) {
         cout << "1: Alta de usuario" << endl;
         cout << "2: Iniciar sesion" << endl;
@@ -103,103 +102,6 @@ int main(int argc, char** argv) {
                     }else {
                         formatoEmailErroneo = false;
                     }
-					/*prueba
-					
-					bool mailErroneo = false;
-					int len = email.length();
-					char arroba = '@';
-					char punto = '.';
-					string prohibido1 = ".@";
-					string prohibido2 = "@.";
-					int cantidadArroba = 0;
-        			size_t firstArroba = email.find_first_of(arroba);
-					size_t lastPunto = email.find_last_of(punto);
-					string ret;
-					if (mailErroneo){
-						cout << "inicio: mailErroneo esta en true."<< endl;
-					}
-					else{
-						cout << "inicio: mailErroneo esta en false."<< endl;
-					}
-					mailErroneo = (email[0] == punto || email[0] == arroba);
-					if (mailErroneo){
-						cout << "primer caracter: mailErroneo esta en true."<< endl;
-					}
-					else{
-						cout << "primer caracter: mailErroneo esta en false."<< endl;
-					}
-					if (!mailErroneo){
-						mailErroneo = (email[len - 1] == punto || email[len - 1] == arroba);
-					}
-					if (mailErroneo){
-						cout << "ultimo caracter: mailErroneo esta en true."<< endl;
-					}
-					else{
-						cout << "ultimo caracter: mailErroneo esta en false."<< endl;
-					}
-					for (int i = 0; i < len - 1; i++){
-						if(email[i] == arroba){
-							cantidadArroba++;
-						}
-					}
-					if (cantidadArroba > 1){
-						mailErroneo = true;
-					}
-					if (mailErroneo){
-						cout << "mas de un arroba: mailErroneo esta en true."<< endl;
-					}
-					else{
-						cout << "mas de un arroba: mailErroneo esta en false."<< endl;
-					}
-					if (!mailErroneo){
-						mailErroneo = ((lastPunto == string::npos || firstArroba == string::npos) || lastPunto < firstArroba);
-					}
-					if (mailErroneo){
-						cout << "orden correcto: mailErroneo esta en true."<< endl;
-					}
-					else{
-						cout << "orden correcto: mailErroneo esta en false."<< endl;
-					}
-					if (mailErroneo){
-						cout << "El formato del email debe ser example@email.ex" << endl;
-					}else {
-                        formatoEmailErroneo = false;
-                    }  
-
-bool checkPattern(string str, string pattern){
-    // len stores length of the given pattern
-    int len = pattern.length();
-      
-    // if length of pattern is more than length of
-    // input string, return false;
-    if (str.length() < len)
-        return false;
-      
-    for (int i = 0; i < len - 1; i++)
-    {
-        // x, y are two adjacent characters in pattern
-        char x = pattern[i];
-        char y = pattern[i + 1];
-         
-        // find index of last occurrence of character x
-        // in the input string
-        size_t last = str.find_last_of(x);
-          
-        // find index of first occurrence of character y
-        // in the input string
-        size_t first = str.find_first_of(y);
-          
-        // return false if x or y are not present in the
-        // input string OR last occurrence of x is after
-        // the first occurrence of y in the input string
-        if (last == string::npos || first == 
-            string::npos || last > first)   
-        return false;
-    }
-      
-    // return true if string matches the pattern
-    return true;
-};*/
                     
                     cout << "Ingrese la contrasenia: " << endl;
                 	cin >> contra;
@@ -439,11 +341,10 @@ bool checkPattern(string str, string pattern){
                         	system("clear");
                         	int n;
         					string emailUsuario = ctrlUsuarios->getUsuarioEnSesion();  
-        					cout << emailUsuario;
+        					cout << emailUsuario << endl;
 							vector<DtVideojuego*> videojuegos = ctrlUsuarios->obtenerVideojuegosJugador(emailUsuario);
 			
-							cout << "Llega a obtenerVideojuegosJugador";
-                           vector<DtVideojuego*>::iterator it;
+	                        vector<DtVideojuego*>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
                                 cout << (*it)->getNombre() << endl;
                             }
@@ -473,11 +374,15 @@ bool checkPattern(string str, string pattern){
 	
     	                    	isNumber(x) ? n = stoi(x) : n = 3; 
     	                    	if (n == 1) {
-    	                    		vector<DtPartida*> partidas = ctrlPartidas->ObtenerAnteriores(); 
+    	                    		vector<DtPartida*> partidas = ctrlPartidas->ObtenerAnteriores();
     	                    		
     	                    		vector<DtPartida*>::iterator it;
     	                    		for (it = partidas.begin(); it != partidas.end(); it++) {
-    	                    			cout << (*it) << endl;
+    	                    			DtPartidaMultijugador* pm = dynamic_cast<DtPartidaMultijugador*>(*it);
+										DtPartidaIndividual* pi = dynamic_cast<DtPartidaIndividual*>(*it);
+								
+										if (pm != NULL) {cout << &(*pm) << endl;}
+										else if (pi != NULL) {cout << &(*pi) << endl;}
 									}
 									
 									cout << "Ingrese el id de la partida que desea continuar: " << endl;
@@ -790,7 +695,12 @@ bool checkPattern(string str, string pattern){
                         switch (n) {
                         case 1: {
                         	system("clear");
-							string nombre, desc, tipo;
+							string nombre, desc, tipo, seguro;
+							vector<DtCategoria*> cat = ctrlVideojuegos->solicitarCategorias();
+							vector<DtCategoria*>::iterator it;
+							for (it = cat.begin(); it != cat.end(); it++){
+								cout << (*it)->getNombre() << endl << "--------------------" << endl;
+							}
 		                	cout << "Ingrese el nombre de la categoria:" << endl;
 		                	cin >> nombre;
 		                	
@@ -800,7 +710,21 @@ bool checkPattern(string str, string pattern){
 		                	cout << "Ingrese el tipo de la categoria:" << endl;
 		                	cin >> tipo;
 		                	
-		                	ctrlVideojuegos->ingresarCategoria(nombre, tipo, desc);
+		                	cout << "Nombre: " << nombre << endl << "Descripcion: " << desc << endl << "Tipo: " << tipo << endl;
+		                	
+		                	cout << "Esta seguro que quiere ingresar esta categoria?" << endl << "1: Si" << endl << "2: No" << endl;
+		                	cin >> seguro;
+		                	int n;
+		                	
+		                	isNumber(x) ? n = stoi(x) : n = -1;
+		                	if (n == 1) {
+		                		ctrlVideojuegos->ingresarCategoria(nombre, tipo, desc);
+							}else if (n == 2) {
+								cout << "Datos no ingresados" << endl;
+							}else {
+								cout << "Opcion invalida";
+							}
+		                
                         }
                         break;
                         case 2: {

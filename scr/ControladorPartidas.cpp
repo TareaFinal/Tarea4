@@ -46,7 +46,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerAnteriores() { // se define la pa
     
     Fabrica *fabrica = Fabrica::getInstancia();
     iControladorUsuarios* controladorusuarios = fabrica->getControladorUsuarios();
-    string j=controladorusuarios->getUsuarioEnSesion(); // castear para ver si es jugador????
+    string j=controladorusuarios->getNickJugadorEnSesion(); // castear para ver si es jugador????
     Partida* p = NULL;
     vector<DtPartida*> anteriores;
     if (this->dicPartidas.size() != 0) // si hay partidas
@@ -56,7 +56,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerAnteriores() { // se define la pa
         {
             Partida* p = it->second; // obtengo la partida actual
             PartidaIndividual* partidaI = dynamic_cast <PartidaIndividual*> (p);
-            if ((p!=NULL) && (p->getVideojuego() == videojuegoseleccionado)) { 
+            if ((partidaI!=NULL) && (partidaI->getVideojuego() == videojuegoseleccionado)) { 
                 if (partidaI->getJugador() == j) { //la partida no guarda el jugador!! Tremendo ya lo puse en el .h por otro lado ¿TODAS LAS PARTIDAS DE ESE VIDEOJUEGO SE PUEDEN CONTINUAR?
                     anteriores.push_back(partidaI->getDataPartida());
                 }

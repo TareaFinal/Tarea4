@@ -37,10 +37,11 @@ void PartidaIndividual::terminarPartida() {
 }
 
 DtPartida *PartidaIndividual::getDataPartida() {
+	int idContinuacion;
 	if (this->continuacion != NULL) {
-		int idContinuacion = (this->continuacion)->getPartida();	
+		idContinuacion = (this->continuacion)->getPartida();	
 	}
-	DtPartida *partida = new DtPartidaIndividual(this->idPartida, this->duracion, this->FechaInicio, this->duenio, this->Videojuego, 1); 
+	DtPartida *partida = new DtPartidaIndividual(this->idPartida, this->duracion, this->FechaInicio, this->duenio, this->Videojuego, idContinuacion); 
 	return partida;
 }
 

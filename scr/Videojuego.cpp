@@ -174,9 +174,11 @@ float Videojuego::calcularEstadistica(int idEstadistica) {
 vector<DtJugador> Videojuego::getJugadoresSuscriptos() {
 	vector<DtJugador> jugadores;
 	for (auto it = this->suscripciones.begin(); it != this->suscripciones.end(); ++it) {
-			Jugador* j = (*it)->getJugador();
-			DtJugador dataJugador = DtJugador(j->getEmail(), j->getContrasenia(), j->getNick(), j->getDescripcion());
-			jugadores.push_back(dataJugador);
+			if ((*it)->activa()){
+				Jugador* j = (*it)->getJugador();
+				DtJugador dataJugador = DtJugador(j->getEmail(), j->getContrasenia(), j->getNick(), j->getDescripcion());
+				jugadores.push_back(dataJugador);
+			}
 		}
 	return jugadores;
 }
