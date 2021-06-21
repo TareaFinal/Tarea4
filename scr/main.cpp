@@ -47,7 +47,11 @@ int main(int argc, char** argv) {
 	
 	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
 	ctrlVideojuegos->setearDatosVideojuego("KingdomRush", "", 1, 2, 7, 14);
-	
+	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
+	ctrlVideojuegos->setearDatosVideojuego("Manola", "", 1, 2, 7, 14);
+	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
+	ctrlVideojuegos->setearDatosVideojuego("Lol", "", 1, 2, 7, 14);
+
 	vector<DtCategoria*> categoriasDatosAIngresar;
 	vector<DtCategoria*> categoriasDatos = ctrlVideojuegos->solicitarCategorias();	
 	vector<DtCategoria*>::iterator it;
@@ -859,7 +863,7 @@ int main(int argc, char** argv) {
 							
 								isNumber(x) ? n = stoi(x) : n = -1;
 								if (n == 1) {
-							//		ctrlVideojuegos->confirmarEliminacion();  ////////////////////////////////////////////////////////////
+									ctrlVideojuegos->confirmarEliminacion();
 									break;
 								}else if (n != 2) {
 									cout << "Ingrese una opcion valida!" << endl;

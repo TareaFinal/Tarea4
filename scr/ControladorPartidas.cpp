@@ -57,7 +57,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerAnteriores() { // se define la pa
             Partida* p = it->second; // obtengo la partida actual
             PartidaIndividual* partidaI = dynamic_cast <PartidaIndividual*> (p);
             if ((p!=NULL) && (p->getVideojuego() == videojuegoseleccionado)) { 
-                if (partidaI->getJugador() == j) { //la partida no guarda el jugador!! Tremendo ya lo puse en el .h por otro lado ¿TODAS LAS PARTIDAS DE ESE VIDEOJUEGO SE PUEDEN CONTINUAR?
+                if (partidaI->getJugador() == j) { //la partida no guarda el jugador!! Tremendo ya lo puse en el .h por otro lado ï¿½TODAS LAS PARTIDAS DE ESE VIDEOJUEGO SE PUEDEN CONTINUAR?
                     anteriores.push_back(partidaI->getDataPartida());
                 }
                 //delete pdtpartida;
@@ -150,7 +150,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerPartidasActivas() {
             Partida* p = it->second; // obtengo la partida actual
             PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (p);
             if (partidaM != NULL) { 
-                set<string> jugadoresunidos = partidaM->getNicknameJugadoresActivos(); // en cada partida multi hay que fijarse si el jugador está
+                set<string> jugadoresunidos = partidaM->getNicknameJugadoresActivos(); // en cada partida multi hay que fijarse si el jugador estï¿½
                 std::set<string>::iterator itj;
                 for (itj = jugadoresunidos.begin(); itj != jugadoresunidos.end(); ++itj)
                 {
@@ -192,9 +192,9 @@ vector<DtPartida*> ControladorPartidas::ListarPartidasNoFinalizadas() {
     return noFinalizadas;
 }
 
-
+//esto tiene un warning porque no devuelve en algunos casos
 set<string> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {
-	
+	set<string> ret;
     PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (this->dicPartidas.find(idPartida)->second);
     if (partidaM!=NULL){
         return partidaM->getNicknameJugadoresActivos();
@@ -203,12 +203,14 @@ set<string> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {
         delete(partidaM);
         // throw invalid_argument " Todo mal con esta id";
     }
+    return ret;
 
 } // // dentro de finalizar partidamultijudador devuelve los jugadores que estan jugando PARTIDA MULTIJUGADOR
 
-
+//esto no devuelve nada, o devuelve algo o cambiamos la firma a void
 bool ControladorPartidas::ingreseIdPartida(int idPartida) {// el sistema guarda esta info para continuar partida INDIVIDUAL no finalizada.
     this->partidaAfinalizar = idPartida;
+    return true;
 }
 
 void ControladorPartidas::finalizarPartida() {

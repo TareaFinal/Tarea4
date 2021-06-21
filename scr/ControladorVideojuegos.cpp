@@ -41,7 +41,7 @@ float ControladorVideojuegos::calcularEstadistica(int estadistica, string nomVid
     */
     //falta calcular la estaditica que encontramos que esta en la variable cat
 
-    //return numeroEncontrado;
+    return numeroEncontrado;
 
 }
 
@@ -63,13 +63,7 @@ vector<DtJugador> ControladorVideojuegos::jugadoresSuscriptosAVideojuego(string 
 }
 
 void ControladorVideojuegos::eliminarVideojuego(string nombre) {
-	for (auto f : ControladorVideojuegos::videojuegos) {
-        Videojuego *v = f;
-        if (v->getNombre() == nombre){
-                ControladorVideojuegos::videojuegos.erase(f);
-                delete v;
-        }
-    }
+    this->nomVJaEliminar = nombre;
 }
 
 vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegos() {
@@ -85,7 +79,13 @@ vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegos() {
 }
 
 void ControladorVideojuegos::confirmarEliminacion() {
-	
+		for (auto f : ControladorVideojuegos::videojuegos) {
+        Videojuego *v = f;
+        if (v->getNombre() == this->nomVJaEliminar){
+                ControladorVideojuegos::videojuegos.erase(f);
+                delete v;
+        }
+    }
 }
 
 bool ControladorVideojuegos::ingreseNombreVideojuego(string nombreVideojuego) {

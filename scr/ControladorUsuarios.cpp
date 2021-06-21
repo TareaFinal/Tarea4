@@ -161,9 +161,10 @@ void ControladorUsuarios::desvincularSuscripcion(string email, Videojuego *v) {
     }
 }
 
+//necesitamos un return aunque sea en null
 Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
-	 Usuario* usuario = NULL;
-
+	Usuario* usuario = NULL;
+    Suscripcion* ret = NULL;
     set<Usuario*>::iterator user;
     for (user = usuarios.begin(); user != usuarios.end(); user++) {
         if ((*user)->getEmail() == emailUsuarioEnSesion) {
@@ -177,6 +178,7 @@ Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
         Suscripcion* sus= jugador->getSuscripcion(v->getNombre());
         return sus;
     }
+    return ret;
 }
 
 void ControladorUsuarios::agregarSusAJugador(Suscripcion *s) {
@@ -305,6 +307,7 @@ bool ControladorUsuarios::esTemporal(Suscripcion *s) {
 	return esTemporal;
 }
 
+//necesitamos un return aunque sea en null
 Usuario *ControladorUsuarios::getUsuarioEnSistema() {
 	Usuario* usuario = NULL;
 
@@ -315,7 +318,7 @@ Usuario *ControladorUsuarios::getUsuarioEnSistema() {
             return usuario;
         }
     }
-
+    return usuario;
 }
 
 Desarrollador *ControladorUsuarios::getDesarrolladorEnSesion(){

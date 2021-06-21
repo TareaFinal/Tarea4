@@ -28,7 +28,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
             set<Estadistica*> estadisticas;
             ControladorVideojuegos();
                 
-            
+      string nomVJaEliminar;     
 			string nombreVideojuego;
 			string descripcionVideojuego;
 			float costoMensual, costoTrimestral, costoAnual, costoVitalicio;
