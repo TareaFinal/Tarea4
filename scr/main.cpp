@@ -79,6 +79,7 @@ int main(int argc, char** argv) {
 	*/
     
     int n = 4;
+	system("clear");
     while (n != 0) {
         cout << "1: Alta de usuario" << endl;
         cout << "2: Iniciar sesion" << endl;
@@ -91,7 +92,7 @@ int main(int argc, char** argv) {
     	isNumber(x) ? n = stoi(x) : n = 4;
         switch(n) {                                               
             case 1: {
-            	system("cls");
+            	system("clear");
                 string email = "", contra = "123";
                 bool formatoEmailErroneo = true, emailValido = false;
                 while (formatoEmailErroneo || !emailValido) {
@@ -102,6 +103,103 @@ int main(int argc, char** argv) {
                     }else {
                         formatoEmailErroneo = false;
                     }
+					/*prueba
+					
+					bool mailErroneo = false;
+					int len = email.length();
+					char arroba = '@';
+					char punto = '.';
+					string prohibido1 = ".@";
+					string prohibido2 = "@.";
+					int cantidadArroba = 0;
+        			size_t firstArroba = email.find_first_of(arroba);
+					size_t lastPunto = email.find_last_of(punto);
+					string ret;
+					if (mailErroneo){
+						cout << "inicio: mailErroneo esta en true."<< endl;
+					}
+					else{
+						cout << "inicio: mailErroneo esta en false."<< endl;
+					}
+					mailErroneo = (email[0] == punto || email[0] == arroba);
+					if (mailErroneo){
+						cout << "primer caracter: mailErroneo esta en true."<< endl;
+					}
+					else{
+						cout << "primer caracter: mailErroneo esta en false."<< endl;
+					}
+					if (!mailErroneo){
+						mailErroneo = (email[len - 1] == punto || email[len - 1] == arroba);
+					}
+					if (mailErroneo){
+						cout << "ultimo caracter: mailErroneo esta en true."<< endl;
+					}
+					else{
+						cout << "ultimo caracter: mailErroneo esta en false."<< endl;
+					}
+					for (int i = 0; i < len - 1; i++){
+						if(email[i] == arroba){
+							cantidadArroba++;
+						}
+					}
+					if (cantidadArroba > 1){
+						mailErroneo = true;
+					}
+					if (mailErroneo){
+						cout << "mas de un arroba: mailErroneo esta en true."<< endl;
+					}
+					else{
+						cout << "mas de un arroba: mailErroneo esta en false."<< endl;
+					}
+					if (!mailErroneo){
+						mailErroneo = ((lastPunto == string::npos || firstArroba == string::npos) || lastPunto < firstArroba);
+					}
+					if (mailErroneo){
+						cout << "orden correcto: mailErroneo esta en true."<< endl;
+					}
+					else{
+						cout << "orden correcto: mailErroneo esta en false."<< endl;
+					}
+					if (mailErroneo){
+						cout << "El formato del email debe ser example@email.ex" << endl;
+					}else {
+                        formatoEmailErroneo = false;
+                    }  
+
+bool checkPattern(string str, string pattern){
+    // len stores length of the given pattern
+    int len = pattern.length();
+      
+    // if length of pattern is more than length of
+    // input string, return false;
+    if (str.length() < len)
+        return false;
+      
+    for (int i = 0; i < len - 1; i++)
+    {
+        // x, y are two adjacent characters in pattern
+        char x = pattern[i];
+        char y = pattern[i + 1];
+         
+        // find index of last occurrence of character x
+        // in the input string
+        size_t last = str.find_last_of(x);
+          
+        // find index of first occurrence of character y
+        // in the input string
+        size_t first = str.find_first_of(y);
+          
+        // return false if x or y are not present in the
+        // input string OR last occurrence of x is after
+        // the first occurrence of y in the input string
+        if (last == string::npos || first == 
+            string::npos || last > first)   
+        return false;
+    }
+      
+    // return true if string matches the pattern
+    return true;
+};*/
                     
                     cout << "Ingrese la contrasenia: " << endl;
                 	cin >> contra;
@@ -122,7 +220,7 @@ int main(int argc, char** argv) {
                 isNumber(x) ? n = stoi(x) : n = 4;
                 switch(n) {
                     case 1: {
-                    	system("cls");
+                    	system("clear");
                         string empresa = "Autonomo";
                         cout << "Ingresa la empresa: " << endl;
                         cin >> empresa;
@@ -133,7 +231,7 @@ int main(int argc, char** argv) {
                     }
                     break;
                     case 2: {
-                    	system("cls");
+                    	system("clear");
                         string nick = "", descripcion = "";
                         bool esValido = false;
                         while(!esValido) {
@@ -159,7 +257,7 @@ int main(int argc, char** argv) {
             } 
             break;
             case 2: {
-            	system("cls");
+            	system("clear");
                 bool existeUsuario = false;
                 while (!existeUsuario) {
                     string email = "", contra = "123";
@@ -208,7 +306,7 @@ int main(int argc, char** argv) {
                         isNumber(x) ? n = stoi(x) : n = 9;
                         switch (n) {
                         case 1: {
-                        	system("cls");
+                        	system("clear");
                         	string tipo, metPago, nombreVideojuego = "";
                         	int validez;
                            vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
@@ -285,7 +383,7 @@ int main(int argc, char** argv) {
 
                            ctrlVideojuegos->altaSuscripcion(nombreVideojuego, tipo, metPago, validez);
                            
-                           system("cls");
+                           system("clear");
                            
                            cout << "Suscripcion registrada correctamente." << endl;
                            cout << "\n";
@@ -293,7 +391,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 2: {
-                        	system("cls");
+                        	system("clear");
                         	int n = 0, puntaje;
 							vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
@@ -332,13 +430,13 @@ int main(int argc, char** argv) {
 							}
             				
             				ctrlVideojuegos->asignarPuntajeAVideojuego(nombreVideojuego, puntaje);
-            				system("cls");
+            				system("clear");
             				
             				
                         }
                         break;
                         case 3: {
-                        	system("cls");
+                        	system("clear");
                         	int n;
         					string emailUsuario = ctrlUsuarios->getUsuarioEnSesion();  
         					cout << emailUsuario;
@@ -485,7 +583,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 4: {
-                        	system("cls");
+                        	system("clear");
 							vector<DtPartida*> partidas = ctrlPartidas->ObtenerPartidasActivas();
 							
 							vector<DtPartida*>::iterator it;
@@ -520,7 +618,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 5: {
-                        	system("cls");
+                        	system("clear");
 							vector<DtPartida*> partidas = ctrlPartidas->ListarPartidasNoFinalizadas();
 							
 							vector<DtPartida*>::iterator it;
@@ -558,7 +656,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 6: {
-                        	system("cls");
+                        	system("clear");
 							vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
@@ -587,7 +685,7 @@ int main(int argc, char** argv) {
                         	if (ctrlPartidas->hayActivas()) {
                         		cout << "No se puede cambiar la fecha del sistema mientras hay partidas activas!" << endl;
 							}else {
-								system("cls");
+								system("clear");
                         		int dia, mes, anio, hora, minuto;
                         		string x = "";
                         		int n;
@@ -665,7 +763,7 @@ int main(int argc, char** argv) {
                         break;
                         case 8: {
                             n = 8;
-                            system("cls");
+                            system("clear");
                         }
                         break;
                         default: {cout << "Ingrese una de las opciones listadas!" << endl;}
@@ -675,7 +773,7 @@ int main(int argc, char** argv) {
                 }else if (tipoUser == "d") {
                     int n = 9;
                     while (n != 8) {
-                    	system("cls");
+                    	system("clear");
                         cout << "1: Agregar categoria" << endl;
                         cout << "2: Publicar videojuego" << endl;
                         cout << "3: Eliminar videojuego" << endl;
@@ -691,7 +789,7 @@ int main(int argc, char** argv) {
                         isNumber(x) ? n = stoi(x) : n = 9;
                         switch (n) {
                         case 1: {
-                        	system("cls");
+                        	system("clear");
 							string nombre, desc, tipo;
 		                	cout << "Ingrese el nombre de la categoria:" << endl;
 		                	cin >> nombre;
@@ -706,7 +804,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 2: {
-                        	system("cls");
+                        	system("clear");
 							string nombre, descripcion, precioMes, precioTri, precioAnio, precioVit;
 							int n;
 							cout << "Cual es el nombre del videojuego?" << endl;
@@ -858,7 +956,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 3: {
-                        	system("cls");
+                        	system("clear");
                         	vector<string> juegos = ctrlVideojuegos->obtenerVideojuegosDesFinalizados();
                         	
                         	cout << "Los videojuegos que se muestran a continuacion tienen todas sus partidas finalizadas." << endl;
@@ -908,7 +1006,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 4: {
-                        	system("cls");
+                        	system("clear");
                         		string x;
 							int n;
 							vector<DtEstadistica> est;
@@ -950,7 +1048,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 5: {
-                        	system("cls");
+                        	system("clear");
                         	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegosDes();
 							
 							vector<DtVideojuego>::iterator it;
@@ -986,7 +1084,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 6: {
-                        	system("cls");
+                        	system("clear");
                         	vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
@@ -1013,7 +1111,7 @@ int main(int argc, char** argv) {
                     	}	
                         break;
                         case 7: {
-                        	system("cls");
+                        	system("clear");
 							int dia, mes, anio, hora, minuto;
                         	string x = "";
                         	int n;
@@ -1091,7 +1189,7 @@ int main(int argc, char** argv) {
                         break;
                         case 8: {
                             n = 8;
-                            system("cls");
+                            system("clear");
                         }
                         break;
                         default: {cout << "Ingrese una de las opciones listadas!" << endl;}
@@ -1102,7 +1200,7 @@ int main(int argc, char** argv) {
             }
             break;
             case 3: {
-            	system("cls");
+            	system("clear");
             	DtCategoria* gen = NULL; 
 				DtCategoria* plat = NULL;
 				vector<string> jugadoresQParticipan;
@@ -1358,7 +1456,8 @@ int main(int argc, char** argv) {
 					}
 				}
 				
-				/*ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
+				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
 				vector<DtPartida*> partidasNoFinalizadasAri2 = ctrlPartidas->ListarPartidasNoFinalizadas();			
 				
 				for (itp = partidasNoFinalizadasAri2.begin(); itp != partidasNoFinalizadasAri2.end(); it++) {
@@ -1371,7 +1470,8 @@ int main(int argc, char** argv) {
 				
 				/***************************************************************************/
 				
-				/*ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 0));
+				jugadoresQParticipan.clear();
+				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 0));
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("Fortnite");
 				ctrlPartidas->setTipoPartida("multijugador");
@@ -1391,6 +1491,7 @@ int main(int argc, char** argv) {
 					}
 				}
 				
+				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 19, 0));
 				vector<DtPartida*> partidasNoFinalizadasAri3 = ctrlPartidas->ListarPartidasNoFinalizadas();			
 				for (itp = partidasNoFinalizadasAri3.begin(); itp != partidasNoFinalizadasAri3.end(); itp++) {
@@ -1403,15 +1504,16 @@ int main(int argc, char** argv) {
 				
 				/***************************************************************************/
 				
-				/*ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 20, 0));
+				jugadoresQParticipan.clear();
+				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 20, 0));
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("Minecraft");
 				ctrlPartidas->Transmitida(false);
 				jugadoresQParticipan.push_back("ibai");
 				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
-				ctrlPartidas->iniciarPartida();*/
+				ctrlPartidas->iniciarPartida();
 				
-				system("cls");
+				system("clear");
 				cout << "Datos ingresados correctamente\n" << endl;
 				cout << "\n";
 			}

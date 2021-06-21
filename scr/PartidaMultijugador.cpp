@@ -66,7 +66,7 @@ void PartidaMultijugador::terminarPartida() {
 	DtFechaHora *fechafin=controlador->getFechaSistema();
 	this->duracion=diferencia(this->FechaInicio, fechafin); //llamo a la funcion auxiliar
 	//recorro el conjunto de Jugadores y si aun no ha terminado su partida la termino
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
+	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); it++) {
 		if((it)->second == NULL) 
 			this->setSalida(it->first, fechafin);
 	}
