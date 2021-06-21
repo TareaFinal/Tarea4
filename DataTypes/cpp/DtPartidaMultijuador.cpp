@@ -41,9 +41,11 @@ vector<DtComentario*> DtPartidaMultijugador::getComentarios(){
 ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) { 
 	os << "----------------------------------------\n"
 	   << "---Partida Multijugador---" << endl
-       << "Id: " << pm->getIdPartida() << "\n"
-       << "Duracion: " <<  pm->getDuracion()->getDia() << "/" << pm->getDuracion()->getMes() << "/" << pm->getDuracion()->getAnio() << " Esto es un DtFechahora, ojo!!!\n" //aca devuelve algo de tipo fechahora, revisar!
-       << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << " Esto es un DtFechahora, ojo!!!\n"
+       << "Id: " << pm->getIdPartida() << "\n";
+        if (pm->getDuracion() != NULL) {
+        	os << "Duracion: " <<  pm->getDuracion()->getDia() << "/" << pm->getDuracion()->getMes() << "/" << pm->getDuracion()->getAnio() << "\n";
+    	}
+       os << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << " Esto es un DtFechahora, ojo!!!\n"
        << "Creador: " << pm->getNicknameCreador() << "\n"
        << "Videojuego: " << pm->getVideojuego() << "\n"
        << "Es transmitida en vivo: ";
@@ -65,6 +67,8 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
 		<< "Falta recorrer este vector"
 		<< "\n"
 		<< "\n";
+	   
+	return os;
 	   
 	return os;
 };

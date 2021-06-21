@@ -3,6 +3,14 @@
 
 #include <string>
 
+
+Estadistica2::Estadistica2(int id, string nombre, string desc) {
+	this->idEstadistica = id;
+	this->nombre = nombre;
+	this->descripcion = desc;
+}
+
+
 float Estadistica2::calcular(string videojuego) {
 	Fabrica *fabrica = Fabrica::getInstancia();
 	iControladorUsuarios *controlador = fabrica->getControladorUsuarios(); 
@@ -11,6 +19,6 @@ float Estadistica2::calcular(string videojuego) {
 }
 
 DtEstadistica *Estadistica2::getDataEstadistica(float valor) {
-	DtEstadistica *dataEstadistica = new DtEstadistica(this->idEstadistica, this->nombre, this->descripcion,	valor);  /// ï¿½Quï¿½ le paso al Dt?
+	DtEstadistica *dataEstadistica = new DtEstadistica(this->idEstadistica, this->nombre, this->descripcion,	valor);  /// ¿Qué le paso al Dt?
 	return dataEstadistica;	
 }

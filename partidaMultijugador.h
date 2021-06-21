@@ -21,9 +21,9 @@ class PartidaMultijugador : public Partida {
 	vector<DtComentario*> colComentarios;	
 	
 	public:
-		typedef std::map<std::string, DtFechaHora*> map_type;
+		typedef map<string, DtFechaHora*> map_type;
 		//Constructor
-		PartidaMultijugador(int idPartida, string duenio, DtFechaHora* fechaInicio, string juego, bool transmitida, const map_type& = map_type());
+		PartidaMultijugador(int idPartida, string duenio, DtFechaHora* fechaInicio, string juego, bool transmitida, vector<string> jugUnidos);
 
 		//Setters
 		void setTransmitida(bool transmit);

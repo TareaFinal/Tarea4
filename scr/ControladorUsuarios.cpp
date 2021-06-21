@@ -161,10 +161,9 @@ void ControladorUsuarios::desvincularSuscripcion(string email, Videojuego *v) {
     }
 }
 
-//necesitamos un return aunque sea en null
 Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
-	Usuario* usuario = NULL;
-    Suscripcion* ret = NULL;
+	 Usuario* usuario = NULL;
+
     set<Usuario*>::iterator user;
     for (user = usuarios.begin(); user != usuarios.end(); user++) {
         if ((*user)->getEmail() == emailUsuarioEnSesion) {
@@ -177,8 +176,9 @@ Suscripcion *ControladorUsuarios::buscarSuscripcion(Videojuego *v) {
     	Jugador* jugador = dynamic_cast<Jugador*> (usuario);
         Suscripcion* sus= jugador->getSuscripcion(v->getNombre());
         return sus;
-    }
-    return ret;
+    } else {
+    	return NULL;
+	}
 }
 
 void ControladorUsuarios::agregarSusAJugador(Suscripcion *s) {
@@ -254,7 +254,7 @@ bool ControladorUsuarios::iniciarSesion(string email, string contrasenia) {
     }
 
     if (usuario != NULL) {
-        emailUsuarioEnSesion = email;
+        this->emailUsuarioEnSesion = email;
         return true;
     }else {
         return false;
@@ -307,7 +307,6 @@ bool ControladorUsuarios::esTemporal(Suscripcion *s) {
 	return esTemporal;
 }
 
-//necesitamos un return aunque sea en null
 Usuario *ControladorUsuarios::getUsuarioEnSistema() {
 	Usuario* usuario = NULL;
 
@@ -315,10 +314,12 @@ Usuario *ControladorUsuarios::getUsuarioEnSistema() {
     for (user = this->usuarios.begin(); user != this->usuarios.end(); user++) {
         if ((*user)->getEmail() == this->emailUsuarioEnSesion) {
             usuario = *user;
-            return usuario;
+            break;
         }
     }
+    
     return usuario;
+
 }
 
 Desarrollador *ControladorUsuarios::getDesarrolladorEnSesion(){
@@ -340,5 +341,15 @@ Desarrollador *ControladorUsuarios::getDesarrolladorEnSesion(){
     }
 	return NULL;
 };
+
+void ControladorUsuarios::registrarStatsDesarrollador(vector<int> stats) {
+	Desarrollador* des = getDesarrolladorEnSesion();
+	des->registrarStats(stats);
+}
+
+vector<int> ControladorUsuarios::getStatsDesarrolladorEnSesion() {
+	Desarrollador* des = getDesarrolladorEnSesion();
+	return des->getStats();
+}
 
 

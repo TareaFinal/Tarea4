@@ -44,3 +44,12 @@ void Desarrollador::eliminarVideojuego(Videojuego *v) {
 		}		
 	}
 }
+
+
+void Desarrollador::registrarStats(vector<int> stats) {
+	this->IdsEstadisticas = stats;
+}
+
+vector<int> Desarrollador::getStats() {
+	return IdsEstadisticas;
+}

@@ -28,8 +28,9 @@ class ControladorVideojuegos : public iControladorVideojuegos {
             set<Estadistica*> estadisticas;
             ControladorVideojuegos();
                 
-      string nomVJaEliminar;     
+            
 			string nombreVideojuego;
+			string nomVJaEliminar;
 			string descripcionVideojuego;
 			float costoMensual, costoTrimestral, costoAnual, costoVitalicio;
 			DtCategoria* plataforma;
@@ -43,9 +44,6 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 float calcularHorasJugadas(string videojuego);
                 vector<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
                 void eliminarVideojuego(string nombre);
-                vector<DtVideojuego> solicitarVideojuegos();
-                vector<DtVideojuego> obtenerVideojuegosDes();
-                vector<string> obtenerVideojuegosDesFinalizados();
                 void confirmarEliminacion();
                 bool ingreseNombreVideojuego(string nombreVideojuego);
                 bool esTemporal(Suscripcion *s);
@@ -69,6 +67,13 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 void asignarCategorias(vector<DtCategoria*> cats);
                 
                 vector<DtCategoria*> solicitarCategorias();
+                
+                void generarStats();
+                void seleccionarEstadisticas(vector<DtEstadistica> stats);
+                
+                vector<DtVideojuego> solicitarVideojuegos();
+                vector<DtVideojuego> obtenerVideojuegosDes();
+                vector<string> obtenerVideojuegosDesFinalizados();
 };
 
 

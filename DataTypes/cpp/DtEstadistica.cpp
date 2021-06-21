@@ -24,8 +24,7 @@ ostream &operator<< (ostream &os, DtEstadistica* est) {
 	   << "---Estadistica---" << endl
        << "Id: " << est->getIdEstadistica() << "\n"
 	   << "Nombre de la Estadistica: " << est->getNombre() << "\n"
-       << "Descripcion: " << est->getDescripcion() << "\n"
-       << "Valor: " << est->getValor() << "\n";
+       << "Descripcion: " << est->getDescripcion() << "\n";
 	   
 	return os;
 };

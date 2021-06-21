@@ -6,6 +6,7 @@
 
 class Estadistica1 : public Estadistica {
 	public:
+		Estadistica1(int id, string nombre, string desc);
 		float calcular(string videojuego);
 		DtEstadistica *getDataEstadistica(float valor);
 };

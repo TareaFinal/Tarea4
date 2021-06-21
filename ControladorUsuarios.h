@@ -48,6 +48,9 @@ class ControladorUsuarios : public iControladorUsuarios {
 			 	
 			 	Usuario *getUsuarioEnSistema();
 			 	Desarrollador *getDesarrolladorEnSesion();
+			 	
+			 	void registrarStatsDesarrollador(vector<int> stats);
+			 	vector<int> getStatsDesarrolladorEnSesion();
 };
 
 #endif

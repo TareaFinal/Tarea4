@@ -19,7 +19,7 @@ Videojuego::Videojuego(string n, string d, Desarrollador *desarrollador, vector<
 		this->categorias = categorias;
 		this->puntajesIngresados = 0;
 		
-		cout << "Videojuego creado correctamente.";
+		cout << "Videojuego creado correctamente\n.";
 		
 	} else {
 		cout << "Ya existe un videojuego con este nombre.";
@@ -78,30 +78,42 @@ void Videojuego::setCostos(map<int,float> costos) {
 }
 		
 void Videojuego::agregarPuntaje(int puntaje) {
-	Videojuego::puntajes.push_back(puntaje);
+	this->puntajes.push_back(puntaje); 
 	this->puntajesIngresados++;
 	cout << "Puntaje agregado\n";
 }
 
 void Videojuego::agregarCategoria(Categoria *c) {
-	vector<Categoria*>::iterator it = find(this->categorias.begin(), this->categorias.end(), c);
+	bool existe = false;
+	for (auto it = this->categorias.begin(); it != this->categorias.end(); ++it) {
+		if (*it == c) {
+			existe = true;
+			break;
+		}		
+	}
 	
-	if (it != this->categorias.end()) {
+	if (!existe) {
 		this->categorias.push_back(c);
-		cout << "Categoria agregada correctamente.";
+		cout << "Categoria agregada correctamente al videojuego\n.";
 	} else {
-		cout << "La categorï¿½a ya estï¿½ ingresada en el videojuego.";
+		cout << "La ya existe la categoria en este videojuego\n.";
 	}
 }
 
 void Videojuego::agregarSuscripcion(Suscripcion *s) {
-	vector<Suscripcion*>::iterator it = find(this->suscripciones.begin(), this->suscripciones.end(), s);
+	bool existe = false;
+	for (auto it = this->suscripciones.begin(); it != this->suscripciones.end(); ++it) {
+		if (*it == s) {
+			existe = true;
+			break;
+		}		
+	}
 	
-	if (it != this->suscripciones.end()) {
+	if (!existe) {
 		this->suscripciones.push_back(s);
-		cout << "Suscripciï¿½n agregada correctamente.";
+		cout << "Suscripción agregada correctamente al videojuego\n.";
 	} else {
-		cout << "La ya existe una suscripciï¿½n en este videojuego.";
+		cout << "La ya existe una suscripción en este videojuego\n.";
 	}
 }
 
@@ -110,38 +122,38 @@ void Videojuego::agregarEstadistica(Estadistica *e) {
 	
 	if (it != this->estadisticas.end()) {
 		this->estadisticas.push_back(e);
-		cout << "Estadï¿½stica agregada correctamente.";
+		cout << "Estadística agregada correctamente\n.";
 	} else {
-		cout << "La estadï¿½stica ya estï¿½ ingresada en el videojuego.";
+		cout << "La estadística ya está ingresada en el videojuego\n.";
 	}
 }
 
 void Videojuego::eliminarCategoria(Categoria *c) {
 	
-	for (auto it = this->categorias.begin(); it != this->categorias.end();) {
+	for (auto it = this->categorias.begin(); it != this->categorias.end(); ++it) {
 		if (*it == c) {
 			this->categorias.erase(it++);
-			cout << "Categorï¿½a removida correctamente.";
+			cout << "Categoría removida correctamente\n.";
 			break;
 		}		
 	}
 }
 
 void Videojuego::eliminarSuscripcion(Suscripcion *s) {
-	for (auto it = this->suscripciones.begin(); it != this->suscripciones.end();) {
+	for (auto it = this->suscripciones.begin(); it != this->suscripciones.end(); ++it) {
 		if (*it == s) {
 			this->suscripciones.erase(it++);
-			cout << "Suscripciï¿½n removida correctamente.";
+			cout << "Suscripción removida correctamente\n.";
 			break;
 		}		
 	}
 }
 
 void Videojuego::eliminarEstadistica(Estadistica *e) {
-	for (auto it = this->estadisticas.begin(); it != this->estadisticas.end();) {
+	for (auto it = this->estadisticas.begin(); it != this->estadisticas.end(); ++it) {
 		if (*it == e) {
 			this->estadisticas.erase(it++);
-			cout << "Estadï¿½stica removida correctamente.";
+			cout << "Estadística removida correctamente\n.";
 			break;
 		}		
 	}
@@ -149,19 +161,19 @@ void Videojuego::eliminarEstadistica(Estadistica *e) {
 
 float Videojuego::calcularEstadistica(int idEstadistica) {
 	float ret = 0.0;
-	for (auto it = this->estadisticas.begin(); it != this->estadisticas.end();) {
+	for (auto it = this->estadisticas.begin(); it != this->estadisticas.end(); ++it) {
 		if ((*it)->getID() == idEstadistica) {
 			this->estadisticas.erase(it++);
-			return (*it)->calcular(this->nombre);
-		}
-	}
-	return ret;
+			ret = (*it)->calcular(this->nombre);
+		}		
+	} 
+	return ret;         										
 }
 
 
 vector<DtJugador> Videojuego::getJugadoresSuscriptos() {
 	vector<DtJugador> jugadores;
-	for (auto it = this->suscripciones.begin(); it != this->suscripciones.end(); it++) {
+	for (auto it = this->suscripciones.begin(); it != this->suscripciones.end(); ++it) {
 			Jugador* j = (*it)->getJugador();
 			DtJugador dataJugador = DtJugador(j->getEmail(), j->getContrasenia(), j->getNick(), j->getDescripcion());
 			jugadores.push_back(dataJugador);
@@ -174,12 +186,9 @@ vector<DtJugador> Videojuego::getJugadoresSuscriptos() {
 float Videojuego::calcularPuntajePromedio() {
 	float promedio = 0.0;
 	int suma = 0;
-	cout << "Funcion de calcular puntaje promedio";
 	if (this->puntajesIngresados > 0) {
-		cout << "Entra a calcualr puntajes";
-		for (auto it = this->puntajes.begin(); it != this->puntajes.end();it++) {
+		for (auto it = this->puntajes.begin(); it != this->puntajes.end();++it) {
 			suma = suma + (*it);
-			cout << "La suma es: " << to_string(suma) << endl;
 		}
 		promedio = suma/(this->puntajes.size());	
 	}
@@ -188,7 +197,7 @@ float Videojuego::calcularPuntajePromedio() {
 }
 
 DtVideojuego *Videojuego::getDataVideojuego() {
-	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, this->calcularPuntajePromedio(), this->calcularEstadistica(2), this->desarrollador->getEmpresa()); /////////////////////////////// ï¿½Quï¿½ le paso al constructor?
+	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, this->calcularPuntajePromedio(), this->calcularEstadistica(2), this->desarrollador->getEmpresa()); /////////////////////////////// ¿Qué le paso al constructor?
 	return dataVideojuego;
 }
 

@@ -2,6 +2,8 @@
 #include "../temporal.h"
 #include "../vitalicia.h"
 #include "../DataTypes/DtCategoria.h"
+#include "../Estadistica1.h"
+#include "../Estadistica2.h"
 
 ControladorVideojuegos *ControladorVideojuegos::instancia = NULL;
 Fabrica *fab = Fabrica::getInstancia();
@@ -25,7 +27,7 @@ float ControladorVideojuegos::calcularEstadistica(int estadistica, string nomVid
 
     for (auto f : ControladorVideojuegos::estadisticas){
         if (f->getID() == estadistica){
-                        return f->calcular(nomVideojuego);//nomVideojuego);
+                        numeroEncontrado = f->calcular(nomVideojuego);//nomVideojuego);
                 }
     }
     
@@ -71,7 +73,7 @@ vector<DtVideojuego> ControladorVideojuegos::solicitarVideojuegos() {
 //	return videojuegos;
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+        float totHoras = 0.0;//= fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
         DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
         dtVideojuegos.push_back(ret);
         //dtEstadisticas.insert(ret);
@@ -83,8 +85,7 @@ vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegosDes() {
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
         if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
-            //float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-            float totHoras = 0.0;
+            float totHoras = 0.0; //fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
             DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
             dtVideojuegos.push_back(ret);
         }
@@ -97,8 +98,7 @@ vector<string> ControladorVideojuegos::obtenerVideojuegosDesFinalizados() {
 	vector<string> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
         if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
-            //float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-            float totHoras = 0.0;
+            float totHoras = 0.0; //fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
             DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
             dtVideojuegos.push_back(f->getNombre());
         }
@@ -243,8 +243,9 @@ bool ControladorVideojuegos::altaSuscripcion(string videojuego, string tipo, str
 bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) {
     bool ret = false;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        if (f->getNombre() == nomVideojuego){
-            f->agregarPuntaje(puntaje);
+        Videojuego v = *f;
+        if (v.getNombre() == nomVideojuego){
+            v.agregarPuntaje(puntaje);
             ret = true;
             break;
         }
@@ -310,3 +311,22 @@ vector<DtCategoria*> ControladorVideojuegos::solicitarCategorias() {
 	return categoriasSolicitadas;
 	
 }
+
+void ControladorVideojuegos::seleccionarEstadisticas(vector<DtEstadistica> stats) {
+	vector<int> est;
+	
+	vector<DtEstadistica>::iterator it;
+	for (it = stats.begin(); it != stats.end(); it++) {
+		est.push_back(it->getIdEstadistica());
+	}
+	
+	iControladorUsuarios *controladorUsuarios = fab->getControladorUsuarios();
+	controladorUsuarios->registrarStatsDesarrollador(est);
+}
+
+void ControladorVideojuegos::generarStats() {
+	this->estadisticas.insert(new Estadistica1(1, "Horas", "Devuelve el total de horas jugadas de un determinado videojuego"));
+	this->estadisticas.insert(new Estadistica2(2, "Suscripciones", "Devuelve la cantidad de jugadores suscriptos a un determinado videojuego"));
+}
+
+

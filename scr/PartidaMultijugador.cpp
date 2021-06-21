@@ -1,13 +1,15 @@
 #include "../partidaMultijugador.h"
 
-PartidaMultijugador::PartidaMultijugador(int idPartida, string duenio, DtFechaHora* fechaInicio, string juego, bool transmitida, const map_type&) {
+PartidaMultijugador::PartidaMultijugador(int idPartida, string duenio, DtFechaHora* fechaInicio, string juego, bool transmitida, vector<string> jugUnidos) {
 	this->idPartida = idPartida;
 	this->duenio = duenio;
 	this->duracion = NULL;
 	this->FechaInicio = fechaInicio;
 	this->Videojuego = juego;
 	this->Transmitida = transmitida;
-	this->conjuntoSalidas = map_type();
+	for (auto j : jugUnidos) {
+		this->conjuntoSalidas.insert(pair<string, DtFechaHora*> (j, NULL));	
+	}
 }
 
 void PartidaMultijugador::setTransmitida(bool transmit) {
@@ -29,7 +31,7 @@ bool PartidaMultijugador::getTransmitida() {
 float PartidaMultijugador::darTotalDeHorasParticipantes() {
 	float d = 0;
 	DtFechaHora *x;
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
+	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it ) {
     		if (it->second != NULL) {
     			x = it->second;
     			d = d + x->getAnio()*365*24 + x->getMes()*30*24 + x->getDia()*24 + x->getHora() + x->getMinuto()/60;
@@ -41,7 +43,7 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
 set<string> PartidaMultijugador::getNicknameJugadoresActivos() {
 	set<string> jugadores;
 	
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
+	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it ) {	
 		if (it->second == NULL)
 			jugadores.insert(it->first);
 	}
@@ -80,7 +82,7 @@ void PartidaMultijugador::abandonaPartidaJugador(string jugador) {
 	iControladorUsuarios* controlador=fabrica->getControladorUsuarios();
 	DtFechaHora *fechaSalida=controlador->getFechaSistema();
 	
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
+	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it) {
 		if((it)->first == jugador) {
 			it->second = new DtFechaHora(fechaSalida->getAnio(), fechaSalida->getMes(), fechaSalida->getDia(), fechaSalida->getHora(), fechaSalida->getMinuto());
 			break;	

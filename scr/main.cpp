@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     iControladorUsuarios *ctrlUsuarios = fabrica->getControladorUsuarios();
     
     
-    // Ingreso de desarrollador
+ /*   // Ingreso de desarrollador
     ctrlUsuarios->registrarUsuario("desarrollador@mail.com", "123");
 	ctrlUsuarios->darEmpresa("EA Sports");
 	ctrlUsuarios->confirmarAltaUsuario();
@@ -47,11 +47,7 @@ int main(int argc, char** argv) {
 	
 	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
 	ctrlVideojuegos->setearDatosVideojuego("KingdomRush", "", 1, 2, 7, 14);
-	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
-	ctrlVideojuegos->setearDatosVideojuego("Manola", "", 1, 2, 7, 14);
-	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
-	ctrlVideojuegos->setearDatosVideojuego("a", "", 1, 2, 7, 14);
-
+	
 	vector<DtCategoria*> categoriasDatosAIngresar;
 	vector<DtCategoria*> categoriasDatos = ctrlVideojuegos->solicitarCategorias();	
 	vector<DtCategoria*>::iterator it;
@@ -80,7 +76,7 @@ int main(int argc, char** argv) {
 		ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 3);
 		ctrlVideojuegos->asignarPuntajeAVideojuego("KingdomRush", 3);
 	
-	
+	*/
     
     int n = 4;
     while (n != 0) {
@@ -95,6 +91,7 @@ int main(int argc, char** argv) {
     	isNumber(x) ? n = stoi(x) : n = 4;
         switch(n) {                                               
             case 1: {
+            	system("cls");
                 string email = "", contra = "123";
                 bool formatoEmailErroneo = true, emailValido = false;
                 while (formatoEmailErroneo || !emailValido) {
@@ -125,6 +122,7 @@ int main(int argc, char** argv) {
                 isNumber(x) ? n = stoi(x) : n = 4;
                 switch(n) {
                     case 1: {
+                    	system("cls");
                         string empresa = "Autonomo";
                         cout << "Ingresa la empresa: " << endl;
                         cin >> empresa;
@@ -135,6 +133,7 @@ int main(int argc, char** argv) {
                     }
                     break;
                     case 2: {
+                    	system("cls");
                         string nick = "", descripcion = "";
                         bool esValido = false;
                         while(!esValido) {
@@ -160,6 +159,7 @@ int main(int argc, char** argv) {
             } 
             break;
             case 2: {
+            	system("cls");
                 bool existeUsuario = false;
                 while (!existeUsuario) {
                     string email = "", contra = "123";
@@ -198,7 +198,7 @@ int main(int argc, char** argv) {
                         cout << "3: Iniciar partida" << endl;
                         cout << "4: Abandonar partida multijugador" << endl;
                         cout << "5: Finalizar partida" << endl;
-                        cout << "6: Ver información de videojuego" << endl;
+                        cout << "6: Ver informacion de videojuego" << endl;
                         cout << "7: Modificar fecha del sistema" << endl;
                         cout << "8: Salir" << endl;
 
@@ -208,6 +208,7 @@ int main(int argc, char** argv) {
                         isNumber(x) ? n = stoi(x) : n = 9;
                         switch (n) {
                         case 1: {
+                        	system("cls");
                         	string tipo, metPago, nombreVideojuego = "";
                         	int validez;
                            vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
@@ -283,15 +284,22 @@ int main(int argc, char** argv) {
 							}
 
                            ctrlVideojuegos->altaSuscripcion(nombreVideojuego, tipo, metPago, validez);
+                           
+                           system("cls");
+                           
+                           cout << "Suscripcion registrada correctamente." << endl;
+                           cout << "\n";
+                           
                         }
                         break;
                         case 2: {
+                        	system("cls");
                         	int n = 0, puntaje;
 							vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << it->getNombre() << endl;
+                                cout << "Nombre: " << it->getNombre()  << endl << "Descripcion: " << it->getDescripcion() << endl << "****************************" << endl;
                             }
 
                             bool nombreValido = false;
@@ -324,11 +332,15 @@ int main(int argc, char** argv) {
 							}
             				
             				ctrlVideojuegos->asignarPuntajeAVideojuego(nombreVideojuego, puntaje);
+            				system("cls");
+            				
+            				
                         }
                         break;
                         case 3: {
+                        	system("cls");
                         	int n;
-        					string emailUsuario = ctrlUsuarios->getUsuarioEnSesion();
+        					string emailUsuario = ctrlUsuarios->getUsuarioEnSesion();  
         					cout << emailUsuario;
 							vector<DtVideojuego*> videojuegos = ctrlUsuarios->obtenerVideojuegosJugador(emailUsuario);
 			
@@ -399,7 +411,6 @@ int main(int argc, char** argv) {
 									
 										isNumber(x) ? n = stoi(x) : n = 3;
 										if (n == 1) {
-											cout << "Va a seterar el tipo de partida como individual\n";
 											ctrlPartidas->setTipoPartida("individual");
 											break;
 										}else if (n == 2) {
@@ -470,16 +481,20 @@ int main(int argc, char** argv) {
 								break;
 							}
 							
-							cout << "Intenta iniciar la partida";
 							ctrlPartidas->iniciarPartida();
                         }
                         break;
                         case 4: {
+                        	system("cls");
 							vector<DtPartida*> partidas = ctrlPartidas->ObtenerPartidasActivas();
 							
 							vector<DtPartida*>::iterator it;
 							for (it = partidas.begin(); it != partidas.end(); it++) {
-								cout << *it << endl;
+								DtPartidaMultijugador* pm = dynamic_cast<DtPartidaMultijugador*>(*it);
+								DtPartidaIndividual* pi = dynamic_cast<DtPartidaIndividual*>(*it);
+								
+								if (pm != NULL) {cout << &(*pm) << endl;}
+								else if (pi != NULL) {cout << &(*pi) << endl;}
 							}
 							cout << "Ingrese el id de la partida a abandonar: " << endl;
 							bool esValido = false;
@@ -505,11 +520,17 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 5: {
+                        	system("cls");
 							vector<DtPartida*> partidas = ctrlPartidas->ListarPartidasNoFinalizadas();
 							
 							vector<DtPartida*>::iterator it;
 							for (it = partidas.begin(); it != partidas.end(); it++) {
-								cout << *it << endl;
+								DtPartidaMultijugador* pm = dynamic_cast<DtPartidaMultijugador*>(*it);
+								DtPartidaIndividual* pi = dynamic_cast<DtPartidaIndividual*>(*it);
+								
+								if (pm != NULL) {cout << &(*pm) << endl;}
+								else if (pi != NULL) {cout << &(*pi) << endl;}
+								
 							}
 							
 							cout << "Ingrese el id de la partida a finalizar: " << endl;
@@ -537,6 +558,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 6: {
+                        	system("cls");
 							vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
@@ -547,7 +569,7 @@ int main(int argc, char** argv) {
                             bool nombreValido = false;
                             string nombreVideojuego = "";
                             while (!nombreValido) {
-                                cout << "Ingrese el nombre del videojuego que quiere consultar: " << endl;
+                                cout << endl << "Ingrese el nombre del videojuego que quiere consultar: " << endl << endl;
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
@@ -562,82 +584,88 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 7: {
-                        	int dia, mes, anio, hora, minuto;
-                        	string x = "";
-                        	int n;
+                        	if (ctrlPartidas->hayActivas()) {
+                        		cout << "No se puede cambiar la fecha del sistema mientras hay partidas activas!" << endl;
+							}else {
+								system("cls");
+                        		int dia, mes, anio, hora, minuto;
+                        		string x = "";
+                        		int n;
                         	
-                        	cout<< "Ingrese el anio:" << endl;
-                        	while (true) {
-                            	cin >> x;
-	
-    	                        isNumber(x) ? n = stoi(x) : n = -1;
-                        		if (n < 0) {
-									cout << "Ingrese un anio valido" << endl;
-								}else {
-									anio = n;
-									break;
+                        		cout<< "Ingrese el anio:" << endl;
+                        		while (true) {
+                            		cin >> x;
+		
+    		                        isNumber(x) ? n = stoi(x) : n = -1;
+            	            		if (n < 0) {
+										cout << "Ingrese un anio valido" << endl;
+									}else {
+										anio = n;
+										break;
+									}
 								}
-							}
 							
-							cout<< "Ingrese el mes:" << endl;
-							while (true) {
-                            	cin >> x;
-	
-    	                        isNumber(x) ? n = stoi(x) : n = -1;
-                        		if (n < 1 || n > 12) {
-									cout << "Ingrese un mes valido" << endl;
-								}else {
-									mes = n;
-									break;
+								cout<< "Ingrese el mes:" << endl;
+								while (true) {
+                            		cin >> x;
+		
+    		                        isNumber(x) ? n = stoi(x) : n = -1;
+            	            		if (n < 1 || n > 12) {
+										cout << "Ingrese un mes valido" << endl;
+									}else {
+										mes = n;
+										break;
+									}
 								}
-							}
 							
-							cout<< "Ingrese el dia:" << endl;
-							while (true) {
-                            	cin >> x;
-	
-    	                        isNumber(x) ? n = stoi(x) : n = -1;
-                        		if (n < 1 || n > 31) {
-									cout << "Ingrese un dia valido" << endl;
-								}else {
-									dia = n;
-									break;
+								cout<< "Ingrese el dia:" << endl;
+								while (true) {
+                    	        	cin >> x;
+		
+    		                        isNumber(x) ? n = stoi(x) : n = -1;
+    	                    		if (n < 1 || n > 31) {
+										cout << "Ingrese un dia valido" << endl;
+									}else {
+										dia = n;
+										break;
+									}
 								}
-							}
 							
-							cout<< "Ingrese la hora:" << endl;
-							while (true) {
-                            	cin >> x;
+								cout<< "Ingrese la hora:" << endl;
+								while (true) {
+                            		cin >> x;
 	
-    	                        isNumber(x) ? n = stoi(x) : n = -1;
-                        		if (n < 0 || n > 23) {
-									cout << "Ingrese una hora valido" << endl;
-								}else {
-									hora = n;
-									break;
+    	                       		isNumber(x) ? n = stoi(x) : n = -1;
+                        			if (n < 0 || n > 23) {
+										cout << "Ingrese una hora valido" << endl;
+									}else {
+										hora = n;
+										break;
+									}
 								}
-							}
-							
-							cout<< "Ingrese el minuto:" << endl;
-							while (true) {
-                            	cin >> x;
-	
-    	                        isNumber(x) ? n = stoi(x) : n = -1;
-                        		if (n < 0 || n > 59) {
-									cout << "Ingrese una hora valido" << endl;
-								}else {
-									minuto = n;
-									break;
+								
+								cout<< "Ingrese el minuto:" << endl;
+								while (true) {
+               		             	cin >> x;
+		
+    		                        isNumber(x) ? n = stoi(x) : n = -1;
+            	            		if (n < 0 || n > 59) {
+										cout << "Ingrese una hora valido" << endl;
+									}else {
+										minuto = n;
+										break;
+									}
 								}
-							}
-                        	
-                        	cout << to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio) + " - " + to_string(hora) + ":" + to_string(minuto) << endl;
-                        	DtFechaHora *nuevaFecha = new DtFechaHora(anio, mes, dia, hora, minuto);
-							ctrlUsuarios->setFechaSistema(nuevaFecha);
+                	        	
+                    	    	cout << to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio) + " - " + to_string(hora) + ":" + to_string(minuto) << endl;
+                        		DtFechaHora *nuevaFecha = new DtFechaHora(anio, mes, dia, hora, minuto);
+								ctrlUsuarios->setFechaSistema(nuevaFecha);
+							}	
                         }
                         break;
                         case 8: {
                             n = 8;
+                            system("cls");
                         }
                         break;
                         default: {cout << "Ingrese una de las opciones listadas!" << endl;}
@@ -647,12 +675,13 @@ int main(int argc, char** argv) {
                 }else if (tipoUser == "d") {
                     int n = 9;
                     while (n != 8) {
-                        cout << "1: Agregar categoría" << endl;
+                    	system("cls");
+                        cout << "1: Agregar categoria" << endl;
                         cout << "2: Publicar videojuego" << endl;
                         cout << "3: Eliminar videojuego" << endl;
-                        cout << "4: Seleccionar estadísticas" << endl;
-                        cout << "5: Consultar estadísticas" << endl;
-                        cout << "6: Ver información de videojuego" << endl;
+                        cout << "4: Seleccionar estadisticas" << endl;
+                        cout << "5: Consultar estadisticas" << endl;
+                        cout << "6: Ver informacion de videojuego" << endl;
                         cout << "7: Modificar fecha del sistema" << endl;
                         cout << "8: Salir" << endl;
 
@@ -662,6 +691,7 @@ int main(int argc, char** argv) {
                         isNumber(x) ? n = stoi(x) : n = 9;
                         switch (n) {
                         case 1: {
+                        	system("cls");
 							string nombre, desc, tipo;
 		                	cout << "Ingrese el nombre de la categoria:" << endl;
 		                	cin >> nombre;
@@ -676,6 +706,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 2: {
+                        	system("cls");
 							string nombre, descripcion, precioMes, precioTri, precioAnio, precioVit;
 							int n;
 							cout << "Cual es el nombre del videojuego?" << endl;
@@ -827,14 +858,17 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 3: {
-                        	vector<string> juegos = ctrlVideojuegos->obtenerVideojuegosDesFinalizados(); //ESTE SE TIENE QUE CAMBIAR PARA LISTAR SOLO LOS DEL DESARROLLADOR QUE NO TIENE PARTIDAS SIN FINALIZAR
+                        	system("cls");
+                        	vector<string> juegos = ctrlVideojuegos->obtenerVideojuegosDesFinalizados();
+                        	
+                        	cout << "Los videojuegos que se muestran a continuacion tienen todas sus partidas finalizadas." << endl;
 							
 							vector<string>::iterator it;
 							for (it = juegos.begin(); it != juegos.end(); it++) {	
 								cout << *it << endl;
 							}
-
-							cout << "Los videojuegos que se muestran a continuacion tienen todas sus partidas finalizadas." << endl;
+							cout << "\n";
+						
 							cout << "Ingrese el nombre del videojuego a eliminar: " << endl;
 							bool esValido = false;
 							string nombre;
@@ -854,7 +888,6 @@ int main(int argc, char** argv) {
 								}
 							}
 							
-							ctrlVideojuegos->eliminarVideojuego(nombre);
 							
 							cout << "Esta seguro que quiere eliminar " + nombre + "?" << endl << "1: Si" << endl << "2: Cancelar" << endl;
 							string x;
@@ -864,7 +897,8 @@ int main(int argc, char** argv) {
 							
 								isNumber(x) ? n = stoi(x) : n = -1;
 								if (n == 1) {
-									ctrlVideojuegos->confirmarEliminacion();
+									ctrlVideojuegos->eliminarVideojuego(nombre);
+									ctrlVideojuegos->confirmarEliminacion();  
 									break;
 								}else if (n != 2) {
 									cout << "Ingrese una opcion valida!" << endl;
@@ -874,6 +908,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 4: {
+                        	system("cls");
                         		string x;
 							int n;
 							vector<DtEstadistica> est;
@@ -910,12 +945,13 @@ int main(int argc, char** argv) {
 								}
 							}
 							
-						//	ctrlVideojuegos->seleccionarEstadisticas(est); /////////////////////////////////////////////////////
+							ctrlVideojuegos->seleccionarEstadisticas(est); 
 							
                         }
                         break;
                         case 5: {
-                        	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegosDes(); //listarVideojuegosDeDesarrollador
+                        	system("cls");
+                        	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegosDes();
 							
 							vector<DtVideojuego>::iterator it;
 							for (it = juegos.begin(); it != juegos.end(); it++) {
@@ -950,6 +986,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 6: {
+                        	system("cls");
                         	vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
@@ -976,6 +1013,7 @@ int main(int argc, char** argv) {
                     	}	
                         break;
                         case 7: {
+                        	system("cls");
 							int dia, mes, anio, hora, minuto;
                         	string x = "";
                         	int n;
@@ -1053,6 +1091,7 @@ int main(int argc, char** argv) {
                         break;
                         case 8: {
                             n = 8;
+                            system("cls");
                         }
                         break;
                         default: {cout << "Ingrese una de las opciones listadas!" << endl;}
@@ -1063,17 +1102,10 @@ int main(int argc, char** argv) {
             }
             break;
             case 3: {
+            	system("cls");
             	DtCategoria* gen = NULL; 
 				DtCategoria* plat = NULL;
 				vector<string> jugadoresQParticipan;
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 17, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("Fortnite");
-				ctrlPartidas->Transmitida(true);
-				jugadoresQParticipan.push_back("ari");
-				jugadoresQParticipan.push_back("ibai");
-				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
-				ctrlPartidas->iniciarPartida();
 				
 				//Abandona partida multijugador(*ctrlUsuarios).iniciarSesion("ea@mail.com", "123");
             	
@@ -1259,6 +1291,7 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 9, 0));
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("KingdomRush");
+				ctrlPartidas->setTipoPartida("individual");
 				ctrlPartidas->iniciarPartida();
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 10, 0));
@@ -1278,6 +1311,7 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 15, 0));
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("KingdomRush");
+				ctrlPartidas->setTipoPartida("individual");
 				ctrlPartidas->seleccionarPartida(id);
 				ctrlPartidas->iniciarPartida();
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 16, 0));
@@ -1297,10 +1331,24 @@ int main(int argc, char** argv) {
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 16, 0));
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("Minecraft");
+				ctrlPartidas->setTipoPartida("individual");
 				ctrlPartidas->iniciarPartida();
 				
 		
 				//Ingreso de partidas multijugador
+				
+				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 17, 0));
+				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+				ctrlPartidas->SeleccionarVideojuego("Fortnite");
+				ctrlPartidas->setTipoPartida("multijugador");
+				ctrlPartidas->Transmitida(true);
+				jugadoresQParticipan.push_back("ari");
+				jugadoresQParticipan.push_back("ibai");
+				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
+				ctrlPartidas->iniciarPartida();
+				
+				
+				
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
 				vector<DtPartida*> partidasActivasAri1 = ctrlPartidas->ObtenerPartidasActivas();
 							
@@ -1310,7 +1358,7 @@ int main(int argc, char** argv) {
 					}
 				}
 				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
+				/*ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
 				vector<DtPartida*> partidasNoFinalizadasAri2 = ctrlPartidas->ListarPartidasNoFinalizadas();			
 				
 				for (itp = partidasNoFinalizadasAri2.begin(); itp != partidasNoFinalizadasAri2.end(); it++) {
@@ -1323,9 +1371,10 @@ int main(int argc, char** argv) {
 				
 				/***************************************************************************/
 				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 0));
+				/*ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 0));
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("Fortnite");
+				ctrlPartidas->setTipoPartida("multijugador");
 				ctrlPartidas->Transmitida(true);
 				jugadoresQParticipan.push_back("ari");
 				jugadoresQParticipan.push_back("ibai");
@@ -1354,14 +1403,17 @@ int main(int argc, char** argv) {
 				
 				/***************************************************************************/
 				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 20, 0));
+				/*ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 20, 0));
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
 				ctrlPartidas->SeleccionarVideojuego("Minecraft");
 				ctrlPartidas->Transmitida(false);
 				jugadoresQParticipan.push_back("ibai");
 				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
-				ctrlPartidas->iniciarPartida();
+				ctrlPartidas->iniciarPartida();*/
 				
+				system("cls");
+				cout << "Datos ingresados correctamente\n" << endl;
+				cout << "\n";
 			}
             break;
             case 0: {n = 0;}

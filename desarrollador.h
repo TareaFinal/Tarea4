@@ -6,6 +6,7 @@
 #include <set>
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class Desarrollador : public Usuario {
 private:
 	string empresa;
 	set<Videojuego*> videojuegos;
+	vector<int> IdsEstadisticas;
 	
 public:
 	// Constructor
@@ -32,6 +34,9 @@ public:
 	
 	void agregarVideojuego(Videojuego *v);
 	void eliminarVideojuego(Videojuego *v);
+	
+	void registrarStats(vector<int> stats);
+	vector<int> getStats();
 };
 
 #endif

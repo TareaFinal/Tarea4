@@ -40,6 +40,9 @@ class iControladorUsuarios {
 				virtual Usuario *getUsuarioEnSistema() = 0;
 				virtual bool esTemporal(Suscripcion *s) = 0;
 				virtual Desarrollador *getDesarrolladorEnSesion() = 0;
+				
+				virtual void registrarStatsDesarrollador(vector<int> stats) = 0;
+			 	virtual vector<int> getStatsDesarrolladorEnSesion() = 0;
 };
 
 #endif

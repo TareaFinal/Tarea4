@@ -53,6 +53,11 @@ class iControladorVideojuegos {
                 virtual void asignarCategorias(vector<DtCategoria*> cats) = 0;
                 virtual vector<DtCategoria*> solicitarCategorias() = 0;
                 
+                virtual void generarStats() = 0;
+                virtual void seleccionarEstadisticas(vector<DtEstadistica> stats) = 0;
+                
+                
+                
 };
 
 #endif

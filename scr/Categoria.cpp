@@ -13,7 +13,7 @@ Categoria::Categoria(string n, string t, string d, Desarrollador *desarrollador)
 		if (desarrollador != NULL)
 			this->desarrollador = desarrollador;
 		
-		cout << "Categoría ingresada correctamente.";
+		cout << "Categoría ingresada correctamente\n.";
 		
 	} else {
 		cout << "Ya existe una categoría con ese nombre.";
