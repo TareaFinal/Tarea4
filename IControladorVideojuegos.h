@@ -27,7 +27,9 @@ class iControladorVideojuegos {
                 virtual float calcularHorasJugadas(string videojuego) = 0;
                 virtual vector<DtJugador> jugadoresSuscriptosAVideojuego(string nombre) = 0;
                 virtual void eliminarVideojuego(string nombre) = 0;
-                virtual vector<DtVideojuego> obtenerVideojuegos() = 0;
+                virtual vector<DtVideojuego> solicitarVideojuegos() = 0;
+                virtual vector<DtVideojuego> obtenerVideojuegosDes() = 0;
+                virtual vector<string> obtenerVideojuegosDesFinalizados() = 0;
                 virtual void confirmarEliminacion() = 0;
                 virtual bool ingreseNombreVideojuego(string nombreVideojuego) = 0;
                 virtual bool esTemporal(Suscripcion *s) = 0;

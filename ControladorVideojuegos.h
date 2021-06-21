@@ -43,7 +43,9 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 float calcularHorasJugadas(string videojuego);
                 vector<DtJugador> jugadoresSuscriptosAVideojuego(string nombre);
                 void eliminarVideojuego(string nombre);
-                vector<DtVideojuego> obtenerVideojuegos();
+                vector<DtVideojuego> solicitarVideojuegos();
+                vector<DtVideojuego> obtenerVideojuegosDes();
+                vector<string> obtenerVideojuegosDesFinalizados();
                 void confirmarEliminacion();
                 bool ingreseNombreVideojuego(string nombreVideojuego);
                 bool esTemporal(Suscripcion *s);

@@ -78,10 +78,9 @@ void Videojuego::setCostos(map<int,float> costos) {
 }
 		
 void Videojuego::agregarPuntaje(int puntaje) {
-	this->puntajes.push_back(puntaje); ////////////////////////////////////////
-	cout << "Puntaje: " << puntajes[0];
-	cout << "Puntaje agregado\n";
+	Videojuego::puntajes.push_back(puntaje);
 	this->puntajesIngresados++;
+	cout << "Puntaje agregado\n";
 }
 
 void Videojuego::agregarCategoria(Categoria *c) {

@@ -236,4 +236,38 @@ void ControladorPartidas::eliminarPartidasVideojuego(string nombre) {
     }
 }
 
+vector<string> ControladorPartidas::darSinFinalizar(vector<string> videojuegos){
+	vector<string> devolver;
+	std::vector<string>::iterator it;
+    for (it = videojuegos.begin(); it != videojuegos.end(); ++it){
+    	std::map<int, Partida*>::iterator itp;
+    	for (itp = dicPartidas.begin(); itp != dicPartidas.end(); ++itp){
+        	Partida* p = itp->second; // obtengo la partida actual
+        	if ((p->getDuracion()==NULL )&&(p->getVideojuego()==(*it))) {// si esta sin finalizar y es del jugador se agrega
+            	devolver.push_back((*it));
+        	}
+    	}
+	}
+	for (it = devolver.begin(); it != devolver.end(); ++it){
+    	std::map<int, Partida*>::iterator itp;
+    	for (itp = ControladorPartidas::dicPartidas.begin(); itp != ControladorPartidas::dicPartidas.end(); ++itp){
+        	Partida *p = itp->second; // obtengo la partida actual
+        	if ((p->getDuracion()!=NULL )&&(p->getVideojuego()==(*it))) {// si esta sin finalizar y es del jugador se agrega
+            	devolver.erase((it));
+        	}
+    	}
+	}
+	return devolver;
+}
 
+bool ControladorPartidas::hayActivas(){
+	bool devolver=false;
+	std::map<int, Partida*>::iterator itp;
+    	for (itp = ControladorPartidas::dicPartidas.begin(); itp != dicPartidas.end(); ++itp){
+        	Partida* p = itp->second; // obtengo la partida actual
+        	if (p->getDuracion()!=NULL ) {
+            	devolver=true;
+        	}
+    	}
+return devolver;
+}

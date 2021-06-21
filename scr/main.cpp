@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
 	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
 	ctrlVideojuegos->setearDatosVideojuego("Manola", "", 1, 2, 7, 14);
 	ctrlUsuarios->iniciarSesion("desarrollador@mail.com", "123");
-	ctrlVideojuegos->setearDatosVideojuego("Lol", "", 1, 2, 7, 14);
+	ctrlVideojuegos->setearDatosVideojuego("a", "", 1, 2, 7, 14);
 
 	vector<DtCategoria*> categoriasDatosAIngresar;
 	vector<DtCategoria*> categoriasDatos = ctrlVideojuegos->solicitarCategorias();	
@@ -210,7 +210,7 @@ int main(int argc, char** argv) {
                         case 1: {
                         	string tipo, metPago, nombreVideojuego = "";
                         	int validez;
-                           vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
+                           vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
@@ -287,7 +287,7 @@ int main(int argc, char** argv) {
                         break;
                         case 2: {
                         	int n = 0, puntaje;
-							vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
+							vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
@@ -537,7 +537,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 6: {
-							vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
+							vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
@@ -827,22 +827,23 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 3: {
-                        	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegos();
+                        	vector<string> juegos = ctrlVideojuegos->obtenerVideojuegosDesFinalizados(); //ESTE SE TIENE QUE CAMBIAR PARA LISTAR SOLO LOS DEL DESARROLLADOR QUE NO TIENE PARTIDAS SIN FINALIZAR
 							
-							vector<DtVideojuego>::iterator it;
+							vector<string>::iterator it;
 							for (it = juegos.begin(); it != juegos.end(); it++) {	
-								cout << it->getNombre() << endl;
+								cout << *it << endl;
 							}
-							
+
+							cout << "Los videojuegos que se muestran a continuacion tienen todas sus partidas finalizadas." << endl;
 							cout << "Ingrese el nombre del videojuego a eliminar: " << endl;
 							bool esValido = false;
 							string nombre;
 							while (!esValido) {
 								cin >> nombre;
 								
-								vector<DtVideojuego>::iterator it;
+								vector<string>::iterator it;
 								for (it = juegos.begin(); it != juegos.end(); it++) {
-									if (it->getNombre() == nombre) {
+									if (*it == nombre) {
 										esValido = true;
 										break;
 									}
@@ -914,7 +915,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 5: {
-                        	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegos();
+                        	vector<DtVideojuego> juegos = ctrlVideojuegos->obtenerVideojuegosDes(); //listarVideojuegosDeDesarrollador
 							
 							vector<DtVideojuego>::iterator it;
 							for (it = juegos.begin(); it != juegos.end(); it++) {
@@ -949,7 +950,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 6: {
-                        	vector<DtVideojuego> videojuegos = ctrlVideojuegos->obtenerVideojuegos();
+                        	vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
 
                            	vector<DtVideojuego>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {

@@ -70,7 +70,7 @@ class ControladorPartidas : public iControladorPartidas {
         // Caso de uso finalizar partida
         
         bool ingreseIdPartida(int idPartida); // el sistema guarda esta info para finalizar la partida
-        void finalizarPartida(); // finaliza la partida cuyo id está en memoria producto de ingresarIdPartida 
+        void finalizarPartida(); // finaliza la partida cuyo id estï¿½ en memoria producto de ingresarIdPartida 
         
 
         //void finalizarPartidaMultijugador(); //finaliza una partida multijugador y saca a todos los jugadores
@@ -78,6 +78,8 @@ class ControladorPartidas : public iControladorPartidas {
         // De eliminar videojuego
         void eliminarPartidasVideojuego(string nombre);
         ~ControladorPartidas();
+        vector<string> darSinFinalizar(vector<string> videojuegos);
+        bool hayActivas();
 };
 
 #endif

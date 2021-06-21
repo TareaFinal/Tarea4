@@ -32,6 +32,9 @@ class iControladorPartidas {
         		
         		virtual void AbandonarPartidaActiva(int id) = 0;
         		virtual vector<DtPartida*> ObtenerPartidasActivas() = 0;
+				virtual void eliminarPartidasVideojuego(string nombre) = 0;
+				virtual vector<string> darSinFinalizar(vector<string> videojuegos) = 0;
+				virtual bool hayActivas() = 0;
 };
 
 #endif

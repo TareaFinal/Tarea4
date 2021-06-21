@@ -66,22 +66,52 @@ void ControladorVideojuegos::eliminarVideojuego(string nombre) {
     this->nomVJaEliminar = nombre;
 }
 
-vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegos() {
+vector<DtVideojuego> ControladorVideojuegos::solicitarVideojuegos() {
 //	set<DtVideojuego> videojuegos;
 //	return videojuegos;
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), 0.0, f->getDesarrollador()->getEmpresa());
+        float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+        DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
         dtVideojuegos.push_back(ret);
         //dtEstadisticas.insert(ret);
         }
     return dtVideojuegos;
 }
 
+vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegosDes() {
+	vector<DtVideojuego> dtVideojuegos;
+    for (auto f : ControladorVideojuegos::videojuegos) {
+        if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
+            //float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+            float totHoras = 0.0;
+            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
+            dtVideojuegos.push_back(ret);
+        }
+    }
+    return dtVideojuegos;
+}
+
+vector<string> ControladorVideojuegos::obtenerVideojuegosDesFinalizados() {
+    
+	vector<string> dtVideojuegos;
+    for (auto f : ControladorVideojuegos::videojuegos) {
+        if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
+            //float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+            float totHoras = 0.0;
+            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
+            dtVideojuegos.push_back(f->getNombre());
+        }
+    }
+    //return dtVideojuegos;
+    return fab->getControladorPartidas()->darSinFinalizar(dtVideojuegos);
+}
+
 void ControladorVideojuegos::confirmarEliminacion() {
 		for (auto f : ControladorVideojuegos::videojuegos) {
         Videojuego *v = f;
         if (v->getNombre() == this->nomVJaEliminar){
+                fab->getControladorPartidas()->eliminarPartidasVideojuego(nomVJaEliminar);
                 ControladorVideojuegos::videojuegos.erase(f);
                 delete v;
         }
@@ -213,9 +243,8 @@ bool ControladorVideojuegos::altaSuscripcion(string videojuego, string tipo, str
 bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) {
     bool ret = false;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        Videojuego v = *f;
-        if (v.getNombre() == nomVideojuego){
-            v.agregarPuntaje(puntaje);
+        if (f->getNombre() == nomVideojuego){
+            f->agregarPuntaje(puntaje);
             ret = true;
             break;
         }
