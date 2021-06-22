@@ -1,6 +1,6 @@
 #include "../DtPartidaMultijugador.h"
 
-DtPartidaMultijugador::DtPartidaMultijugador(int idPartida, DtFechaHora* duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, const map_type&) {
+DtPartidaMultijugador::DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, const map_type&) {
     this->idPartida = idPartida;
 	this->duracion = duracion;
     this->fechaInicio = fechaInicio;
@@ -42,8 +42,8 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
 	os << "----------------------------------------\n"
 	   << "---Partida Multijugador---" << endl
        << "Id: " << pm->getIdPartida() << "\n";
-        if (pm->getDuracion() != NULL) {
-        	os << "Duracion: " <<  pm->getDuracion()->getDia() << "/" << pm->getDuracion()->getMes() << "/" << pm->getDuracion()->getAnio() << "\n";
+        if (pm->getDuracion() != 0.0) {
+        	os << "Duracion: " <<  pm->getDuracion() << " horas\n";
     	}
        os << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << " Esto es un DtFechahora, ojo!!!\n"
        << "Creador: " << pm->getNicknameCreador() << "\n"

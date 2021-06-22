@@ -16,15 +16,23 @@ ControladorPartidas::ControladorPartidas() {
 float ControladorPartidas::darHorasDePartida(string videojuego) {
 	Partida* p = NULL;
 	float horas=0;
-    if (this->dicPartidas.size() != 0) // si hay partidas
-    {
+    std::map<int, Partida*>::iterator it;
+    for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it){
+        Partida*p = it->second;
+        cout << "Id: " << p->getPartida() << endl
+        << "videojuego: " << p->getVideojuego() << endl
+        << "Duracion: " << p->getDuracion() << endl
+        << "Duenio: " << p->getJugador() << endl;
+    }
+ /*   if (this->dicPartidas.size() != 0){ // si hay partidas
+
         std::map<int, Partida*>::iterator it;
         for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it)
         {
             Partida* p = it->second; // obtengo la partida actual
             horas+=p->darTotalDeHorasParticipantes();
     	}
-	}
+	}*/
 	return horas;        
 }
 
@@ -186,7 +194,7 @@ vector<DtPartida*> ControladorPartidas::ListarPartidasNoFinalizadas() {
     {	
         Partida* p = it->second; // obtengo la partida actual
         	cout << (p)->getJugador() << endl;
-        if ((p->getDuracion()==NULL )&&(p->getJugador()==j)) {// si esta sin finalizar y es del jugador se agrega
+        if ((p->getDuracion()== 0.0 )&&(p->getJugador()==j)) {// si esta sin finalizar y es del jugador se agrega
                 noFinalizadas.push_back(p->getDataPartida());
                 
         }
@@ -244,7 +252,7 @@ vector<string> ControladorPartidas::darSinFinalizar(vector<string> videojuegos){
     	std::map<int, Partida*>::iterator itp;
     	for (itp = dicPartidas.begin(); itp != dicPartidas.end(); ++itp){
         	Partida* p = itp->second; // obtengo la partida actual
-        	if ((p->getDuracion()==NULL )&&(p->getVideojuego()==(*it))) {// si esta sin finalizar y es del jugador se agrega
+        	if ((p->getDuracion()==0.0 )&&(p->getVideojuego()==(*it))) {// si esta sin finalizar y es del jugador se agrega
             	devolver.push_back((*it));
         	}
     	}
@@ -253,7 +261,7 @@ vector<string> ControladorPartidas::darSinFinalizar(vector<string> videojuegos){
     	std::map<int, Partida*>::iterator itp;
     	for (itp = ControladorPartidas::dicPartidas.begin(); itp != ControladorPartidas::dicPartidas.end(); ++itp){
         	Partida *p = itp->second; // obtengo la partida actual
-        	if ((p->getDuracion()!=NULL )&&(p->getVideojuego()==(*it))) {// si esta sin finalizar y es del jugador se agrega
+        	if ((p->getDuracion()!=0.0 )&&(p->getVideojuego()==(*it))) {// si esta sin finalizar y es del jugador se agrega
             	devolver.erase((it));
         	}
     	}
@@ -266,7 +274,7 @@ bool ControladorPartidas::hayActivas(){
 	std::map<int, Partida*>::iterator itp;
     	for (itp = ControladorPartidas::dicPartidas.begin(); itp != dicPartidas.end(); ++itp){
         	Partida* p = itp->second; // obtengo la partida actual
-        	if (p->getDuracion()!=NULL ) {
+        	if (p->getDuracion()!=0.0 ) {
             	devolver=true;
         	}
     	}

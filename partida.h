@@ -12,7 +12,7 @@ class Partida {
 	protected:
 		int idPartida;
 		string duenio;
-		DtFechaHora *duracion;
+		float duracion;
 		DtFechaHora *FechaInicio;
 		string Videojuego;
 	public:
@@ -20,7 +20,7 @@ class Partida {
 	
 		//Setters
 		void setIdPartida(int id);
-		void setDuracion(DtFechaHora* dur);
+		void setDuracion(float dur);
 		void setFechaInicio(DtFechaHora *fechainicio);
 		void setVideoJuego(string juego);
 		void setJugador(string jugador);
@@ -28,9 +28,9 @@ class Partida {
 		int getPartida();
 		DtFechaHora* getFechaInicio();
 		string getVideojuego();
-		DtFechaHora* getDuracion();
+		float getDuracion();
 		string getJugador();
-		DtFechaHora *diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin);
+		float diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin);
 		//operaciones
 		virtual float darTotalDeHorasParticipantes() = 0;
 		virtual void terminarPartida() = 0;

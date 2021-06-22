@@ -73,7 +73,7 @@ vector<DtVideojuego> ControladorVideojuegos::solicitarVideojuegos() {
 //	return videojuegos;
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        float totHoras = 0.0;//= fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+        float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre()); //= 0.0
         DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
         dtVideojuegos.push_back(ret);
         //dtEstadisticas.insert(ret);

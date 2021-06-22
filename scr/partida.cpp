@@ -7,7 +7,7 @@ using namespace std;
 void Partida::setIdPartida(int id){
 	this->idPartida=id;
 }
-void Partida::setDuracion(DtFechaHora* dur){
+void Partida::setDuracion(float dur){
 	this->duracion=dur;
 }
 void Partida::setFechaInicio(DtFechaHora *fechainicio){
@@ -23,7 +23,7 @@ void Partida::setJugador(string jugador){
 int Partida::getPartida(){
 	return this->idPartida;
 }
-DtFechaHora* Partida::getDuracion(){
+float Partida::getDuracion(){
 	return this->duracion;
 }
 DtFechaHora* Partida::getFechaInicio(){
@@ -36,7 +36,7 @@ string Partida::getJugador(){
 	return this->duenio;
 }
 
-DtFechaHora *Partida::diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin){
+float Partida::diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin){
 		int anio=fechafin->getAnio() - fechaInicial->getAnio();
 		int mes=fechafin->getMes() - fechaInicial->getMes();
 		int dia=fechafin->getDia() - fechaInicial->getDia();
@@ -58,8 +58,9 @@ DtFechaHora *Partida::diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafi
 			anio=anio-1;
 			mes=12-abs(mes);
 		}
-		DtFechaHora *dur= new DtFechaHora(anio,mes,dia,hora,minuto);
-		return dur;
+		float horasDeJuego = (anio*12*30*24) + (mes*30*24) + (dia*24) + (hora) + minuto;
+
+		return horasDeJuego;
 		
 		
 }

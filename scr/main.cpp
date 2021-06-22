@@ -97,11 +97,15 @@ int main(int argc, char** argv) {
                 while (formatoEmailErroneo || !emailValido) {
                     cout << "Ingrese el email: " << endl;
                     cin >> email;
-                    if (email.find('@') == string::npos || email.find('.') == string::npos) {
-                        cout << "El formato del email debe ser example@email.ex" << endl;
-                    }else {
-                        formatoEmailErroneo = false;
-                    }
+					while (formatoEmailErroneo){
+						if (email.find('@') == string::npos || email.find('.') == string::npos) {
+							cout << "El formato del email debe ser example@email.ex" << endl;
+							cout << "Ingrese el email: " << endl;
+                    		cin >> email;
+						}else {
+							formatoEmailErroneo = false;
+						}
+					}
                     
                     cout << "Ingrese la contrasenia: " << endl;
                 	cin >> contra;
@@ -110,7 +114,7 @@ int main(int argc, char** argv) {
 	
                	 	
                     emailValido = ctrlUsuarios->registrarUsuario(email, contra);
-                	
+					
                 }
 
                 cout << "El usuario es desarrollador?" << endl << "1: Si" << endl << "2: No" << endl;
@@ -137,7 +141,7 @@ int main(int argc, char** argv) {
                         string nick = "", descripcion = "";
                         bool esValido = false;
                         while(!esValido) {
-                            cout << "Ingrese el nickname del jugador: " << endl;
+                            cout << "Ingrese el nickname del jugador: (sin espacios) " << endl;
                             cin >> nick;
                             
 							cout << "Ingrese una descripcion: " << endl;
@@ -154,7 +158,9 @@ int main(int argc, char** argv) {
                     default: {cout << "Ingrese una de las opciones listadas!" << endl;}
                 }
 
-                    ctrlUsuarios->confirmarAltaUsuario();
+				ctrlUsuarios->confirmarAltaUsuario();
+				system("clear");
+				cout << "---Usuario Registrado---" << endl;
                 
             } 
             break;
@@ -677,8 +683,8 @@ int main(int argc, char** argv) {
                     }
                 }else if (tipoUser == "d") {
                     int n = 9;
+					system("clear");
                     while (n != 8) {
-                    	system("clear");
                         cout << "1: Agregar categoria" << endl;
                         cout << "2: Publicar videojuego" << endl;
                         cout << "3: Eliminar videojuego" << endl;
@@ -731,7 +737,8 @@ int main(int argc, char** argv) {
                         	system("clear");
 							string nombre, descripcion, precioMes, precioTri, precioAnio, precioVit;
 							int n;
-							cout << "Cual es el nombre del videojuego?" << endl;
+							bool nombreBien = false;
+							cout << "Cual es el nombre del videojuego? (ingrese un nombre sin espacios por favor)" << endl;
 							cin >> nombre;
 							
 							cout << "Ingrese una descripcion:" << endl;
@@ -785,6 +792,7 @@ int main(int argc, char** argv) {
 								}
 							}
 							
+							cout << "--------------------" << endl;
 							ctrlVideojuegos->setearDatosVideojuego(nombre, descripcion, stof(precioMes), stof(precioTri), stof(precioAnio), stof(precioVit));
 							
 							vector<DtCategoria*> categorias = ctrlVideojuegos->solicitarCategorias();
@@ -795,7 +803,6 @@ int main(int argc, char** argv) {
 									cout << (*it)->getNombre() << endl;
 								}
 							}
-							
 							bool esValido = false;
 							string genero, plataforma;
 							cout << "Seleccione el genero principal del videojuego:" << endl;
@@ -816,6 +823,7 @@ int main(int argc, char** argv) {
 									cout << "Ingrese un genero valido!" << endl;
 								}
 							}
+							cout << "--------------------" << endl;
 							
 							ctrlVideojuegos->asignarGenero(gen);
 							
@@ -874,9 +882,40 @@ int main(int argc, char** argv) {
 									cout << "Ingrese una categoria valida!" << endl;
 								}
 							}
-							
 							ctrlVideojuegos->asignarCategorias(cats);
-							ctrlVideojuegos->publicarVideojuego();
+
+							vector<DtCategoria*>::iterator itn;
+							cout << "voy a listar las categorias:" << endl;
+							for (itn = categorias.begin(); itn != categorias.end(); itn++) {
+									cout << (*itn) << endl;
+							}
+							n = 0;
+							cout << "-----~~~~~*****///\\\\\\*****~~~~~-----" <<endl
+							<< "Datos:" << endl << "Nombre: " << nombre << endl
+							<< "Nombre: " << nombre << endl
+							<< "Descripcion: " << descripcion << endl
+							<< "-----Costo Suscripciones-----" << endl
+							<< "Suscripcion por 1 mes: " << precioMes << endl
+							<< "Suscripcion por 3 meses: " << precioTri << endl
+							<< "Suscripcion por 12 meses: " << precioAnio << endl
+							<< "Suscripcion vitalicia: " << precioVit << endl
+							<< "-----Categorias-----" << endl
+							<< &(*gen) << endl
+							<< &(*plat) << endl;
+							for (it = cats.begin(); it != cats.end(); it++){
+								cout << (*it) << endl;
+							}
+							cout << "Esta seguro de dar de alta al nuevo videojuego?" << endl
+							<< "1: Si" << endl << "2: Cancelar" << endl;
+							cin >> n;
+							if ( n == 1){
+								ctrlVideojuegos->publicarVideojuego();
+								system("clear");
+								cout << "***Videojuego ingresado***" << endl;
+							}else{
+								system("clear");
+								cout << "***Videojuego no ingresado***" << endl;
+							}
                         }
                         break;
                         case 3: {
@@ -1249,7 +1288,7 @@ int main(int argc, char** argv) {
 				/**************************************************************************/
 				
 				ctrlUsuarios->iniciarSesion("ea@mail.com", "123");
-				ctrlVideojuegos->setearDatosVideojuego("FIFA 21", "", 3, 8, 28, 50);
+				ctrlVideojuegos->setearDatosVideojuego("FIFA_21", "", 3, 8, 28, 50);
 				vector<DtCategoria*> categorias4 = ctrlVideojuegos->solicitarCategorias();	
 	//			vector<DtCategoria>::iterator it;
 				for (it = categorias4.begin(); it != categorias4.end(); it++) {

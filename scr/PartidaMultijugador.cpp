@@ -3,7 +3,7 @@
 PartidaMultijugador::PartidaMultijugador(int idPartida, string duenio, DtFechaHora* fechaInicio, string juego, bool transmitida, vector<string> jugUnidos) {
 	this->idPartida = idPartida;
 	this->duenio = duenio;
-	this->duracion = NULL;
+	this->duracion = 0.0;
 	this->FechaInicio = fechaInicio;
 	this->Videojuego = juego;
 	this->Transmitida = transmitida;

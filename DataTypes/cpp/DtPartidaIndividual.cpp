@@ -1,6 +1,6 @@
 #include "../DtPartidaIndividual.h"
 
-DtPartidaIndividual::DtPartidaIndividual(int idPartida, DtFechaHora *duracion, DtFechaHora *fechaInicio, string nickname, string videojuego, int partidaContinuada) { 
+DtPartidaIndividual::DtPartidaIndividual(int idPartida, float duracion, DtFechaHora *fechaInicio, string nickname, string videojuego, int partidaContinuada) { 
 	this->idPartida = idPartida; 
 	this->duracion = duracion; //no deberia de ser de tipo float?
     this->fechaInicio = fechaInicio;
@@ -17,8 +17,8 @@ ostream &operator<< (ostream &os, DtPartidaIndividual* pi) {
 	os << "----------------------------------------\n"
 	   << "---Partida Individual---" << endl
        << "Id: " << pi->getIdPartida() << "\n";
-       if (pi->getDuracion() != NULL) {
-       	    os << "Duracion: " <<  pi->getDuracion()->getDia() << "/" << pi->getDuracion()->getMes() << "/" << pi->getDuracion()->getAnio() << "\n";
+       if (pi->getDuracion() != 0.0) {
+       	    os << "Duracion: " <<  pi->getDuracion() << " horas\n";
 	   }
        os << "Fecha de inicio: " <<  pi->getFechaInicio()->getDia() << "/" << pi->getFechaInicio()->getMes() << "/" << pi->getFechaInicio()->getAnio() << "\n"
        << "Creador: " << pi->getNicknameCreador() << "\n"

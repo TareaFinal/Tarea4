@@ -3,7 +3,7 @@
 PartidaIndividual::PartidaIndividual(int idPartida, DtFechaHora *FechaInicio, string juego, string jugador) {
 	this->idPartida = idPartida;
 	this->duenio = jugador;
-	this->duracion = NULL;
+	this->duracion = 0.0;
 	this->FechaInicio = FechaInicio;
 	this->Videojuego = juego;
 	this->continuacion = NULL;
@@ -11,11 +11,11 @@ PartidaIndividual::PartidaIndividual(int idPartida, DtFechaHora *FechaInicio, st
 
 float PartidaIndividual::darTotalDeHorasParticipantes() {
 	
-	int anios  = this->duracion->getAnio();
-	int meses = this->duracion->getMes();
-	int dias = this->duracion->getDia();
-	int horas = this->duracion->getHora();
-	int minutos = this->duracion->getMinuto();
+	int anios  = this->FechaInicio->getAnio();
+	int meses = this->FechaInicio->getMes();
+	int dias = this->FechaInicio->getDia();
+	int horas = this->FechaInicio->getHora();
+	int minutos = this->FechaInicio->getMinuto();
 	
 	float horasDeJuego = (anios*12*30*24) + (meses*30*24) + (dias*24) + (horas) + minutos;
 	

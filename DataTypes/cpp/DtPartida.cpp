@@ -3,7 +3,7 @@
 int DtPartida::getIdPartida(){
     return this->idPartida;
 };
-DtFechaHora *DtPartida::getDuracion(){
+float DtPartida::getDuracion(){
     return this->duracion;
 };
 DtFechaHora *DtPartida::getFechaInicio(){
