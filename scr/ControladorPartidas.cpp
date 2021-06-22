@@ -19,10 +19,11 @@ float ControladorPartidas::darHorasDePartida(string videojuego) {
     std::map<int, Partida*>::iterator it;
     for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it){
         Partida*p = it->second;
-        cout << "Id: " << p->getPartida() << endl
+        /*cout << "Id: " << p->getPartida() << endl
         << "videojuego: " << p->getVideojuego() << endl
         << "Duracion: " << p->getDuracion() << endl
-        << "Duenio: " << p->getJugador() << endl;
+        << "Duenio: " << p->getJugador() << endl;*/
+        horas+=p->darTotalDeHorasParticipantes();
     }
  /*   if (this->dicPartidas.size() != 0){ // si hay partidas
 

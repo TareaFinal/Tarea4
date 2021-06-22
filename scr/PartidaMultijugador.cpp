@@ -34,7 +34,37 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
 	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it ) {
     		if (it->second != NULL) {
     			x = it->second;
-    			d = d + x->getAnio()*365*24 + x->getMes()*30*24 + x->getDia()*24 + x->getHora() + x->getMinuto()/60;
+				int anio=x->getAnio() - this->FechaInicio->getAnio();
+				int mes=x->getMes() - this->FechaInicio->getMes();
+				int dia=x->getDia() - this->FechaInicio->getDia();
+				int hora=x->getHora() - this->FechaInicio->getHora();
+				int minuto=x->getMinuto() - this->FechaInicio->getMinuto();
+				if (minuto<0){
+					hora=hora-1;
+					minuto=60-abs(minuto);
+				}
+				if (hora<0){
+					dia=dia-1;
+					hora=24-abs(hora);
+				}
+				if (dia<0){
+					mes=mes-1;
+					dia=30-abs(dia);
+				}
+				if (mes<0){
+					anio=anio-1;
+					mes=12-abs(mes);
+				}
+				cout << "tenemos una partida multijugador se inicio en "<< this->FechaInicio->getAnio() <<" años " << this->FechaInicio->getMes() << " meses " << this->FechaInicio->getDia()<< " dias "<< this->FechaInicio->getHora() << " horas y "<< this->FechaInicio->getMinuto()<< " mins " << endl;
+				cout << "tenemos una partida multijugador se fue en el año "<< x->getAnio() <<" al mes " << x->getMes() << " dia " << x->getDia()<< " hora "<< x->getHora() << " y minuto "<< x->getMinuto()<< endl;
+				
+				//cout << "tenemos una partida multijugador con alguien que la finalizo en "<< anio <<" años " << mes << " meses " << dia<< " dias "<< hora << " horas y "<< minuto<< " mins " << endl;
+				float horasDeJuego = (anio*12*30*24) + (mes*30*24) + (dia*24) + (hora) + minuto;
+				d = d + horasDeJuego;
+				//float f = Partida::diferencia(this->FechaInicio,x);
+				//d = f;
+				//cout << "para el juego "<< this->Videojuego <<" las horas ahora son: " << d << endl;
+    			//d = d + x->getAnio()*365*24 + x->getMes()*30*24 + x->getDia()*24 + x->getHora() + x->getMinuto()/60;
 			} //recorro el conjunto de jugadores y salidas para la suma de duraciones;
 	}
 	return d;

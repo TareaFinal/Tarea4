@@ -39,13 +39,13 @@ ostream &operator<< (ostream &os, DtVideojuego* vi) {
 	os 	<< "----------------------------------------\n"
 		<< "Titulo: " << vi->getNombre() << endl
 		<< "Empresa: " << vi->getEmpresa() << endl;
-		if (tipo == "d") {
+		//if (tipo == "d") {
 			os << "Puntaje promedio: " << vi->getPuntajePromedio() << endl;
-		}
+		//}
 		os << "Descripcion: " << vi->getDescripcion() << endl;
-		if (tipo == "d") {
+		//if (tipo == "d") {
 			os << "Total de horas jugadas: " << vi->getTotalDeHorasJugadas() << "\n";
-		}
+		//}
 
 	return os;
 }
