@@ -155,8 +155,23 @@ vector<DtEstadistica> ControladorVideojuegos::listarEstadisticas() {
 }
 
 
-bool ControladorVideojuegos::esTemporal(Suscripcion *s) {
-	return fab->getControladorUsuarios()->esTemporal(s);
+bool ControladorVideojuegos::esTemporal(string videojuego) { // precondicion el videojuego tiene una suscripcion, devuelve true si su suscripcion es temporal
+	vector<DtJugador> jugadores;
+	string tipo;
+	vector<Suscripcion*> suscripciones;
+	for (auto f : this->videojuegos) {
+        if (f->getNombre() == videojuego){
+            suscripciones=f->getSuscripciones();
+            break;
+        }
+    }
+	for (auto f : suscripciones) {
+	    Suscripcion *s = f;
+	    if (s->getJugador()->getEmail()==fab->getControladorUsuarios()->getUsuarioEnSesion()){
+	      	tipo = s->TipoSuscripcion();
+		}
+	}	
+    return (tipo=="temporal");	
 }
 
 Suscripcion *ControladorVideojuegos::ingresarNombre(string nombre) {
@@ -329,4 +344,24 @@ void ControladorVideojuegos::generarStats() {
 	this->estadisticas.insert(new Estadistica2(2, "Suscripciones", "Devuelve la cantidad de jugadores suscriptos a un determinado videojuego"));
 }
 
-
+void ControladorVideojuegos::cancelarSuscripcion(string nombreVideojuego){ // precondicion el videojuego tiene una suscripcion temporal del usurio n sesion
+	vector<DtJugador> jugadores;
+	vector<Suscripcion*> suscripciones;
+	for (auto f : this->videojuegos) {
+        if (f->getNombre() == nombreVideojuego){
+            suscripciones=f->getSuscripciones();
+            break;
+        }
+    }
+    for (auto f : suscripciones) {
+	    Suscripcion *s = f;
+        if (s->getJugador()->getEmail()==fab->getControladorUsuarios()->getUsuarioEnSesion()){
+			Temporal* st=dynamic_cast <Temporal*> (st);
+			if (st!=NULL) {
+				st->cancelar();
+			}else{
+				cout << "la suscripcion es vitalicia\n.";
+			}
+		}
+	}	
+}

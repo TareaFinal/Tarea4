@@ -32,7 +32,7 @@ class iControladorVideojuegos {
                 virtual vector<string> obtenerVideojuegosDesFinalizados() = 0;
                 virtual void confirmarEliminacion() = 0;
                 virtual bool ingreseNombreVideojuego(string nombreVideojuego) = 0;
-                virtual bool esTemporal(Suscripcion *s) = 0;
+                virtual bool esTemporal(string videojuego) = 0;
                 virtual Suscripcion *ingresarNombre(string nombre) = 0;
                 virtual void ingresarCategoria(string nombre, string tipo, string descripcion) = 0;
                 
@@ -55,6 +55,7 @@ class iControladorVideojuegos {
                 
                 virtual void generarStats() = 0;
                 virtual void seleccionarEstadisticas(vector<DtEstadistica> stats) = 0;
+                virtual void cancelarSuscripcion(string nombreVideojuego) = 0;
                 
                 
                 

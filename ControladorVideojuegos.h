@@ -46,7 +46,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 void eliminarVideojuego(string nombre);
                 void confirmarEliminacion();
                 bool ingreseNombreVideojuego(string nombreVideojuego);
-                bool esTemporal(Suscripcion *s);
+                bool esTemporal(string videojuego);
                 Suscripcion *ingresarNombre(string nombre);
                 void ingresarCategoria(string nombre, string tipo, string descripcion);
                 
@@ -74,6 +74,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 vector<DtVideojuego> solicitarVideojuegos();
                 vector<DtVideojuego> obtenerVideojuegosDes();
                 vector<string> obtenerVideojuegosDesFinalizados();
+                void cancelarSuscripcion(string nombreVideojuego);
 };
 
 

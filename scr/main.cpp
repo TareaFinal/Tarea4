@@ -197,6 +197,8 @@ int main(int argc, char** argv) {
                 cout << tipoUser << endl;
 
                 if (tipoUser == "j") {
+					system("clear");
+					cout << "---Sesion Iniciada---" << endl;
                     int n = 9;
                     while (n != 8) {
                         cout << "1: Suscribirse a videojuego" << endl;
@@ -684,6 +686,7 @@ int main(int argc, char** argv) {
                 }else if (tipoUser == "d") {
                     int n = 9;
 					system("clear");
+					cout << "---Sesion Iniciada---" << endl;
                     while (n != 8) {
                         cout << "1: Agregar categoria" << endl;
                         cout << "2: Publicar videojuego" << endl;
@@ -891,7 +894,7 @@ int main(int argc, char** argv) {
 							}
 							n = 0;
 							cout << "-----~~~~~*****///\\\\\\*****~~~~~-----" <<endl
-							<< "Datos:" << endl << "Nombre: " << nombre << endl
+							<< "Datos:" << endl
 							<< "Nombre: " << nombre << endl
 							<< "Descripcion: " << descripcion << endl
 							<< "-----Costo Suscripciones-----" << endl

@@ -55,8 +55,8 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
 					anio=anio-1;
 					mes=12-abs(mes);
 				}
-				cout << "tenemos una partida multijugador se inicio en "<< this->FechaInicio->getAnio() <<" años " << this->FechaInicio->getMes() << " meses " << this->FechaInicio->getDia()<< " dias "<< this->FechaInicio->getHora() << " horas y "<< this->FechaInicio->getMinuto()<< " mins " << endl;
-				cout << "tenemos una partida multijugador se fue en el año "<< x->getAnio() <<" al mes " << x->getMes() << " dia " << x->getDia()<< " hora "<< x->getHora() << " y minuto "<< x->getMinuto()<< endl;
+				//cout << "tenemos una partida multijugador se inicio en "<< this->FechaInicio->getAnio() <<" años " << this->FechaInicio->getMes() << " meses " << this->FechaInicio->getDia()<< " dias "<< this->FechaInicio->getHora() << " horas y "<< this->FechaInicio->getMinuto()<< " mins " << endl;
+				//cout << "tenemos una partida multijugador se fue en el año "<< x->getAnio() <<" al mes " << x->getMes() << " dia " << x->getDia()<< " hora "<< x->getHora() << " y minuto "<< x->getMinuto()<< endl;
 				
 				//cout << "tenemos una partida multijugador con alguien que la finalizo en "<< anio <<" años " << mes << " meses " << dia<< " dias "<< hora << " horas y "<< minuto<< " mins " << endl;
 				float horasDeJuego = (anio*12*30*24) + (mes*30*24) + (dia*24) + (hora) + minuto;
