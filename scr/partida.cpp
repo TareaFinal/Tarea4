@@ -37,7 +37,10 @@ string Partida::getJugador(){
 }
 
 float Partida::diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin){
-		int anio=fechafin->getAnio() - fechaInicial->getAnio();
+
+		int fin=fechafin->getAnio()*365*24 + fechafin->getMes()*30*24 + fechafin->getDia()*24 + fechafin->getHora() + fechafin->getMinuto()/60;
+		int inicio=fechaInicial->getAnio()*365*24 + fechaInicial->getMes()*30*24 + fechaInicial->getDia()*24 + fechaInicial->getHora() + fechaInicial->getMinuto()/60;
+		/*int anio=fechafin->getAnio() - fechaInicial->getAnio();
 		int mes=fechafin->getMes() - fechaInicial->getMes();
 		int dia=fechafin->getDia() - fechaInicial->getDia();
 		int hora=fechafin->getHora() - fechaInicial->getHora();
@@ -58,9 +61,10 @@ float Partida::diferencia(DtFechaHora *fechaInicial, DtFechaHora *fechafin){
 			anio=anio-1;
 			mes=12-abs(mes);
 		}
-		float horasDeJuego = (anio*12*30*24) + (mes*30*24) + (dia*24) + (hora) + minuto;
+		float horasDeJuego = (anio*12*30*24) + (mes*30*24) + (dia*24) + (hora) + minuto/60;
 
+		return horasDeJuego;*/
+		
+		float horasDeJuego = fin - inicio;
 		return horasDeJuego;
-		
-		
 }

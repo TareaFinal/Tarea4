@@ -11,7 +11,7 @@ PartidaIndividual::PartidaIndividual(int idPartida, DtFechaHora *FechaInicio, st
 
 float PartidaIndividual::darTotalDeHorasParticipantes() {
 	
-	int anios  = this->FechaInicio->getAnio();
+	/*int anios  = this->FechaInicio->getAnio();
 	int meses = this->FechaInicio->getMes();
 	int dias = this->FechaInicio->getDia();
 	int horas = this->FechaInicio->getHora();
@@ -19,7 +19,8 @@ float PartidaIndividual::darTotalDeHorasParticipantes() {
 	
 	float horasDeJuego = (anios*12*30*24) + (meses*30*24) + (dias*24) + (horas) + minutos;
 	
-	return horasDeJuego;
+	return horasDeJuego;*/
+	return this->duracion;
 }
 
 PartidaIndividual *PartidaIndividual::getContinuacion() {

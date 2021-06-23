@@ -56,6 +56,7 @@ class iControladorVideojuegos {
                 virtual void generarStats() = 0;
                 virtual void seleccionarEstadisticas(vector<DtEstadistica> stats) = 0;
                 virtual void cancelarSuscripcion(string nombreVideojuego) = 0;
+                virtual vector<DtVideojuego*> solicitarVideojuegosSuscripto() = 0;
                 
                 
                 

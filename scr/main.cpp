@@ -219,13 +219,32 @@ int main(int argc, char** argv) {
                         	system("clear");
                         	string tipo, metPago, nombreVideojuego = "";
                         	int validez;
-                           vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
-
-                           vector<DtVideojuego>::iterator it;
+                        	cout << "Videojuegos a los que NO está suscripto: " << endl;
+                           	vector<DtVideojuego> videojuegos = ctrlVideojuegos->solicitarVideojuegos();
+							vector<DtVideojuego*> videojuegosSuscripto = ctrlVideojuegos->solicitarVideojuegosSuscripto();
+							vector<DtVideojuego> videojuegosNoSus;
+                           	vector<DtVideojuego>::iterator it;
+                           	vector<DtVideojuego*>::iterator its;
+                           	bool imprime;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
-                                cout << &(*it) << endl;
+                            	imprime=true;
+                            	for (its = videojuegosSuscripto.begin(); its != videojuegosSuscripto.end(); its++) {
+                            		if ((*its)->getNombre()==it->getNombre()){
+										imprime=false;
+
+									}
+								}
+								if (imprime){
+									cout << &(*it) << endl;
+								}
                             }
 
+							//vector<DtVideojuego*>::iterator its;
+							cout << "Videojuegos a los que está suscripto: " << endl;
+                            //for (its = videojuegosSuscripto.begin(); its != videojuegosSuscripto.end(); it++) {
+							for (auto its : videojuegosSuscripto){
+                                cout << &(*its) << endl;
+                            }
                             bool nombreValido = false;
                             while (!nombreValido) {
                                 cout << "Ingrese el nombre del videojuego al que quiere suscribirse: " << endl;
@@ -238,67 +257,117 @@ int main(int argc, char** argv) {
                                         break;
                                     }
                                 }
+                                
                             }
+                            bool finalizar=false;    
+                            bool suscripto=false;
+							
+							//vector<DtVideojuego*>::iterator it;
+                            //for (it = videojuegosSuscripto.begin(); it != videojuegosSuscripto.end(); it++) {
+							for (auto it : videojuegosSuscripto) {
+                                if ((*it).getNombre() == nombreVideojuego) {
+                                    suscripto = true;
+                                    break;
+                                }
+                            }
+							
+							if (suscripto){
+								if (ctrlVideojuegos->esTemporal(nombreVideojuego)){
+									cout << "Usted tiene una sucripcion temporal para este videojuego, para cancelarla digite 1, para salir digite 2 "<< endl;
+									string x = "";
+									cin >> x;
+									isNumber(x) ? n = stoi(x) : n = 2;
+									bool termine = true;
+									while (termine){
+										switch (n) {
+											case 1: {  
+												ctrlVideojuegos->cancelarSuscripcion(nombreVideojuego);
+												finalizar = true;
+												termine = false;
+												system("clear");
+												cout << "Sucripcion cancelada." << endl;
+												break;
+											}
+											case 2: {  
+												finalizar = true;
+												termine = false;
+												break;
+											}
+											default:
+											cout << "Ingrese un numero valido" << endl;
+										}
+									}
+								}
+								else{
+									system("clear");
+									cout << "Usted tiene una sucripcion vitalicia para este juego. "<< endl;
+									finalizar = true;
+								}
+							}
+							//else{
+							//	finalizar=true;
+							//}
 
-							while (true) {
-								cout << "Ingrese el tipo de suscripcion: " << endl << "1: Vitalicia" << endl << "2: Temporal" << endl;
-                            	string x = "";
-                            	cin >> x;
-
-                            	isNumber(x) ? n = stoi(x) : n = 3;
-                            	if (n == 1) {
-									tipo = "vitalicia";
-									break;
-								}else if (n == 2) {
-									tipo = "temporal";
+							if (!finalizar){
+							
+								while (true) {
+									cout << "Ingrese el tipo de suscripcion: " << endl << "1: Vitalicia" << endl << "2: Temporal" << endl;
+	                            	string x = "";
+	                            	cin >> x;
+	
+	                            	isNumber(x) ? n = stoi(x) : n = 3;
+	                            	if (n == 1) {
+										tipo = "vitalicia";
+										//break;
+									}else if (n == 2) {
+										tipo = "temporal";
+										while (true) {
+											cout << "Seleccione la duracion de la suscripcion: " << endl << "1: Un mes" << endl << "2: Tres meses" << endl << "3: Un Anio" << endl;
+	                            			cin >> x;	
+	                            			
+	                            			isNumber(x) ? n = stoi(x) : n = 4;
+	                            			if (n == 1) {
+	                            				validez = 1;
+	                            				break;
+											}else if (n == 2) {
+												validez = 2;
+												break;
+											}else if (n == 3) {
+												validez = 3;
+												break;
+											}else {
+												cout << "Ingrese una opcion valida!" << endl;
+											}
+										}
+									}else {
+										cout << "Ingrese una opcion valida!" << endl;
+									}
 									while (true) {
-										cout << "Seleccione la duracion de la suscripcion: " << endl << "1: Un mes" << endl << "2: Tres meses" << endl << "3: Un Anio" << endl;
-                            			cin >> x;	
-                            			
-                            			isNumber(x) ? n = stoi(x) : n = 4;
-                            			if (n == 1) {
-                            				validez = 1;
-                            				break;
-										}else if (n == 2) {
-											validez = 2;
+										cout << "Ingrese el metodo de pago: " << endl << "1: Tarejeta de credito" << endl << "2: Paypal" << endl; 
+										cin >> x;
+		
+										isNumber(x) ? n = stoi(x) : n = 3;
+										if (n == 1) {
+											metPago = "tarjeta";
 											break;
-										}else if (n == 3) {
-											validez = 3;
+										}else if (n == 2) {
+											metPago = "paypal";
 											break;
 										}else {
 											cout << "Ingrese una opcion valida!" << endl;
 										}
 									}
+	
+									ctrlVideojuegos->altaSuscripcion(nombreVideojuego, tipo, metPago, validez);
+								
+									system("clear");
+								
+									cout << "Suscripcion registrada correctamente." << endl;
+									cout << "\n";
 									break;
-								}else {
-									cout << "Ingrese una opcion valida!" << endl;
 								}
 							}
-                            
-                            while (true) {
-                            	cout << "Ingrese el metodo de pago: " << endl << "1: Tarejeta de credito" << endl << "2: Paypal" << endl; 
-                            	cin >> x;
-
-                            	isNumber(x) ? n = stoi(x) : n = 3;
-                            	if (n == 1) {
-									metPago = "tarjeta";
-									break;
-								}else if (n == 2) {
-									metPago = "paypal";
-									break;
-								}else {
-									cout << "Ingrese una opcion valida!" << endl;
-								}
-							}
-
-                           ctrlVideojuegos->altaSuscripcion(nombreVideojuego, tipo, metPago, validez);
-                           
-                           system("clear");
-                           
-                           cout << "Suscripcion registrada correctamente." << endl;
-                           cout << "\n";
-                           
-                        }
+						}
                         break;
                         case 2: {
                         	system("clear");
@@ -716,7 +785,7 @@ int main(int argc, char** argv) {
 		                	cout << "Ingrese la descripcion de la categoria:" << endl;
 		                	cin >> desc;
 		                	
-		                	cout << "Ingrese el tipo de la categoria:" << endl;
+		                	cout << "Ingrese el tipo de la categoria: (Tipos: genero, plataforma, otro)" << endl;
 		                	cin >> tipo;
 		                	
 		                	cout << "Nombre: " << nombre << endl << "Descripcion: " << desc << endl << "Tipo: " << tipo << endl;
@@ -1480,8 +1549,7 @@ int main(int argc, char** argv) {
 				ctrlPartidas->iniciarPartida();
 				
 				system("clear");
-				cout << "Datos ingresados correctamente\n" << endl;
-				cout << "\n";
+				cout << "Datos ingresados correctamente." << endl;
 			}
             break;
             case 0: {n = 0;}

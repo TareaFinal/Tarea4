@@ -36,7 +36,7 @@ class Videojuego {
 	public:
 		typedef map<int, float> map_type;
 		
-		Videojuego(string n, string d, Desarrollador *desarrollador, vector<Categoria*> categorias, const map_type = map_type());
+		Videojuego(string n, string d, Desarrollador *desarrollador, vector<Categoria*> categorias, map<int,float> costo);
 		
 		string getNombre();
 		string getDescripcion();

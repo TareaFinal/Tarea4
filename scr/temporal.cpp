@@ -70,7 +70,7 @@ bool Temporal::activa() {
 		valida = true;
 	}
 	else {
-		valida = true;
+		valida = false;
 	}
 	return (!this->cancelada && valida);
 }

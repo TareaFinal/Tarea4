@@ -73,8 +73,9 @@ vector<DtVideojuego> ControladorVideojuegos::solicitarVideojuegos() {
 //	return videojuegos;
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre()); //= 0.0
-        DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
+    	Videojuego* v = f;
+        float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+        DtVideojuego ret = DtVideojuego(v->getNombre(), v->getDescripcion(), v->calcularPuntajePromedio(), totHoras, v->getDesarrollador()->getEmpresa(), v->getCostos());
         dtVideojuegos.push_back(ret);
         //dtEstadisticas.insert(ret);
         }
@@ -85,8 +86,8 @@ vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegosDes() {
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
         if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
-            float totHoras = 0.0; //fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
+            float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa(), f->getCostos());
             dtVideojuegos.push_back(ret);
         }
     }
@@ -98,8 +99,8 @@ vector<string> ControladorVideojuegos::obtenerVideojuegosDesFinalizados() {
 	vector<string> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
         if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
-            float totHoras = 0.0; //fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa());
+            float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa(), f->getCostos());
             dtVideojuegos.push_back(f->getNombre());
         }
     }
@@ -258,9 +259,9 @@ bool ControladorVideojuegos::altaSuscripcion(string videojuego, string tipo, str
 bool ControladorVideojuegos::asignarPuntajeAVideojuego(string nomVideojuego, int puntaje) {
     bool ret = false;
     for (auto f : ControladorVideojuegos::videojuegos) {
-        Videojuego v = *f;
-        if (v.getNombre() == nomVideojuego){
-            v.agregarPuntaje(puntaje);
+        Videojuego *v = f;
+        if (v->getNombre() == nomVideojuego){
+            v->agregarPuntaje(puntaje);
             ret = true;
             break;
         }
@@ -280,10 +281,9 @@ void ControladorVideojuegos::publicarVideojuego(){
     vector<Categoria*> c;
 
     for (auto f : this->categoriasVideojuego) {
-            for (auto f : ControladorVideojuegos::categorias) {
-                Categoria *cate = f;
-                if (cate->getNombre() == f->getNombre() && cate->getTipo() == f->getTipo()){
-                    c.push_back(cate);
+            for (auto j : ControladorVideojuegos::categorias) {
+                if (j->getNombre() == f->getNombre() && j->getTipo() == f->getTipo()){
+                    c.push_back(j);
                 }
             }
     }
@@ -291,6 +291,7 @@ void ControladorVideojuegos::publicarVideojuego(){
     //catVideojuego
     Videojuego* newV = new Videojuego(this->nombreVideojuego, this->descripcionVideojuego, nomDesarrolladorEnSesion, c, mapaCostos);
     ControladorVideojuegos::videojuegos.insert(newV);
+    this->categoriasVideojuego.clear();
 }
 
 void ControladorVideojuegos::setearDatosVideojuego(string nombre, string descripcion, float precioMes, float precioTri, float precioAnio, float precioVit) {
@@ -347,21 +348,30 @@ void ControladorVideojuegos::generarStats() {
 void ControladorVideojuegos::cancelarSuscripcion(string nombreVideojuego){ // precondicion el videojuego tiene una suscripcion temporal del usurio n sesion
 	vector<DtJugador> jugadores;
 	vector<Suscripcion*> suscripciones;
+    Videojuego* v;
 	for (auto f : this->videojuegos) {
         if (f->getNombre() == nombreVideojuego){
             suscripciones=f->getSuscripciones();
+            v= f;
             break;
         }
     }
     for (auto f : suscripciones) {
 	    Suscripcion *s = f;
-        if (s->getJugador()->getEmail()==fab->getControladorUsuarios()->getUsuarioEnSesion()){
-			Temporal* st=dynamic_cast <Temporal*> (st);
+        if (s != NULL && s->getJugador()->getNick() == fab->getControladorUsuarios()->getNickJugadorEnSesion()){
+			Temporal* st=dynamic_cast <Temporal*> (s);
 			if (st!=NULL) {
 				st->cancelar();
+                s->getJugador()->desvincularSub(v);
+                break;
 			}else{
 				cout << "la suscripcion es vitalicia\n.";
 			}
 		}
 	}	
+}
+
+vector<DtVideojuego*> ControladorVideojuegos::solicitarVideojuegosSuscripto(){ // devuelve un vector con los DtVideojuegos a los que está suscripto el jugador en sesion
+	Usuario* usuarioEnSistema= fab->getControladorUsuarios()->getUsuarioEnSistema(); //toma el usuario en sistema.
+	return fab->getControladorUsuarios()->obtenerVideojuegosJugador(usuarioEnSistema->getEmail());
 }

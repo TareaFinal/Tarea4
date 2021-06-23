@@ -33,12 +33,12 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
 	DtFechaHora *x;
 	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it ) {
     		if (it->second != NULL) {
-    			x = it->second;
-				int anio=x->getAnio() - this->FechaInicio->getAnio();
-				int mes=x->getMes() - this->FechaInicio->getMes();
-				int dia=x->getDia() - this->FechaInicio->getDia();
-				int hora=x->getHora() - this->FechaInicio->getHora();
-				int minuto=x->getMinuto() - this->FechaInicio->getMinuto();
+    			x = it->second;/*
+				int anio 	= x->getAnio() - this->FechaInicio->getAnio();
+				int mes 	= x->getMes() - this->FechaInicio->getMes();
+				int dia 	= x->getDia() - this->FechaInicio->getDia();
+				int hora 	= x->getHora() - this->FechaInicio->getHora();
+				int minuto 	= x->getMinuto() - this->FechaInicio->getMinuto();
 				if (minuto<0){
 					hora=hora-1;
 					minuto=60-abs(minuto);
@@ -54,12 +54,10 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
 				if (mes<0){
 					anio=anio-1;
 					mes=12-abs(mes);
-				}
-				//cout << "tenemos una partida multijugador se inicio en "<< this->FechaInicio->getAnio() <<" años " << this->FechaInicio->getMes() << " meses " << this->FechaInicio->getDia()<< " dias "<< this->FechaInicio->getHora() << " horas y "<< this->FechaInicio->getMinuto()<< " mins " << endl;
-				//cout << "tenemos una partida multijugador se fue en el año "<< x->getAnio() <<" al mes " << x->getMes() << " dia " << x->getDia()<< " hora "<< x->getHora() << " y minuto "<< x->getMinuto()<< endl;
-				
-				//cout << "tenemos una partida multijugador con alguien que la finalizo en "<< anio <<" años " << mes << " meses " << dia<< " dias "<< hora << " horas y "<< minuto<< " mins " << endl;
-				float horasDeJuego = (anio*12*30*24) + (mes*30*24) + (dia*24) + (hora) + minuto;
+				}*/
+
+				float horasDeJuego = this->diferencia(this->FechaInicio, x);
+
 				d = d + horasDeJuego;
 				//float f = Partida::diferencia(this->FechaInicio,x);
 				//d = f;

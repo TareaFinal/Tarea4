@@ -45,7 +45,7 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
         if (pm->getDuracion() != 0.0) {
         	os << "Duracion: " <<  pm->getDuracion() << " horas\n";
     	}
-       os << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << " Esto es un DtFechahora, ojo!!!\n"
+       os << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << endl
        << "Creador: " << pm->getNicknameCreador() << "\n"
        << "Videojuego: " << pm->getVideojuego() << "\n"
        << "Es transmitida en vivo: ";

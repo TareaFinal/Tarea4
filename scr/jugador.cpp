@@ -1,4 +1,5 @@
 #include "../jugador.h"
+#include "../temporal.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -69,9 +70,16 @@ vector <DtVideojuego*> Jugador::videojuegosSuscripto() {
 	map<string, Suscripcion*>::iterator it;
 	for (it = this->colSuscripciones.begin(); it != this->colSuscripciones.end(); it++) 
 	{
-		if ((it->second)->activa() ){
-			DtVideojuego* dataVideojuego = (((it->second)->getVideojuego())->getDataVideojuego());
-			colDtVideojuego.push_back(dataVideojuego);
+		if ((it->second)->activa()){
+			string tiposus = it->second->TipoSuscripcion();
+			Temporal* st=dynamic_cast <Temporal*> (it->second);
+			if (st != NULL && st->getCancelada() == false){
+				DtVideojuego* dataVideojuego = (((it->second)->getVideojuego())->getDataVideojuego());
+				colDtVideojuego.push_back(dataVideojuego);
+			}else if(tiposus == "vitalicia"){
+				DtVideojuego* dataVideojuego = (((it->second)->getVideojuego())->getDataVideojuego());
+				colDtVideojuego.push_back(dataVideojuego);
+			}
 		}
 	}
 	return colDtVideojuego;

@@ -75,6 +75,7 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 vector<DtVideojuego> obtenerVideojuegosDes();
                 vector<string> obtenerVideojuegosDesFinalizados();
                 void cancelarSuscripcion(string nombreVideojuego);
+                vector<DtVideojuego*> solicitarVideojuegosSuscripto();
 };
 
 
