@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
                     cout << "Ingrese la contrasenia: " << endl;
                 	cin >> contra;
 
-                	cout << "Email: " << email << endl << "Contra: " << contra << endl;
+                	//cout << "Email: " << email << endl << "Contra: " << contra << endl;
 	
                	 	
                     emailValido = ctrlUsuarios->registrarUsuario(email, contra);
@@ -122,12 +122,13 @@ int main(int argc, char** argv) {
                 int n;
                 string x = "";
                 cin >> x;
+				string empresa = "Autonomo";
+				string nick = "", descripcion = "";
 
                 isNumber(x) ? n = stoi(x) : n = 4;
                 switch(n) {
                     case 1: {
                     	system("clear");
-                        string empresa = "Autonomo";
                         cout << "Ingresa la empresa: " << endl;
                         cin >> empresa;
 
@@ -138,7 +139,6 @@ int main(int argc, char** argv) {
                     break;
                     case 2: {
                     	system("clear");
-                        string nick = "", descripcion = "";
                         bool esValido = false;
                         while(!esValido) {
                             cout << "Ingrese el nickname del jugador: (sin espacios) " << endl;
@@ -158,9 +158,27 @@ int main(int argc, char** argv) {
                     default: {cout << "Ingrese una de las opciones listadas!" << endl;}
                 }
 
-				ctrlUsuarios->confirmarAltaUsuario();
+				string confirmar="";
 				system("clear");
-				cout << "---Usuario Registrado---" << endl;
+				cout << "-----~~~~~*****///\\\\\\*****~~~~~-----" << endl;
+				cout << "Datos:" << endl;
+                cout << "Email: "<< email << endl;
+				if(empresa == "Autonomo"){
+					cout << "Nickname: "<< nick << endl;
+					cout << "Descripcion: " << descripcion << endl;
+				}else{
+					cout << "Empresa: "<< empresa << endl;
+				}
+				cout << "Desea confirmar los datos?" << endl << "1: Si" << endl << "2: No" << endl << "-------------------" << endl;
+				cin >>confirmar;
+				if (confirmar=="1")	{ 
+					ctrlUsuarios->confirmarAltaUsuario();
+					system("clear");
+					cout << "---Usuario Registrado---" << endl;
+            	}else{
+            		system("clear");
+					cout << "---Usuario no Registrado---" << endl;
+				}
                 
             } 
             break;
@@ -273,7 +291,7 @@ int main(int argc, char** argv) {
 							
 							if (suscripto){
 								if (ctrlVideojuegos->esTemporal(nombreVideojuego)){
-									cout << "Usted tiene una sucripcion temporal para este videojuego, para cancelarla digite 1, para salir digite 2 "<< endl;
+									cout << "Usted tiene una sucripcion temporal para este videojuego. " << endl << "1: Cancelar la suscripcion. " << endl <<"2: Salir. "<< endl;
 									string x = "";
 									cin >> x;
 									isNumber(x) ? n = stoi(x) : n = 2;
@@ -418,9 +436,9 @@ int main(int argc, char** argv) {
                         	system("clear");
                         	int n;
         					string emailUsuario = ctrlUsuarios->getUsuarioEnSesion();  
-        					cout << emailUsuario << endl;
+        					//cout << emailUsuario << endl;
 							vector<DtVideojuego*> videojuegos = ctrlUsuarios->obtenerVideojuegosJugador(emailUsuario);
-			
+							cout << "Videojuegos a los que esta suscrito: " << endl;
 	                        vector<DtVideojuego*>::iterator it;
                             for (it = videojuegos.begin(); it != videojuegos.end(); it++) {
                                 cout << (*it)->getNombre() << endl;
@@ -443,7 +461,7 @@ int main(int argc, char** argv) {
                             
                             ctrlPartidas->SeleccionarVideojuego(nombreVideojuego);
 							 
-                            cout << "Desea continuar una partida o iniciar una nueva?" << endl << "1: Continuar" << "2: Iniciar nueva partida" << endl;
+                            cout << "Desea continuar una partida o iniciar una nueva?" << endl << "1: Continuar" << endl << "2: Iniciar nueva partida" << endl;
                             string x = "";
                             
                             while (true) {
@@ -597,6 +615,8 @@ int main(int argc, char** argv) {
 							}
 							
 							ctrlPartidas->AbandonarPartidaActiva(n);
+							system("clear");
+							cout << "Partida abandonada." << endl;
                         }
                         break;
                         case 5: {
@@ -649,7 +669,7 @@ int main(int argc, char** argv) {
                             bool nombreValido = false;
                             string nombreVideojuego = "";
                             while (!nombreValido) {
-                                cout << endl << "Ingrese el nombre del videojuego que quiere consultar: " << endl << endl;
+                                cout << endl << "Ingrese el nombre del videojuego que quiere consultar: " << endl;
                                 cin >> nombreVideojuego;
 
                                 vector<DtVideojuego>::iterator it;
