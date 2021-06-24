@@ -79,6 +79,8 @@ int main(int argc, char** argv) {
 	*/
     
     int n = 4;
+	system("clear");
+	cout << "--- Tarea 4 - Programacion 4 ---" << endl;
     while (n != 0) {
         cout << "1: Alta de usuario" << endl;
         cout << "2: Iniciar sesion" << endl;
@@ -178,8 +180,8 @@ int main(int argc, char** argv) {
             	}else{
             		system("clear");
 					cout << "---Usuario no Registrado---" << endl;
-				}
-                
+				}                
+
             } 
             break;
             case 2: {
@@ -684,7 +686,7 @@ int main(int argc, char** argv) {
                         }
                         break;
                         case 7: {
-                        	if (ctrlPartidas->hayActivas()) {
+                        	if (false){//ctrlPartidas->hayActivas()) {
                         		cout << "No se puede cambiar la fecha del sistema mientras hay partidas activas!" << endl;
 							}else {
 								system("clear");
@@ -1332,6 +1334,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->asignarPlataforma(plat);
 				ctrlVideojuegos->asignarCategorias(cats);
 				ctrlVideojuegos->publicarVideojuego();
+				cats.clear();
 				
 				/**************************************************************************/
 				
@@ -1354,6 +1357,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->asignarPlataforma(plat);
 				ctrlVideojuegos->asignarCategorias(cats);
 				ctrlVideojuegos->publicarVideojuego();
+				cats.clear();
 				
 				/**************************************************************************/
 				
@@ -1376,6 +1380,7 @@ int main(int argc, char** argv) {
 				ctrlVideojuegos->asignarPlataforma(plat);
 				ctrlVideojuegos->asignarCategorias(cats);
 				ctrlVideojuegos->publicarVideojuego();
+				cats.clear();
 				
 				/**************************************************************************/
 				
@@ -1403,11 +1408,11 @@ int main(int argc, char** argv) {
 				//Ingreso de suscripciones
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 1, 9, 0));
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 3);
+				ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 2);
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 11, 0));
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "tarjeta", 3);
+				ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "tarjeta", 2);
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 4, 9, 0));
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
@@ -1415,7 +1420,7 @@ int main(int argc, char** argv) {
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 11, 9, 0));
 				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Minecraft", "temporal", "tarjeta", 12);
+				ctrlVideojuegos->altaSuscripcion("Minecraft", "temporal", "tarjeta", 3);
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 7, 0));
 				ctrlUsuarios->iniciarSesion("ibai@mail.com", "123");
@@ -1423,7 +1428,7 @@ int main(int argc, char** argv) {
 				
 				ctrlUsuarios->setFechaSistema(new DtFechaHora(2020, 12, 21, 15, 0));
 				ctrlUsuarios->iniciarSesion("ibai@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Minecraft", "temporal", "tarjeta", 0);
+				ctrlVideojuegos->altaSuscripcion("Minecraft", "vitalicia", "tarjeta", 0);
 				
 				//Ingreso de puntajes
 				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");

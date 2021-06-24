@@ -11,10 +11,10 @@ Temporal::Temporal(string metpago, DtFechaHora *fechahoy, float val, Jugador* Pl
 	this->_videojuego = Vj;
 	this->cancelada = false;
 		
-	if (tipo == 12){
+	if (tipo == 3){
 		this->validez = new DtFechaHora(fechahoy->getAnio()+1, fechahoy->getMes(), fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 	}
-	else if (tipo == 6) {
+	else if (tipo == 2) {
 		if (fechahoy->getMes() <= 6) {
 			validez = new DtFechaHora(fechahoy->getAnio(), fechahoy->getMes()+6, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}

@@ -2,7 +2,7 @@
 #include "../../fabrica.h"
 #include "../../IControladorUsuarios.h"
 
-DtVideojuego::DtVideojuego(string nombre, string descripcion, float puntajePromedio, float totalDeHorasJugadas, string empresa, map<int,float> costos){
+DtVideojuego::DtVideojuego(string nombre, string descripcion, float puntajePromedio, float totalDeHorasJugadas, string empresa, map<int,float> costos, vector<string> cats){
 
     this->nombre = nombre;
     this->descripcion = descripcion;
@@ -17,6 +17,7 @@ DtVideojuego::DtVideojuego(string nombre, string descripcion, float puntajeProme
 	this->costoAnual=iter->second;
 	iter = costos.find(0);
 	this->costoVitalicio=iter->second;
+	this->cats = cats;
 };
 
 string DtVideojuego::getNombre(){
@@ -55,7 +56,9 @@ float DtVideojuego::getCostoVitalicio(){
 	return this->costoVitalicio;
 };
 
-
+vector<string> DtVideojuego::getStringCats(){
+	return this->cats;
+}
 //vector<DtCategoria> DtVideojuego::getDtCategorias(){
 //	return this->datacategorias;
 //}
@@ -64,7 +67,8 @@ ostream &operator<< (ostream &os, DtVideojuego* vi) {
 	Fabrica* fabrica = Fabrica::getInstancia();
 	iControladorUsuarios *ctrlUsuarios = fabrica->getControladorUsuarios();
 	string tipo = ctrlUsuarios->getTipoUsuario();
-	
+	vector<string> categorias = vi->getStringCats();
+
 	os 	<< "----------------------------------------\n"
 		<< "Titulo: " << vi->getNombre() << endl
 		<< "Empresa: " << vi->getEmpresa() << endl
@@ -74,9 +78,14 @@ ostream &operator<< (ostream &os, DtVideojuego* vi) {
 		<< "Costo anual: " << vi->getCostoAnual() << endl
 		<< "Costo vitalicio: " << vi->getCostoVitalicio() << endl
 		<< "Descripcion: " << vi->getDescripcion() << endl;
+
 		if (tipo == "d") {
 			os << "Total de horas jugadas: " << vi->getTotalDeHorasJugadas() << "\n";
-		}		
+		}
+		os << "Categorias: " << endl;
+		for (auto c : categorias){
+			os << c << endl;
+		}
 
 		os << endl;
 

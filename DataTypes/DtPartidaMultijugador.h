@@ -18,7 +18,7 @@ class DtPartidaMultijugador : public DtPartida {
 		vector<DtComentario*> comentarios;
 	public:	
 		typedef map<string, DtFechaHora*> map_type;
-		DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, const map_type& = map_type());
+		DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, map<string, DtFechaHora*> conjuntoSalidas);
 
         //getters
 		bool getTransmitida();

@@ -18,9 +18,10 @@ class DtVideojuego {
         string empresa;
         float costoMensual, costoTrimestral, costoAnual, costoVitalicio;
 		vector<DtCategoria> datacategorias;
+		vector<string> cats;
 		
 	public:
-		DtVideojuego(string nombre, string descripcion, float puntajePromedio, float totalDeHorasJugadas, string empresa, map<int,float> costos);
+		DtVideojuego(string nombre, string descripcion, float puntajePromedio, float totalDeHorasJugadas, string empresa, map<int,float> costos, vector<string> cats);
 
         //getters
         
@@ -34,7 +35,7 @@ class DtVideojuego {
         float getPuntajePromedio();
         float getTotalDeHorasJugadas();
         string getEmpresa();
-
+		vector<string> getStringCats();
 		friend ostream &operator<< (ostream &os, DtVideojuego* vi);
 
 };

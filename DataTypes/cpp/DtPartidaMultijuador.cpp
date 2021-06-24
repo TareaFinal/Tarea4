@@ -1,13 +1,13 @@
 #include "../DtPartidaMultijugador.h"
 
-DtPartidaMultijugador::DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, const map_type&) {
+DtPartidaMultijugador::DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, map<string, DtFechaHora*> conjuntoSalidas) {
     this->idPartida = idPartida;
 	this->duracion = duracion;
     this->fechaInicio = fechaInicio;
     this->nicknameCreador = creador;
     this->videojuego = videojuego;
     this->transmitida = transmitida;
-    this->conjuntoSalidas = map_type();
+    this->conjuntoSalidas = conjuntoSalidas;
     this->comentarios = comentarios;
 };
 bool DtPartidaMultijugador::getTransmitida(){
@@ -55,20 +55,24 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
 	else 
    		os	<< "No\n";
 
-	os  << "Nickname Jugadores unidos: \n"
-		<< "Falta recorrer este set"
-		<< "\n"
-		<< "\n"
-		<< "De los cuales siguen activos: "
-		<< "Falta recorrer este set"
-		<< "\n"
-		<< "\n"
-		<< "Comentarios: "
+	set<string> unidos = pm->getNicknameJugadoresUnidos();
+	os << "pase los unidos" << endl;
+	set<string> activos = pm->getNicknameJugadoresActivos();
+
+	os  << "Nickname Jugadores unidos:" << endl;
+		for(auto it : unidos){
+			os  << it << endl;
+		};
+	os	<< "De los cuales siguen activos: " << endl;
+		for(auto it : unidos){
+			os  << it << endl;
+		};
+	os	<< "Comentarios: " << endl
 		<< "Falta recorrer este vector"
 		<< "\n"
 		<< "\n";
 	   
 	return os;
 	   
-	return os;
+	//return os;
 };

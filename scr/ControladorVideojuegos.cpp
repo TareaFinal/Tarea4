@@ -75,7 +75,11 @@ vector<DtVideojuego> ControladorVideojuegos::solicitarVideojuegos() {
     for (auto f : ControladorVideojuegos::videojuegos) {
     	Videojuego* v = f;
         float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-        DtVideojuego ret = DtVideojuego(v->getNombre(), v->getDescripcion(), v->calcularPuntajePromedio(), totHoras, v->getDesarrollador()->getEmpresa(), v->getCostos());
+        vector<string> cats;
+        for (auto c : f->getCategorias()){
+            cats.push_back(c->getNombre());
+        }
+        DtVideojuego ret = DtVideojuego(v->getNombre(), v->getDescripcion(), v->calcularPuntajePromedio(), totHoras, v->getDesarrollador()->getEmpresa(), v->getCostos(), cats);
         dtVideojuegos.push_back(ret);
         //dtEstadisticas.insert(ret);
         }
@@ -87,7 +91,11 @@ vector<DtVideojuego> ControladorVideojuegos::obtenerVideojuegosDes() {
     for (auto f : ControladorVideojuegos::videojuegos) {
         if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
             float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa(), f->getCostos());
+            vector<string> cats;
+            for (auto c : f->getCategorias()){
+                cats.push_back(c->getNombre());
+            }
+            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa(), f->getCostos(), cats);
             dtVideojuegos.push_back(ret);
         }
     }
@@ -100,7 +108,11 @@ vector<string> ControladorVideojuegos::obtenerVideojuegosDesFinalizados() {
     for (auto f : ControladorVideojuegos::videojuegos) {
         if(f->getDesarrollador()->getEmail() == fab->getControladorUsuarios()->getUsuarioEnSesion()){
             float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
-            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa(), f->getCostos());
+            vector<string> cats;
+            for (auto c : f->getCategorias()){
+                cats.push_back(c->getNombre());
+            }
+            DtVideojuego ret = DtVideojuego(f->getNombre(), f->getDescripcion(), f->calcularPuntajePromedio(), totHoras, f->getDesarrollador()->getEmpresa(), f->getCostos(), cats);
             dtVideojuegos.push_back(f->getNombre());
         }
     }
@@ -284,14 +296,19 @@ void ControladorVideojuegos::publicarVideojuego(){
             for (auto j : ControladorVideojuegos::categorias) {
                 if (j->getNombre() == f->getNombre() && j->getTipo() == f->getTipo()){
                     c.push_back(j);
+                    cout << j->getNombre() << endl;
                 }
             }
     }
-
+    //cout << "tengo " << i << " categorias" << endl;
+    for (auto f : this->categoriasVideojuego){
+        //cout << j->getNombre() << endl;
+    };
+    this->categoriasVideojuego.clear();
+    this->categoriasVideojuego.reserve(0);
     //catVideojuego
     Videojuego* newV = new Videojuego(this->nombreVideojuego, this->descripcionVideojuego, nomDesarrolladorEnSesion, c, mapaCostos);
     ControladorVideojuegos::videojuegos.insert(newV);
-    this->categoriasVideojuego.clear();
 }
 
 void ControladorVideojuegos::setearDatosVideojuego(string nombre, string descripcion, float precioMes, float precioTri, float precioAnio, float precioVit) {

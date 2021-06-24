@@ -132,7 +132,9 @@ vector<DtVideojuego*> ControladorUsuarios::obtenerVideojuegosJugador(string emai
 
     if (usuario != NULL) {
         Jugador* jugador = dynamic_cast<Jugador*> (usuario);
-        videojuegos = jugador->videojuegosSuscripto();
+        if(jugador != NULL){
+            videojuegos = jugador->videojuegosSuscripto();
+        }    
     }
 
     return videojuegos;

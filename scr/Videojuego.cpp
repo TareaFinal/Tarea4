@@ -199,8 +199,13 @@ float Videojuego::calcularPuntajePromedio() {
 }
 
 DtVideojuego *Videojuego::getDataVideojuego() {
+ 	vector<string> cats;
+	for (auto c : this->getCategorias()) {
+		cats.push_back(c->getNombre());
+		cout << c->getNombre() << endl;
+	}
 	DtVideojuego *dataVideojuego = new DtVideojuego(this->nombre, this->descripcion, this->calcularPuntajePromedio(), this->calcularEstadistica(2), 
-													this->desarrollador->getEmpresa(), this->costos);
+													this->desarrollador->getEmpresa(), this->costos, cats);
 	return dataVideojuego;
 }
 

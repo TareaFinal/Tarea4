@@ -156,13 +156,15 @@ vector<DtPartida*> ControladorPartidas::ObtenerPartidasActivas() {
         {
            // Partida* p = it->second; // obtengo la partida actual
             PartidaMultijugador* partidaM = dynamic_cast <PartidaMultijugador*> (it->second);
-            if (partidaM != NULL) {
+            if (partidaM != NULL && partidaM->getDuracion() == 0.0) {
             	
                 set<string> jugadoresunidos = partidaM->getNicknameJugadoresActivos(); // en cada partida multi hay que fijarse si el jugador está
                 std::set<string>::iterator itj;
                 for (itj = jugadoresunidos.begin(); itj != jugadoresunidos.end(); ++itj)
                 {   	
-                    if ((*itj) == jugador) { activas.push_back(partidaM->getDataPartida()); } // si esta la ponemos para devolver en activas
+                    if ((*itj) == jugador) { 
+                        activas.push_back(partidaM->getDataPartida()); 
+                    } // si esta la ponemos para devolver en activas
                 }
             }
         }
