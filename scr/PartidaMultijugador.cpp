@@ -18,7 +18,8 @@ void PartidaMultijugador::setTransmitida(bool transmit) {
 
 void PartidaMultijugador::setSalida(string jugador, DtFechaHora *fechaSalida) {
 
-	this->conjuntoSalidas.insert(pair<string, DtFechaHora*>(jugador, fechaSalida));
+	//this->conjuntoSalidas.insert(pair<string, DtFechaHora*>(jugador, fechaSalida));
+	this->conjuntoSalidas[jugador]=fechaSalida;
 	
 }
 
@@ -65,6 +66,8 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
     			//d = d + x->getAnio()*365*24 + x->getMes()*30*24 + x->getDia()*24 + x->getHora() + x->getMinuto()/60;
 			} //recorro el conjunto de jugadores y salidas para la suma de duraciones;
 	}
+	d = d + this->duracion;
+	//cout << "partida multi: " << d << endl;
 	return d;
 }
 
@@ -112,7 +115,8 @@ void PartidaMultijugador::abandonaPartidaJugador(string jugador) {
 	
 	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it) {
 		if((it)->first == jugador) {
-			it->second = new DtFechaHora(fechaSalida->getAnio(), fechaSalida->getMes(), fechaSalida->getDia(), fechaSalida->getHora(), fechaSalida->getMinuto());
+			//it->second = new DtFechaHora(fechaSalida->getAnio(), fechaSalida->getMes(), fechaSalida->getDia(), fechaSalida->getHora(), fechaSalida->getMinuto());
+			this->conjuntoSalidas[jugador]=fechaSalida;
 			break;	
 		}
 	}

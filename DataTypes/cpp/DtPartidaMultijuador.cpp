@@ -42,13 +42,13 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
 	os << "----------------------------------------\n"
 	   << "---Partida Multijugador---" << endl
        << "Id: " << pm->getIdPartida() << "\n";
-        if (pm->getDuracion() != 0.0) {
-        	os << "Duracion: " <<  pm->getDuracion() << " horas\n";
-    	}
-       os << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << endl
-       << "Creador: " << pm->getNicknameCreador() << "\n"
-       << "Videojuego: " << pm->getVideojuego() << "\n"
-       << "Es transmitida en vivo: ";
+	if (pm->getDuracion() != 0.0) {
+		os << "Duracion: " <<  pm->getDuracion() << " horas\n";
+	}
+	os << "Fecha de inicio: " <<  pm->getFechaInicio()->getDia() << "/" << pm->getFechaInicio()->getMes() << "/" << pm->getFechaInicio()->getAnio() << endl
+	<< "Creador: " << pm->getNicknameCreador() << "\n"
+	<< "Videojuego: " << pm->getVideojuego() << "\n"
+	<< "Es transmitida en vivo: ";
 
     if (pm->getTransmitida())
    		os	<< "Si\n";
@@ -60,13 +60,13 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
 	set<string> activos = pm->getNicknameJugadoresActivos();
 
 	os  << "Nickname Jugadores unidos:" << endl;
-		for(auto it : unidos){
-			os  << it << endl;
-		};
+	for(auto it : unidos){
+		os  << it << endl;
+	};
 	os	<< "De los cuales siguen activos: " << endl;
-		for(auto it : unidos){
-			os  << it << endl;
-		};
+	for(auto it : unidos){
+		os  << it << endl;
+	};
 	os	<< "Comentarios: " << endl
 		<< "Falta recorrer este vector"
 		<< "\n"

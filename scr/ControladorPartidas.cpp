@@ -19,13 +19,18 @@ float ControladorPartidas::darHorasDePartida(string videojuego) {
     std::map<int, Partida*>::iterator it;
     for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it){
         Partida*p = it->second;
+
         /*cout << "Id: " << p->getPartida() << endl
         << "videojuego: " << p->getVideojuego() << endl
         << "Duracion: " << p->getDuracion() << endl
-        << "Duenio: " << p->getJugador() << endl;*/
-        horas+=p->darTotalDeHorasParticipantes();
+        << "Duenio: " << p->getJugador() << endl
+        << "Total Horas: " << p->darTotalDeHorasParticipantes() << endl;*/
+        if (p->getVideojuego() == videojuego){
+            horas+=p->darTotalDeHorasParticipantes();
+        }
+
     }
- /*   if (this->dicPartidas.size() != 0){ // si hay partidas
+ /* if (this->dicPartidas.size() != 0){ // si hay partidas
 
         std::map<int, Partida*>::iterator it;
         for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it)
@@ -172,6 +177,7 @@ vector<DtPartida*> ControladorPartidas::ObtenerPartidasActivas() {
     return activas;
 }
 
+
 void ControladorPartidas::AbandonarPartidaActiva(int id) {
     Fabrica *fabrica = Fabrica::getInstancia();
     iControladorUsuarios* controladorusuarios = fabrica->getControladorUsuarios();
@@ -198,13 +204,12 @@ vector<DtPartida*> ControladorPartidas::ListarPartidasNoFinalizadas() {
         Partida* p = it->second; // obtengo la partida actual
         	cout << (p)->getJugador() << endl;
         if ((p->getDuracion()== 0.0 )&&(p->getJugador()==j)) {// si esta sin finalizar y es del jugador se agrega
-                noFinalizadas.push_back(p->getDataPartida());
+            noFinalizadas.push_back(p->getDataPartida());
                 
         }
     }
     return noFinalizadas;
 }
-
 
 set<string> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {
 	set<string> ret;
@@ -217,8 +222,7 @@ set<string> ControladorPartidas::obtenerJugadoresMulti(int idPartida) {
         // throw invalid_argument " Todo mal con esta id";
     }
 	return ret;
-} // // dentro de finalizar partidamultijudador devuelve los jugadores que estan jugando PARTIDA MULTIJUGADOR
-
+} // dentro de finalizar partidamultijudador devuelve los jugadores que estan jugando PARTIDA MULTIJUGADOR
 
 bool ControladorPartidas::ingreseIdPartida(int idPartida) {// el sistema guarda esta info para continuar partida INDIVIDUAL no finalizada.
     this->partidaAfinalizar = idPartida;

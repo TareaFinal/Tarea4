@@ -77,7 +77,7 @@ int main(int argc, char** argv) {
 		ctrlVideojuegos->asignarPuntajeAVideojuego("KingdomRush", 3);
 	
 	*/
-    
+    bool yaCargados = false;
     int n = 4;
 	system("clear");
 	cout << "--- Tarea 4 - Programacion 4 ---" << endl;
@@ -1257,324 +1257,330 @@ int main(int argc, char** argv) {
             }
             break;
             case 3: {
-            	system("clear");
-            	DtCategoria* gen = NULL; 
-				DtCategoria* plat = NULL;
-				vector<string> jugadoresQParticipan;
-				
-				//Abandona partida multijugador(*ctrlUsuarios).iniciarSesion("ea@mail.com", "123");
-            	
-				//Ingreso de desarrolladores
-				ctrlUsuarios->registrarUsuario("ironhide@mail.com", "123");
-				ctrlUsuarios->darEmpresa("Ironhide Game Studio");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				ctrlUsuarios->registrarUsuario("epic@mail.com", "123");
-				ctrlUsuarios->darEmpresa("Epic Games");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				ctrlUsuarios->registrarUsuario("mojang@mail.com", "123");
-				ctrlUsuarios->darEmpresa("Mojang Studios");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				ctrlUsuarios->registrarUsuario("ea@mail.com", "123");
-				ctrlUsuarios->darEmpresa("EA Sports");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				//Ingreso de jugadores
-				ctrlUsuarios->registrarUsuario("gamer@mail.com", "123");
-				ctrlUsuarios->darDatosJugador("gamer", "");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				ctrlUsuarios->registrarUsuario("ari@mail.com", "123");
-				ctrlUsuarios->darDatosJugador("ari", "");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				ctrlUsuarios->registrarUsuario("ibai@mail.com", "123");
-				ctrlUsuarios->darDatosJugador("ibai", "");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				ctrlUsuarios->registrarUsuario("camila@mail.com", "123");
-				ctrlUsuarios->darDatosJugador("camila", "");
-				ctrlUsuarios->confirmarAltaUsuario();
-				
-				//Ingreso de categorias
-				ctrlVideojuegos->ingresarCategoria("PC", "plataforma", "");
-				ctrlVideojuegos->ingresarCategoria("PS4", "plataforma", "");
-				ctrlVideojuegos->ingresarCategoria("Xbox One", "plataforma", "");
-				ctrlVideojuegos->ingresarCategoria("Deporte", "genero", "");
-				ctrlVideojuegos->ingresarCategoria("Supervivencia", "genero", "");
-				ctrlVideojuegos->ingresarCategoria("Estrategia", "genero", "");
-				ctrlVideojuegos->ingresarCategoria("Teen", "otro", "Su contenido esta dirigido a jovenes de 13 anios en adelante");
-				ctrlVideojuegos->ingresarCategoria("E", "otro", "Su contenido esta dirigido para todo publico");
-				ctrlVideojuegos->ingresarCategoria("Accion", "genero", "");
-				ctrlVideojuegos->ingresarCategoria("Aventura", "genero", "");
-				ctrlVideojuegos->ingresarCategoria("Switch", "plataforma", "");
-				ctrlVideojuegos->ingresarCategoria("Xbox X", "plataforma", "");
-				ctrlVideojuegos->ingresarCategoria("PS5", "plataforma", "");
-				
-				//Ingreso de videojuegos
-				vector<DtCategoria*> cats;
-				ctrlUsuarios->iniciarSesion("ironhide@mail.com", "123");
-				ctrlVideojuegos->setearDatosVideojuego("KingdomRush", "", 1, 2, 7, 14);
-				vector<DtCategoria*> categorias1 = ctrlVideojuegos->solicitarCategorias();	
-				vector<DtCategoria*>::iterator it;
-				for (it = categorias1.begin(); it != categorias1.end(); it++) {
-					if ((*it)->getNombre() == "PC") {
-						plat = *it;
+				if (!yaCargados){
+					system("clear");
+					DtCategoria* gen = NULL; 
+					DtCategoria* plat = NULL;
+					vector<string> jugadoresQParticipan;
+					
+					//Abandona partida multijugador(*ctrlUsuarios).iniciarSesion("ea@mail.com", "123");
+					
+					//Ingreso de desarrolladores
+					ctrlUsuarios->registrarUsuario("ironhide@mail.com", "123");
+					ctrlUsuarios->darEmpresa("Ironhide Game Studio");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					ctrlUsuarios->registrarUsuario("epic@mail.com", "123");
+					ctrlUsuarios->darEmpresa("Epic Games");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					ctrlUsuarios->registrarUsuario("mojang@mail.com", "123");
+					ctrlUsuarios->darEmpresa("Mojang Studios");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					ctrlUsuarios->registrarUsuario("ea@mail.com", "123");
+					ctrlUsuarios->darEmpresa("EA Sports");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					//Ingreso de jugadores
+					ctrlUsuarios->registrarUsuario("gamer@mail.com", "123");
+					ctrlUsuarios->darDatosJugador("gamer", "");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					ctrlUsuarios->registrarUsuario("ari@mail.com", "123");
+					ctrlUsuarios->darDatosJugador("ari", "");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					ctrlUsuarios->registrarUsuario("ibai@mail.com", "123");
+					ctrlUsuarios->darDatosJugador("ibai", "");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					ctrlUsuarios->registrarUsuario("camila@mail.com", "123");
+					ctrlUsuarios->darDatosJugador("camila", "");
+					ctrlUsuarios->confirmarAltaUsuario();
+					
+					//Ingreso de categorias
+					ctrlVideojuegos->ingresarCategoria("PC", "plataforma", "");
+					ctrlVideojuegos->ingresarCategoria("PS4", "plataforma", "");
+					ctrlVideojuegos->ingresarCategoria("Xbox One", "plataforma", "");
+					ctrlVideojuegos->ingresarCategoria("Deporte", "genero", "");
+					ctrlVideojuegos->ingresarCategoria("Supervivencia", "genero", "");
+					ctrlVideojuegos->ingresarCategoria("Estrategia", "genero", "");
+					ctrlVideojuegos->ingresarCategoria("Teen", "otro", "Su contenido esta dirigido a jovenes de 13 anios en adelante");
+					ctrlVideojuegos->ingresarCategoria("E", "otro", "Su contenido esta dirigido para todo publico");
+					ctrlVideojuegos->ingresarCategoria("Accion", "genero", "");
+					ctrlVideojuegos->ingresarCategoria("Aventura", "genero", "");
+					ctrlVideojuegos->ingresarCategoria("Switch", "plataforma", "");
+					ctrlVideojuegos->ingresarCategoria("Xbox X", "plataforma", "");
+					ctrlVideojuegos->ingresarCategoria("PS5", "plataforma", "");
+					
+					//Ingreso de videojuegos
+					vector<DtCategoria*> cats;
+					ctrlUsuarios->iniciarSesion("ironhide@mail.com", "123");
+					ctrlVideojuegos->setearDatosVideojuego("KingdomRush", "", 1, 2, 7, 14);
+					vector<DtCategoria*> categorias1 = ctrlVideojuegos->solicitarCategorias();	
+					vector<DtCategoria*>::iterator it;
+					for (it = categorias1.begin(); it != categorias1.end(); it++) {
+						if ((*it)->getNombre() == "PC") {
+							plat = *it;
+						}
+						if ((*it)->getNombre() == "Estrategia") {
+							gen = *it;
+						}
+						if ((*it)->getNombre() == "PS4" || (*it)->getNombre() == "E") {
+							cats.push_back(*it);
+						}
 					}
-					if ((*it)->getNombre() == "Estrategia") {
-					 	gen = *it;
+					ctrlVideojuegos->asignarGenero(gen);
+					ctrlVideojuegos->asignarPlataforma(plat);
+					ctrlVideojuegos->asignarCategorias(cats);
+					ctrlVideojuegos->publicarVideojuego();
+					cats.clear();
+					
+					/**************************************************************************/
+					
+					ctrlUsuarios->iniciarSesion("epic@mail.com", "123");
+					ctrlVideojuegos->setearDatosVideojuego("Fortnite", "", 3, 8, 30, 60);
+					vector<DtCategoria*> categorias2 = ctrlVideojuegos->solicitarCategorias();	
+		//			vector<DtCategoria*>::iterator it;
+					for (it = categorias2.begin(); it != categorias2.end(); it++) {
+						if ((*it)->getNombre() == "PC") {
+							plat = *it;
+						}
+						if ((*it)->getNombre() == "Supervivencia") {
+							gen = *it;
+						}
+						if ((*it)->getNombre() == "PS4" || (*it)->getNombre() == "Xbox One" || (*it)->getNombre() == "Teen") {
+							cats.push_back(*it);
+						}
 					}
-					if ((*it)->getNombre() == "PS4" || (*it)->getNombre() == "E") {
-						cats.push_back(*it);
+					ctrlVideojuegos->asignarGenero(gen);
+					ctrlVideojuegos->asignarPlataforma(plat);
+					ctrlVideojuegos->asignarCategorias(cats);
+					ctrlVideojuegos->publicarVideojuego();
+					cats.clear();
+					
+					/**************************************************************************/
+					
+					ctrlUsuarios->iniciarSesion("mojang@mail.com", "123");
+					ctrlVideojuegos->setearDatosVideojuego("Minecraft", "", 2, 5, 20, 40);
+					vector<DtCategoria*> categorias3 = ctrlVideojuegos->solicitarCategorias();	
+		//			vector<DtCategoria>::iterator it;
+					for (it = categorias3.begin(); it != categorias3.end(); it++) {
+						if ((*it)->getNombre() == "PC") {
+							plat = *it;
+						}
+						if ((*it)->getNombre() == "Supervivencia") {
+							gen = *it;
+						}
+						if ((*it)->getNombre() == "E") {
+							cats.push_back(*it);
+						}
 					}
+					ctrlVideojuegos->asignarGenero(gen);
+					ctrlVideojuegos->asignarPlataforma(plat);
+					ctrlVideojuegos->asignarCategorias(cats);
+					ctrlVideojuegos->publicarVideojuego();
+					cats.clear();
+					
+					/**************************************************************************/
+					
+					ctrlUsuarios->iniciarSesion("ea@mail.com", "123");
+					ctrlVideojuegos->setearDatosVideojuego("FIFA_21", "", 3, 8, 28, 50);
+					vector<DtCategoria*> categorias4 = ctrlVideojuegos->solicitarCategorias();	
+		//			vector<DtCategoria>::iterator it;
+					for (it = categorias4.begin(); it != categorias4.end(); it++) {
+						if ((*it)->getNombre() == "PC") {
+							plat = *it;
+						}
+						if ((*it)->getNombre() == "Deporte") {
+							gen = *it;
+						}
+						if ((*it)->getNombre() == "PS4" || (*it)->getNombre() == "Xbox One" || (*it)->getNombre() == "E") {
+							cats.push_back(*it);
+						}
+					}
+					ctrlVideojuegos->asignarGenero(gen);
+					ctrlVideojuegos->asignarPlataforma(plat);
+					ctrlVideojuegos->asignarCategorias(cats);
+					ctrlVideojuegos->publicarVideojuego();
+					
+					
+					//Ingreso de suscripciones
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 1, 9, 0));
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 2);
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 11, 0));
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "tarjeta", 2);
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 4, 9, 0));
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "paypal", 1);
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 11, 9, 0));
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					ctrlVideojuegos->altaSuscripcion("Minecraft", "temporal", "tarjeta", 3);
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 7, 0));
+					ctrlUsuarios->iniciarSesion("ibai@mail.com", "123");
+					ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "tarjeta", 1);
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2020, 12, 21, 15, 0));
+					ctrlUsuarios->iniciarSesion("ibai@mail.com", "123");
+					ctrlVideojuegos->altaSuscripcion("Minecraft", "vitalicia", "tarjeta", 0);
+					
+					//Ingreso de puntajes
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlVideojuegos->asignarPuntajeAVideojuego("KingdomRush", 4);
+					
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlVideojuegos->asignarPuntajeAVideojuego("Fortnite", 5);
+					
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					ctrlVideojuegos->asignarPuntajeAVideojuego("Fortnite", 5);
+					
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					ctrlVideojuegos->asignarPuntajeAVideojuego("Minecraft", 3);
+					
+					
+					//Ingreso de partidas individuales
+					int id;
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 9, 0));
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlPartidas->SeleccionarVideojuego("KingdomRush");
+					ctrlPartidas->setTipoPartida("individual");
+					ctrlPartidas->iniciarPartida();
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 10, 0));
+					vector<DtPartida*> partidasNoFinalizadasGamer1 = ctrlPartidas->ListarPartidasNoFinalizadas();			
+					vector<DtPartida*>::iterator itp;
+					for (itp = partidasNoFinalizadasGamer1.begin(); itp != partidasNoFinalizadasGamer1.end(); itp++) {
+						if ((*itp)->getVideojuego() == "KingdomRush") {
+							id = (*itp)->getIdPartida();
+							ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
+							ctrlPartidas->finalizarPartida();
+							break;
+						}
+					}
+					
+					/***************************************************************************/
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 15, 0));
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlPartidas->SeleccionarVideojuego("KingdomRush");
+					ctrlPartidas->setTipoPartida("individual");
+					ctrlPartidas->seleccionarPartida(id);
+					ctrlPartidas->iniciarPartida();
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 16, 0));
+					
+					vector<DtPartida*> partidasNoFinalizadasGamer2 = ctrlPartidas->ListarPartidasNoFinalizadas();
+					
+					for (itp = partidasNoFinalizadasGamer2.begin(); itp != partidasNoFinalizadasGamer2.end(); itp++) {
+						if ((*itp)->getVideojuego() == "KingdomRush") {
+							ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
+							ctrlPartidas->finalizarPartida();
+							break;
+						}
+					}
+					
+					/***************************************************************************/
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 16, 0));
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					ctrlPartidas->SeleccionarVideojuego("Minecraft");
+					ctrlPartidas->setTipoPartida("individual");
+					ctrlPartidas->iniciarPartida();
+					
+			
+					//Ingreso de partidas multijugador
+					
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 17, 0));
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlPartidas->SeleccionarVideojuego("Fortnite");
+					ctrlPartidas->setTipoPartida("multijugador");
+					ctrlPartidas->Transmitida(true);
+					jugadoresQParticipan.push_back("ari");
+					jugadoresQParticipan.push_back("ibai");
+					ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
+					ctrlPartidas->iniciarPartida();
+					
+					
+					
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					vector<DtPartida*> partidasActivasAri1 = ctrlPartidas->ObtenerPartidasActivas();
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 18, 0));			
+					for (itp = partidasActivasAri1.begin(); itp != partidasActivasAri1.end(); itp++) {
+						if ((*itp)->getVideojuego() == "Fortnite") {
+							ctrlPartidas->AbandonarPartidaActiva((*itp)->getIdPartida());
+						}
+					}
+					
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
+					vector<DtPartida*> partidasNoFinalizadasAri2 = ctrlPartidas->ListarPartidasNoFinalizadas();			
+					
+					for (itp = partidasNoFinalizadasAri2.begin(); itp != partidasNoFinalizadasAri2.end(); it++) {
+						if ((*itp)->getVideojuego() == "Fortnite") {
+							ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
+							ctrlPartidas->finalizarPartida();
+							break;
+						}
+					}
+					
+					/***************************************************************************/
+					
+					jugadoresQParticipan.clear();
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 0));
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlPartidas->SeleccionarVideojuego("Fortnite");
+					ctrlPartidas->setTipoPartida("multijugador");
+					ctrlPartidas->Transmitida(true);
+					jugadoresQParticipan.push_back("ari");
+					jugadoresQParticipan.push_back("ibai");
+					ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
+					ctrlPartidas->iniciarPartida();
+					
+					//Abandona partida multijugador
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					vector<DtPartida*> partidasActivasAri2 = ctrlPartidas->ObtenerPartidasActivas();
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 30));
+					for (itp = partidasActivasAri2.begin(); itp != partidasActivasAri2.end(); itp++) {
+						if ((*itp)->getVideojuego() == "Fortnite") {
+							ctrlPartidas->AbandonarPartidaActiva((*itp)->getIdPartida());
+						}
+					}
+					
+					ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 19, 0));
+					vector<DtPartida*> partidasNoFinalizadasAri3 = ctrlPartidas->ListarPartidasNoFinalizadas();			
+					for (itp = partidasNoFinalizadasAri3.begin(); itp != partidasNoFinalizadasAri3.end(); itp++) {
+						if ((*itp)->getVideojuego() == "Fortnite") {
+							ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
+							ctrlPartidas->finalizarPartida();
+							break;
+						}
+					}
+					
+					/***************************************************************************/
+					
+					jugadoresQParticipan.clear();
+					ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 20, 0));
+					ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
+					ctrlPartidas->SeleccionarVideojuego("Minecraft");
+					ctrlPartidas->Transmitida(false);
+					jugadoresQParticipan.push_back("ibai");
+					ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
+					ctrlPartidas->iniciarPartida();
+
+					yaCargados = true;				
+					system("clear");
+					cout << "Datos ingresados correctamente." << endl;
+				}else {
+					system("clear");
+					cout << "Datos ya cargados." << endl;
 				}
-				ctrlVideojuegos->asignarGenero(gen);
-				ctrlVideojuegos->asignarPlataforma(plat);
-				ctrlVideojuegos->asignarCategorias(cats);
-				ctrlVideojuegos->publicarVideojuego();
-				cats.clear();
-				
-				/**************************************************************************/
-				
-				ctrlUsuarios->iniciarSesion("epic@mail.com", "123");
-				ctrlVideojuegos->setearDatosVideojuego("Fortnite", "", 3, 8, 30, 60);
-				vector<DtCategoria*> categorias2 = ctrlVideojuegos->solicitarCategorias();	
-	//			vector<DtCategoria*>::iterator it;
-				for (it = categorias2.begin(); it != categorias2.end(); it++) {
-					if ((*it)->getNombre() == "PC") {
-						plat = *it;
-					}
-					if ((*it)->getNombre() == "Supervivencia") {
-						gen = *it;
-					}
-					if ((*it)->getNombre() == "PS4" || (*it)->getNombre() == "Xbox One" || (*it)->getNombre() == "Teen") {
-						cats.push_back(*it);
-					}
-				}
-				ctrlVideojuegos->asignarGenero(gen);
-				ctrlVideojuegos->asignarPlataforma(plat);
-				ctrlVideojuegos->asignarCategorias(cats);
-				ctrlVideojuegos->publicarVideojuego();
-				cats.clear();
-				
-				/**************************************************************************/
-				
-				ctrlUsuarios->iniciarSesion("mojang@mail.com", "123");
-				ctrlVideojuegos->setearDatosVideojuego("Minecraft", "", 2, 5, 20, 40);
-				vector<DtCategoria*> categorias3 = ctrlVideojuegos->solicitarCategorias();	
-	//			vector<DtCategoria>::iterator it;
-				for (it = categorias3.begin(); it != categorias3.end(); it++) {
-					if ((*it)->getNombre() == "PC") {
-						plat = *it;
-					}
-					if ((*it)->getNombre() == "Supervivencia") {
-						gen = *it;
-					}
-					if ((*it)->getNombre() == "E") {
-						cats.push_back(*it);
-					}
-				}
-				ctrlVideojuegos->asignarGenero(gen);
-				ctrlVideojuegos->asignarPlataforma(plat);
-				ctrlVideojuegos->asignarCategorias(cats);
-				ctrlVideojuegos->publicarVideojuego();
-				cats.clear();
-				
-				/**************************************************************************/
-				
-				ctrlUsuarios->iniciarSesion("ea@mail.com", "123");
-				ctrlVideojuegos->setearDatosVideojuego("FIFA_21", "", 3, 8, 28, 50);
-				vector<DtCategoria*> categorias4 = ctrlVideojuegos->solicitarCategorias();	
-	//			vector<DtCategoria>::iterator it;
-				for (it = categorias4.begin(); it != categorias4.end(); it++) {
-					if ((*it)->getNombre() == "PC") {
-						plat = *it;
-					}
-					if ((*it)->getNombre() == "Deporte") {
-						gen = *it;
-					}
-					if ((*it)->getNombre() == "PS4" || (*it)->getNombre() == "Xbox One" || (*it)->getNombre() == "E") {
-						cats.push_back(*it);
-					}
-				}
-				ctrlVideojuegos->asignarGenero(gen);
-				ctrlVideojuegos->asignarPlataforma(plat);
-				ctrlVideojuegos->asignarCategorias(cats);
-				ctrlVideojuegos->publicarVideojuego();
-				
-				
-				//Ingreso de suscripciones
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 1, 9, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("KingdomRush", "temporal", "paypal", 2);
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 11, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "tarjeta", 2);
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 4, 9, 0));
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "paypal", 1);
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 11, 9, 0));
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Minecraft", "temporal", "tarjeta", 3);
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 7, 0));
-				ctrlUsuarios->iniciarSesion("ibai@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Fortnite", "temporal", "tarjeta", 1);
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2020, 12, 21, 15, 0));
-				ctrlUsuarios->iniciarSesion("ibai@mail.com", "123");
-				ctrlVideojuegos->altaSuscripcion("Minecraft", "vitalicia", "tarjeta", 0);
-				
-				//Ingreso de puntajes
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlVideojuegos->asignarPuntajeAVideojuego("KingdomRush", 4);
-				
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlVideojuegos->asignarPuntajeAVideojuego("Fortnite", 5);
-				
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlVideojuegos->asignarPuntajeAVideojuego("Fortnite", 5);
-				
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlVideojuegos->asignarPuntajeAVideojuego("Minecraft", 3);
-				
-				
-				//Ingreso de partidas individuales
-				int id;
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 9, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("KingdomRush");
-				ctrlPartidas->setTipoPartida("individual");
-				ctrlPartidas->iniciarPartida();
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 2, 10, 0));
-				vector<DtPartida*> partidasNoFinalizadasGamer1 = ctrlPartidas->ListarPartidasNoFinalizadas();			
-				vector<DtPartida*>::iterator itp;
-				for (itp = partidasNoFinalizadasGamer1.begin(); itp != partidasNoFinalizadasGamer1.end(); itp++) {
-					if ((*itp)->getVideojuego() == "KingdomRush") {
-						id = (*itp)->getIdPartida();
-						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
-						ctrlPartidas->finalizarPartida();
-						break;
-					}
-				}
-				
-				/***************************************************************************/
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 15, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("KingdomRush");
-				ctrlPartidas->setTipoPartida("individual");
-				ctrlPartidas->seleccionarPartida(id);
-				ctrlPartidas->iniciarPartida();
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 3, 16, 0));
-				
-				vector<DtPartida*> partidasNoFinalizadasGamer2 = ctrlPartidas->ListarPartidasNoFinalizadas();
-				
-				for (itp = partidasNoFinalizadasGamer2.begin(); itp != partidasNoFinalizadasGamer2.end(); itp++) {
-					if ((*itp)->getVideojuego() == "KingdomRush") {
-						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
-						ctrlPartidas->finalizarPartida();
-						break;
-					}
-				}
-				
-				/***************************************************************************/
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 16, 0));
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("Minecraft");
-				ctrlPartidas->setTipoPartida("individual");
-				ctrlPartidas->iniciarPartida();
-				
-		
-				//Ingreso de partidas multijugador
-				
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 17, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("Fortnite");
-				ctrlPartidas->setTipoPartida("multijugador");
-				ctrlPartidas->Transmitida(true);
-				jugadoresQParticipan.push_back("ari");
-				jugadoresQParticipan.push_back("ibai");
-				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
-				ctrlPartidas->iniciarPartida();
-				
-				
-				
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				vector<DtPartida*> partidasActivasAri1 = ctrlPartidas->ObtenerPartidasActivas();
-							
-				for (itp = partidasActivasAri1.begin(); itp != partidasActivasAri1.end(); itp++) {
-					if ((*itp)->getVideojuego() == "Fortnite") {
-						ctrlPartidas->AbandonarPartidaActiva((*itp)->getIdPartida());
-					}
-				}
-				
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 5, 19, 0));
-				vector<DtPartida*> partidasNoFinalizadasAri2 = ctrlPartidas->ListarPartidasNoFinalizadas();			
-				
-				for (itp = partidasNoFinalizadasAri2.begin(); itp != partidasNoFinalizadasAri2.end(); it++) {
-					if ((*itp)->getVideojuego() == "Fortnite") {
-						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
-						ctrlPartidas->finalizarPartida();
-						break;
-					}
-				}
-				
-				/***************************************************************************/
-				
-				jugadoresQParticipan.clear();
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 17, 0));
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("Fortnite");
-				ctrlPartidas->setTipoPartida("multijugador");
-				ctrlPartidas->Transmitida(true);
-				jugadoresQParticipan.push_back("ari");
-				jugadoresQParticipan.push_back("ibai");
-				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
-				ctrlPartidas->iniciarPartida();
-				
-				//Abandona partida multijugador
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				vector<DtPartida*> partidasActivasAri2 = ctrlPartidas->ObtenerPartidasActivas();
-							
-				for (itp = partidasActivasAri2.begin(); itp != partidasActivasAri2.end(); itp++) {
-					if ((*itp)->getVideojuego() == "Fortnite") {
-						ctrlPartidas->AbandonarPartidaActiva((*itp)->getIdPartida());
-					}
-				}
-				
-				ctrlUsuarios->iniciarSesion("gamer@mail.com", "123");
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 6, 19, 0));
-				vector<DtPartida*> partidasNoFinalizadasAri3 = ctrlPartidas->ListarPartidasNoFinalizadas();			
-				for (itp = partidasNoFinalizadasAri3.begin(); itp != partidasNoFinalizadasAri3.end(); itp++) {
-					if ((*itp)->getVideojuego() == "Fortnite") {
-						ctrlPartidas->ingreseIdPartida((*itp)->getIdPartida());
-						ctrlPartidas->finalizarPartida();
-						break;
-					}
-				}
-				
-				/***************************************************************************/
-				
-				jugadoresQParticipan.clear();
-				ctrlUsuarios->setFechaSistema(new DtFechaHora(2021, 6, 12, 20, 0));
-				ctrlUsuarios->iniciarSesion("ari@mail.com", "123");
-				ctrlPartidas->SeleccionarVideojuego("Minecraft");
-				ctrlPartidas->Transmitida(false);
-				jugadoresQParticipan.push_back("ibai");
-				ctrlPartidas->seleccionarJugadores(jugadoresQParticipan); 
-				ctrlPartidas->iniciarPartida();
-				
-				system("clear");
-				cout << "Datos ingresados correctamente." << endl;
 			}
             break;
             case 0: {n = 0;}

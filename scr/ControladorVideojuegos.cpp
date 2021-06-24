@@ -71,18 +71,21 @@ void ControladorVideojuegos::eliminarVideojuego(string nombre) {
 vector<DtVideojuego> ControladorVideojuegos::solicitarVideojuegos() {
 //	set<DtVideojuego> videojuegos;
 //	return videojuegos;
+    float totHoras = 0.0;
 	vector<DtVideojuego> dtVideojuegos;
     for (auto f : ControladorVideojuegos::videojuegos) {
+        totHoras = 0.0;
     	Videojuego* v = f;
-        float totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
+        totHoras = fab->getControladorPartidas()->darHorasDePartida(f->getNombre());
         vector<string> cats;
         for (auto c : f->getCategorias()){
             cats.push_back(c->getNombre());
         }
         DtVideojuego ret = DtVideojuego(v->getNombre(), v->getDescripcion(), v->calcularPuntajePromedio(), totHoras, v->getDesarrollador()->getEmpresa(), v->getCostos(), cats);
         dtVideojuegos.push_back(ret);
+
         //dtEstadisticas.insert(ret);
-        }
+    }
     return dtVideojuegos;
 }
 
