@@ -56,6 +56,9 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
    		os	<< "No\n";
 
 	set<string> unidos = pm->getNicknameJugadoresUnidos();
+	for(auto it : unidos){
+		cout  << it << endl;
+	};
 	os << "pase los unidos" << endl;
 	set<string> activos = pm->getNicknameJugadoresActivos();
 
@@ -64,7 +67,7 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
 		os  << it << endl;
 	};
 	os	<< "De los cuales siguen activos: " << endl;
-	for(auto it : unidos){
+	for(auto it : activos){
 		os  << it << endl;
 	};
 	os	<< "Comentarios: " << endl
