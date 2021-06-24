@@ -34,40 +34,15 @@ float PartidaMultijugador::darTotalDeHorasParticipantes() {
 	DtFechaHora *x;
 	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it ) {
     		if (it->second != NULL) {
-    			x = it->second;/*
-				int anio 	= x->getAnio() - this->FechaInicio->getAnio();
-				int mes 	= x->getMes() - this->FechaInicio->getMes();
-				int dia 	= x->getDia() - this->FechaInicio->getDia();
-				int hora 	= x->getHora() - this->FechaInicio->getHora();
-				int minuto 	= x->getMinuto() - this->FechaInicio->getMinuto();
-				if (minuto<0){
-					hora=hora-1;
-					minuto=60-abs(minuto);
-				}
-				if (hora<0){
-					dia=dia-1;
-					hora=24-abs(hora);
-				}
-				if (dia<0){
-					mes=mes-1;
-					dia=30-abs(dia);
-				}
-				if (mes<0){
-					anio=anio-1;
-					mes=12-abs(mes);
-				}*/
+    			x = it->second;
 
 				float horasDeJuego = this->diferencia(this->FechaInicio, x);
 
 				d = d + horasDeJuego;
-				//float f = Partida::diferencia(this->FechaInicio,x);
-				//d = f;
-				//cout << "para el juego "<< this->Videojuego <<" las horas ahora son: " << d << endl;
-    			//d = d + x->getAnio()*365*24 + x->getMes()*30*24 + x->getDia()*24 + x->getHora() + x->getMinuto()/60;
-			} //recorro el conjunto de jugadores y salidas para la suma de duraciones;
+
+			} 
 	}
 	d = d + this->duracion;
-	//cout << "partida multi: " << d << endl;
 	return d;
 }
 
@@ -84,7 +59,7 @@ set<string> PartidaMultijugador::getNicknameJugadoresActivos() {
 set<string> PartidaMultijugador::getDtJugadoresUnidos() {
 	set<string> jugadores;
 	
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
+	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ++it) {
 		string nick = it->first;
 		jugadores.insert(nick);
 	}
@@ -104,7 +79,7 @@ void PartidaMultijugador::terminarPartida() {
 }
 
 DtPartida *PartidaMultijugador::getDataPartida() {
-	DtPartida *dataPartida = new DtPartidaMultijugador(this->idPartida, this->duracion, this->FechaInicio, this->duenio, this->Videojuego, this->Transmitida, this->colComentarios, this->conjuntoSalidas);
+	DtPartida *dataPartida = new DtPartidaMultijugador(this->idPartida, this->duracion, this->FechaInicio, this->duenio, this->Videojuego, this->Transmitida, this->colComentarios, this->getDtJugadoresUnidos());
 	return dataPartida;
 }
 

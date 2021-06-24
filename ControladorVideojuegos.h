@@ -47,7 +47,6 @@ class ControladorVideojuegos : public iControladorVideojuegos {
                 void confirmarEliminacion();
                 bool ingreseNombreVideojuego(string nombreVideojuego);
                 bool esTemporal(string videojuego);
-                Suscripcion *ingresarNombre(string nombre);
                 void ingresarCategoria(string nombre, string tipo, string descripcion);
                 
                 bool existeVideojuego(string nombre);

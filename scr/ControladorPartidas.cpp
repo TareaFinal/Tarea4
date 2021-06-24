@@ -2,6 +2,7 @@
 
 ControladorPartidas *ControladorPartidas::instancia = NULL;
 
+// controladorpartidas es singleton
 ControladorPartidas *ControladorPartidas::getInstancia() {
 	if (instancia == NULL)
 		instancia = new ControladorPartidas();
@@ -19,26 +20,12 @@ float ControladorPartidas::darHorasDePartida(string videojuego) {
     std::map<int, Partida*>::iterator it;
     for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it){
         Partida*p = it->second;
-
-        /*cout << "Id: " << p->getPartida() << endl
-        << "videojuego: " << p->getVideojuego() << endl
-        << "Duracion: " << p->getDuracion() << endl
-        << "Duenio: " << p->getJugador() << endl
-        << "Total Horas: " << p->darTotalDeHorasParticipantes() << endl;*/
         if (p->getVideojuego() == videojuego){
             horas+=p->darTotalDeHorasParticipantes();
         }
 
     }
- /* if (this->dicPartidas.size() != 0){ // si hay partidas
 
-        std::map<int, Partida*>::iterator it;
-        for (it = this->dicPartidas.begin(); it != this->dicPartidas.end(); ++it)
-        {
-            Partida* p = it->second; // obtengo la partida actual
-            horas+=p->darTotalDeHorasParticipantes();
-    	}
-	}*/
 	return horas;        
 }
 

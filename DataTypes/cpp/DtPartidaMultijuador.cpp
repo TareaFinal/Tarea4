@@ -1,6 +1,6 @@
 #include "../DtPartidaMultijugador.h"
 
-DtPartidaMultijugador::DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, map<string, DtFechaHora*> conjuntoSalidas) {
+DtPartidaMultijugador::DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, set<string> conjuntoSalidas) {
     this->idPartida = idPartida;
 	this->duracion = duracion;
     this->fechaInicio = fechaInicio;
@@ -16,22 +16,12 @@ bool DtPartidaMultijugador::getTransmitida(){
 set<string> DtPartidaMultijugador::getNicknameJugadoresUnidos(){
     set<string> jugadores;
 	
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
-		string nick = it->first;
+	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); it++) {
+		string nick = *it;
 		jugadores.insert(nick);
 	}
 	return jugadores;
 };
-
-set<string> DtPartidaMultijugador::getNicknameJugadoresActivos() {
-	set<string> jugadores;
-	
-	for (auto it = this->conjuntoSalidas.begin(); it != this->conjuntoSalidas.end(); ) {
-		if (it->second == NULL)
-			jugadores.insert(it->first);
-	}
-	return jugadores;
-}
 
 
 vector<DtComentario*> DtPartidaMultijugador::getComentarios(){
@@ -56,25 +46,12 @@ ostream &operator<< (ostream &os, DtPartidaMultijugador* pm) {
    		os	<< "No\n";
 
 	set<string> unidos = pm->getNicknameJugadoresUnidos();
-	for(auto it : unidos){
-		cout  << it << endl;
-	};
-	os << "pase los unidos" << endl;
-	set<string> activos = pm->getNicknameJugadoresActivos();
 
-	os  << "Nickname Jugadores unidos:" << endl;
+	os  << "Nickname Jugadores unidos: " ;
 	for(auto it : unidos){
-		os  << it << endl;
+		os  << it << ", ";
 	};
-	os	<< "De los cuales siguen activos: " << endl;
-	for(auto it : activos){
-		os  << it << endl;
-	};
-	os	<< "Comentarios: " << endl
-		<< "Falta recorrer este vector"
-		<< "\n"
-		<< "\n";
-	   
+	os  << endl;
 	return os;
 	   
 	//return os;

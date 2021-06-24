@@ -33,7 +33,6 @@ class iControladorVideojuegos {
                 virtual void confirmarEliminacion() = 0;
                 virtual bool ingreseNombreVideojuego(string nombreVideojuego) = 0;
                 virtual bool esTemporal(string videojuego) = 0;
-                virtual Suscripcion *ingresarNombre(string nombre) = 0;
                 virtual void ingresarCategoria(string nombre, string tipo, string descripcion) = 0;
                 
                 virtual bool existeVideojuego(string nombre) = 0;

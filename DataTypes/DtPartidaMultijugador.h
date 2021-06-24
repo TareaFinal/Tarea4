@@ -14,16 +14,15 @@ using namespace std;
 class DtPartidaMultijugador : public DtPartida {
 	private: 
 		bool transmitida;
-		map<string, DtFechaHora*> conjuntoSalidas;
+		set<string> conjuntoSalidas;
 		vector<DtComentario*> comentarios;
 	public:	
 		typedef map<string, DtFechaHora*> map_type;
-		DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, map<string, DtFechaHora*> conjuntoSalidas);
+		DtPartidaMultijugador(int idPartida, float duracion, DtFechaHora* fechaInicio, string creador, string videojuego, bool transmitida, vector<DtComentario*> comentarios, set<string> conjuntoSalidas);
 
         //getters
 		bool getTransmitida();
 		set<string> getNicknameJugadoresUnidos();
-		set<string> getNicknameJugadoresActivos();
 		vector<DtComentario*> getComentarios();
 		
 		friend ostream &operator<< (ostream &os, DtPartidaMultijugador* pm);

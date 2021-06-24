@@ -15,11 +15,11 @@ Temporal::Temporal(string metpago, DtFechaHora *fechahoy, float val, Jugador* Pl
 		this->validez = new DtFechaHora(fechahoy->getAnio()+1, fechahoy->getMes(), fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 	}
 	else if (tipo == 2) {
-		if (fechahoy->getMes() <= 6) {
-			validez = new DtFechaHora(fechahoy->getAnio(), fechahoy->getMes()+6, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
+		if (fechahoy->getMes() <= 9) {
+			validez = new DtFechaHora(fechahoy->getAnio(), fechahoy->getMes()+3, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}
 		else {
-			this->validez = new DtFechaHora(fechahoy->getAnio()+1, fechahoy->getMes()-6, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
+			this->validez = new DtFechaHora(fechahoy->getAnio()+1, fechahoy->getMes()-9, fechahoy->getDia(), fechahoy->getHora(), fechahoy->getMinuto());
 		}
 	}
 	else if (tipo == 1) {
